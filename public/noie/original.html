@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://wonchondev.web.app/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://wonchondev.web.app/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://wonchondev.web.app/images/favicon-16x16.png">
+    <link rel="manifest" href="https://wonchondev.web.app/images/site.webmanifest">
+    <link rel="mask-icon" href="https://wonchondev.web.app/images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="https://wonchondev.web.app/images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, sans-serif;
+        }
+
+        .cursor {
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid black;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            pointer-events: none;
+            transition: all 0.2s ease-out;
+            z-index: 999;
+        }
+
+        .link-grow {
+            transform: scale(2) translate(-50%, -50%);
+            background: none;
+        }
+
+        .nav {
+            padding: 5px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: stretch;
+            background-color: white;
+        }
+
+        .navitem {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
+        .blank {
+            flex-grow: 1;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 0 0 16px rgb(0 0 0 / 28%);
+        }
+
+        .sidenav a {
+            padding: 10px 8px 10px 32px;
+            text-decoration: none;
+            width: 250px;
+            height: 50px;
+            border-radius: 0 25px 25px 0;
+            font-size: 20px;
+            color: black;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            background-color: #F1F3F4;
+        }
+
+        .sidenav .close_nav {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .hamburger {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background-color: white;
+            font-size: 20px;
+        }
+
+        .hamburger:hover {
+            background-color: #F1F3F4;
+        }
+
+        #login {
+            align-self: center;
+            width: 75px;
+            height: fit-content;
+            text-align: center;
+            text-decoration: none;
+            color: #777;
+            vertical-align: middle;
+        }
+
+        #signup {
+            align-self: center;
+            color: white;
+            height: fit-content;
+            text-decoration: none;
+            border: 1.5px solid #2681F2;
+            background-color: #2681F2;
+            border-radius: 5px;
+            vertical-align: middle;
+        }
+
+        footer {
+            height: 150px;
+            background-color: #ddd;
+            color: #777;
+            text-align: center;
+            padding: 50px;
+        }
+
+        footer a {
+            color: #777;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+
+        /*모바일을 위한 Responsive Layout*/
+        @media screen and (max-width: 500px) {
+            .cursor {
+                display: none;
+            }
+
+            * {
+                cursor: inherit;
+            }
+
+            li {
+                float: none;
+                display: block;
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+
+            .underline {
+                width: 100%;
+                margin: auto;
+            }
+
+            .logo {
+                display: block;
+            }
+        }
+
+        /*다크모드 지원*/
+        @media (prefers-color-scheme: dark) {
+
+            /*다크모드 상태*/
+            .underline:after {
+                background-color: black;
+            }
+        }
+
+        .boring {
+            height: 100vh;
+            margin-top: 17%;
+            text-align: center;
+            align-items: center;
+        }
+    </style>
+
+    <title>App Developers</title>
+</head>
+
+<body>
+    <!--For Custom Cursor-->
+    <div class="cursor"></div>
+    <div class="sidenav">
+        <div class="close_nav cursor-big">&times;</div>
+        <a href="https://wonchondev.web.app" class="cursor-big">홈</a>
+        <a href="https://wonchondev.web.app/about" class="cursor-big">소개</a>
+        <a href="https://wonchondev.web.app/products" class="cursor-big">제품</a>
+        <a href="https://wonchondev.web.app/downloads" class="cursor-big">다운로드</a>
+    </div>
+    <div class="nav">
+        <button class="navitem hamburger cursor-big">
+            &#9776;
+        </button>
+        <img class="navitem logo cursor-big" src="../images/logo/logo_long.png">
+        <div class="navitem blank">
+            <!--걍 빈 공간-->
+        </div>
+        <a id="login" class="navitem cursor-big" href="https://wonchondev.web.app/login">로그인</a>
+        <a id="signup" class="navitem cursor-big" href="https://wonchondev.web.app/signup">회원가입</a>
+    </div>
+    <div class="boring">
+        <img class="navitem logo cursor-big" src="../images/img/browserch.png">
+        <h1>더 이상 인터넷 익스플로러는 지원되지 않습니다!</h1>
+        <p>다른 브라우저로 접속해주세요...</p>
+        <p><a href="https://www.google.com/chrome" class="cursor-big">크롬 브라우저 다운로드...</a></p>
+    </div>
+
+
+    <footer>
+        <p>Made With ♥ By App Developers</p>
+        <a class="cursor-big" href="https://wonchondev.web.app">홈</a>
+        <a class="cursor-big" href="https://wonchondev.web.app/about">소개</a>
+        <a class="cursor-big" href="https://wonchondev.web.app/download">다운로드</a>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // For Cursor Animation
+        let mouseCursor = document.getElementsByClassName('cursor')[0];
+        let navLinks = document.querySelectorAll('.cursor-big');
+        window.addEventListener('mousemove', function (evt) {
+            mouseCursor.style.top = evt.pageY + 'px'
+            mouseCursor.style.left = evt.pageX + 'px'
+        });
+        navLinks.forEach(link => {
+            link.addEventListener('mouseover', function () {
+                mouseCursor.classList.add("link-grow");
+            });
+            link.addEventListener('mouseleave', function () {
+                mouseCursor.classList.remove("link-grow");
+            });
+        });
+
+        document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
+            document.getElementsByClassName('sidenav')[0].style.width = "250px";
+        });
+
+        document.getElementsByClassName('close_nav')[0].addEventListener("click", function () {
+            document.getElementsByClassName('sidenav')[0].style.width = "0"
+        });
+    </script>
+</body>
+
+</html>

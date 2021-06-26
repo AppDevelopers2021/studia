@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--Favicon Styles-->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://wonchondev.web.app/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://wonchondev.web.app/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://wonchondev.web.app/images/favicon-16x16.png">
+    <link rel="manifest" href="https://wonchondev.web.app/images/site.webmanifest">
+    <link rel="mask-icon" href="https://wonchondev.web.app/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
+    <meta name="keywords" content="원촌중학교,App Developers,자율동아리">
+
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"-->
+
+    <style>
+        /* 필요에 따라 CSS를 수정하세요 */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, sans-serif;
+        }
+
+        .nav {
+            padding: 5px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: stretch;
+            background-color: white;
+        }
+
+        .navitem {
+            flex-grow: 0 !important;
+            flex-shrink: 0 !important;
+        }
+
+        .logo {
+            height: 100%;
+        }
+
+        .right {
+            margin-left: auto;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 0 0 16px #00000047;
+        }
+
+        .sidenav a {
+            padding: 10px 8px 10px 32px;
+            text-decoration: none;
+            width: 250px;
+            height: 50px;
+            border-radius: 0 25px 25px 0;
+            font-size: 20px;
+            color: black;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            background-color: #F1F3F4;
+        }
+
+        .sidenav .close_nav {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .sidenav .close_nav:hover {
+            cursor: pointer;
+        }
+
+        .hamburger {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background-color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .hamburger:hover {
+            background-color: #F1F3F4;
+        }
+
+        #login {
+            align-self: center;
+            width: 75px;
+            height: fit-content;
+            text-align: center;
+            text-decoration: none;
+            color: #777;
+            vertical-align: middle;
+        }
+
+        #signup {
+            align-self: center;
+            color: white;
+            height: fit-content;
+            text-decoration: none;
+            border: 1.5px solid #2681F2;
+            background-color: #2681F2;
+            border-radius: 5px;
+            vertical-align: middle;
+        }
+
+        .body {
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 100px auto 250px;
+            grid-template-rows: 70px 30px auto;
+            width: 80%;
+            margin: auto;
+        }
+
+        .date {
+            position: relative;
+            font-family: 'Marvel';
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .date span {
+            position: absolute;
+            bottom: -5px;
+            width: 100%;
+            right: 0;
+            text-align: center;
+        }
+
+        .dday {
+            background-color: #2681F2;
+            border-radius: 10px;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .memo {
+            min-height: 100px;
+            border: 1px dashed black;
+            margin-top: 5px;
+            word-break: keep-all;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .notes {
+            grid-column: 2/3;
+            grid-row: 1/4;
+            padding-top: 30px;
+            padding-left: 10px;
+        }
+
+        .note_item {
+            width: 100%;
+            height: 50px;
+            background-color: #eee;
+            border-radius: 10px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .subject {
+            width: 40px;
+            height: 40px;
+            background-image: url(./img/1.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .content {
+            font-size: 25px;
+            margin-left: 10px;
+            width: max-content;
+        }
+
+        .reminder {
+            grid-column: 3/4;
+            grid-row: 1/4;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-top: 30px;
+            margin-left: 10px;
+            padding: 5px;
+        }
+
+        .plus {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background-color: #eee;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto 0 auto;
+            cursor: pointer;
+        }
+
+        .plus:hover {
+            background-color: #ddd;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 15px;
+            }
+        }
+
+        @font-face {
+            font-family: 'Marvel';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/marvel/v10/nwpVtKeoNgBV0qa4llTF.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+
+    <title>App Developers</title>
+</head>
+
+<body>
+    <div class="sidenav">
+        <div class="close_nav">&times;</div>
+        <a href="https://wonchondev.web.app">홈</a>
+        <a href="https://wonchondev.web.app/about">소개</a>
+        <a href="https://wonchondev.web.app/products">제품</a>
+        <a href="https://wonchondev.web.app/downloads">다운로드</a>
+    </div>
+    <div class="nav">
+        <button class="navitem hamburger">
+            &#9776;
+        </button>
+        <a href="https://wonchondev.web.app">
+            <img class="navitem logo" src="https://wonchondev.web.app/images/logo/logo_long.png">
+        </a>
+        <a id="login" class="navitem right" href="https://wonchondev.web.app/login">로그인</a>
+        <a id="signup" class="navitem" href="https://wonchondev.web.app/signup">회원가입</a>
+    </div>
+
+    <div class="body">
+        <div class="date"><span>01.01</span></div>
+        <div class="dday">D-3</div>
+        <div class="memo">클릭하여 메모 추가</div>
+        <div class="notes">
+            <div class="note_item">
+                <div class="subject"></div><span class="content">청소년의 사회화</span>
+            </div>
+            <div id="add" class="plus"><span>&plus;</span></div>
+        </div>
+        <div class="reminder">과제 및 준비물:</div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC__Hk4eO0_0S3vptQn7zeqCaVtizXwSJQ",
+            authDomain: "wonchondev.firebaseapp.com",
+            databaseURL: "https://wonchondev-default-rtdb.firebaseio.com",
+            projectId: "wonchondev",
+            storageBucket: "wonchondev.appspot.com",
+            messagingSenderId: "888936671741",
+            appId: "1:888936671741:web:f9e042963d934878d2d194"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+        // JS 코드는 추가해도 좋습니다.
+
+        document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
+            document.getElementsByClassName('sidenav')[0].style.width = "250px";
+        });
+
+        document.getElementsByClassName('close_nav')[0].addEventListener("click", function () {
+            document.getElementsByClassName('sidenav')[0].style.width = "0"
+        });
+
+        document.getElementById("add").addEventListener("click", function() {
+            //
+        })
+
+        var database = firebase.database();
+
+    </script>
+</body>
+
+</html>
