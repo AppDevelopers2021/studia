@@ -374,6 +374,7 @@
             };
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
 
             document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
                 document.getElementsByClassName('sidenav')[0].style.width = "250px";
