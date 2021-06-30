@@ -285,6 +285,19 @@
             color: white;
         }
 
+        #login-popup {
+            width: 500px;
+            height: 500px;
+            border: 2px solid gray;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px #ddd;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
@@ -325,6 +338,8 @@
         <a id="login" class="navitem right" href="https://studia-kr.web.app/login">로그인</a>
         <a id="signup" class="navitem" href="https://studia-kr.web.app/signup">회원가입</a>
     </div>
+
+    <iframe id="login-popup" src="https://studia-kr.web.app/login"></iframe>
 
     <div class="popup" hidden>
         <h2>빠른 노트 추가</h2>
