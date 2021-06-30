@@ -394,6 +394,7 @@
         var database = firebase.database();
         var uid;
         var signin;
+        var setDate = new Date();
 
         document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
             document.getElementsByClassName('sidenav')[0].style.width = "250px";
@@ -409,10 +410,14 @@
 
         document.getElementById("save").addEventListener("click", function () {
             // Save note
+            var subject = document.getElementById("subject").value;
+            var content = document.getElementById("note").value;
+            var note = {"content": content, "subject": subject};
+
+            addNote(note);
         })
 
-        function getToday() {
-            var date = new Date();
+        function getDate(date) {
             var year = date.getFullYear();
             var month = ("0" + (1 + date.getMonth())).slice(-2);
             var day = ("0" + date.getDate()).slice(-2);
@@ -427,7 +432,7 @@
                 uid = user.uid;
                 signin = true;
 
-                fetchData(getToday());
+                fetchData(getDate(setDate));
             } else {
                 // User is signed in
                 signin = false;
@@ -438,7 +443,7 @@
             // Read data
             database.ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
+                    return snapshot.val();
                 } else {
                     console.log("No data available!");
                     console.log("Creating new...");
@@ -448,6 +453,10 @@
             }).catch((error) => {
                 console.error(error);
             })
+        }
+
+        function addNote(note) {
+            console.log(fetchData(setDate))
         }
     </script>
 </body>
