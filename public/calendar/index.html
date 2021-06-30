@@ -246,6 +246,45 @@
             background-color: #ddd;
         }
 
+        .popup {
+            background-color: #eee;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 5px;
+            height: 150px;
+            width: 500px;
+            z-index: 999;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 5px 5px 5px #ddd;
+        }
+
+        #subject {
+            width: 50px;
+            height: 30px;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+
+        #note {
+            width: 370px;
+            height: 30px;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+
+        #save {
+            width: 50px;
+            height: 30px;
+            border: 1px solid #ddd;
+            outline: none;
+            cursor: pointer;
+            background-color: #2681F2;
+            color: white;
+        }
+
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
@@ -287,6 +326,29 @@
         <a id="signup" class="navitem" href="https://studia-kr.web.app/signup">회원가입</a>
     </div>
 
+    <div class="popup" hidden>
+        <h2>빠른 노트 추가</h2>
+        <select id="subject">
+            <option name="home">가정</option>
+            <option name="science">과학</option>
+            <option name="korean">국어</option>
+            <option name="tech">기술</option>
+            <option name="moral">도덕</option>
+            <option name="read">독서</option>
+            <option name="art">미술</option>
+            <option name="social">사회</option>
+            <option name="math">수학</option>
+            <option name="english">영어</option>
+            <option name="music">음악</option>
+            <option name="computer">정보</option>
+            <option name="path">진로</option>
+            <option name="pe">체육</option>
+            <option name="more">기타</option>
+        </select>
+        <input id="note" type="text" placeholder="여기에 노트 추가">
+        <button id="save">추가</button>
+    </div>
+
     <div class="body">
         <div class="date"><span>01.01</span></div>
         <div class="dday">D-3</div>
@@ -302,6 +364,7 @@
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
@@ -327,6 +390,10 @@
 
     <script>
         // JS 코드는 추가해도 좋습니다.
+        const popup = document.getElementsByClassName("popup")[0];
+        var database = firebase.database();
+        var uid;
+        var signin;
 
         document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
             document.getElementsByClassName('sidenav')[0].style.width = "250px";
@@ -337,10 +404,51 @@
         });
 
         document.getElementById("add").addEventListener("click", function () {
-            //
+            popup.hidden = false;
         })
 
-        var database = firebase.database();
+        document.getElementById("save").addEventListener("click", function () {
+            // Save note
+        })
+
+        function getToday() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = ("0" + (1 + date.getMonth())).slice(-2);
+            var day = ("0" + date.getDate()).slice(-2);
+
+            return year + month + day;
+        }
+
+        // Get User info.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                uid = user.uid;
+                signin = true;
+
+                fetchData(getToday());
+            } else {
+                // User is signed in
+                signin = false;
+            }
+        })
+
+        function fetchData(date) {
+            // Read data
+            database.ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+                } else {
+                    console.log("No data available!");
+                    console.log("Creating new...");
+                    database.ref('calendar/' + uid).set({});
+                    console.log("done.");
+                }
+            }).catch((error) => {
+                console.error(error);
+            })
+        }
     </script>
 </body>
 
