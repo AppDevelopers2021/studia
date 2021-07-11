@@ -42,11 +42,23 @@
         <a href="https://studia-kr.web.app">
             <img class="navitem logo" src="https://studia-kr.web.app/images/logo/logo_long.png">
         </a>
-        <a id="login" class="navitem right" href="https://studia-kr.web.app/login">로그인</a>
+        <button id="login" class="navitem right">로그인</button>
         <a id="signup" class="navitem" href="https://studia-kr.web.app/signup">회원가입</a>
     </div>
 
-    <iframe id="login-popup" src="https://studia-kr.web.app/login"></iframe>
+    <div id="login-popup" class="login-container" hidden>
+        <button id="login-close">&times;</button>
+        <h1>로그인</h1>
+        <label>이메일 주소:</label> <input type="text" class="" id="email" placeholder="someone@example.com" />
+        <label>비밀번호: </label><input type="password" class="" id="pw">
+        <button id="confirm">로그인</button>
+        <div class="keep-container horizontal"><input type="checkbox" id="keep"><span class="keep-text">로그인 유지</span></div>
+        <p id="error"></p>
+
+        <hr>
+
+        <button class="social" id="google">Google 계정으로 로그인</button>
+    </div>
 
     <div class="popup" hidden>
         <h2>빠른 노트 추가</h2>

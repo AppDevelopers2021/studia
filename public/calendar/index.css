@@ -15,6 +15,23 @@ body {
     font-family: Verdana, sans-serif;
 }
 
+.vertical {
+    display: flex;
+    justify-content: center;
+}
+
+.horizontal {
+    display: flex;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .nav {
     padding: 5px;
     height: 50px;
@@ -102,6 +119,9 @@ body {
     text-decoration: none;
     color: #777;
     vertical-align: middle;
+    border: none;
+    background-color: white;
+    font-size: 15px;
 }
 
 #signup {
@@ -262,7 +282,7 @@ body {
 
 #login-popup {
     width: 500px;
-    height: 500px;
+    height: 450px;
     border: 2px solid gray;
     border-radius: 10px;
     box-shadow: 10px 10px 10px #ddd;
@@ -271,6 +291,120 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+}
+.login-container {
+    width: 440px;
+    padding: 20px;
+    margin: auto;
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    opacity: 0;
+    transition: .2s ease-in-out;
+}
+
+.login-container h1 {
+    text-align: center;
+}
+
+.login-container label {
+    display: block;
+}
+
+.login-container input {
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.login-container input[type=checkbox] {
+    display: inline-block;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.login-container input:focus {
+    border-color: #2681F2;
+}
+
+input[type=password] {
+    font-family: Verdana;
+    letter-spacing: 1px;
+}
+
+#confirm {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0 10px 0;
+    background-color: white;
+    border: 1.5px solid #2681F2;
+    border-radius: 5px;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+#confirm:hover {
+    background-color: #2681F2;
+    color: white;
+}
+
+#error {
+    color: #dd4124;
+}
+
+hr {
+    border-top: 2px solid #999;
+    border-bottom: none;
+    margin: 10px 0 10px 0;
+}
+
+button:hover {
+    cursor: pointer;
+    outline: none;
+}
+
+.keep-text {
+    margin: 0 0 0 5px;
+    height: 20px;
+}
+
+.social {
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    background-image: url(https://studia-kr.web.app/images/img/google.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 5px;
+    background-color: white;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.social:hover {
+    border-color: #2681F2;
+}
+
+#login-close {
+    background-color: white;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    width: 40px;
+    width: 40px;
+    margin: 0;
+    top: 20px;
+    right: 20px;
 }
 
 @media screen and (max-height: 450px) {
