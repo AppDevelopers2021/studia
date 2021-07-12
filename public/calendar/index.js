@@ -1,10 +1,30 @@
 // JS 코드는 추가해도 좋습니다.
 const popup = document.getElementsByClassName("popup")[0];
 let login_popup = document.getElementById("login-popup");
+let memo_popup = document.getElementById("memo-popup");
+let memo = document.getElementsByClassName("memo")[0];
+let notes = document.getElementsByClassName("note-list")[0];
+let reminder = document.getElementsByClassName("reminder-list")[0];
 var database = firebase.database();
 var uid;
+var signin;
 var setDate = new Date();
 
+
+function getDate(date) {
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return year + month + day;
+}
+
+
+// Event Listener
+var myDB = database.ref('calendar/' + uid + '/' + getDate(setDate));
+myDB.on('value', function () {
+    fetchData(getDate(setDate))
+});
 
 // Hamburger Buttons
 document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
@@ -17,17 +37,26 @@ document.getElementsByClassName('close_nav')[0].addEventListener("click", functi
 // Login Popup
 document.getElementById("login").addEventListener("click", function () {
     login_popup.hidden = false;
-    login_popup.style.opacity = 1;
 });
 document.getElementById("login-close").addEventListener("click", function () {
     login_popup.hidden = true;
-    login_popup.style.opacity = 0;
+});
+
+// Memo Popop
+document.getElementsByClassName("memo")[0].addEventListener("click", function () {
+    memo_popup.hidden = false;
+});
+document.getElementById("memo-close").addEventListener("click", function () {
+    memo_popup.hidden = true;
 });
 
 // Add Note Popup
 document.getElementById("add").addEventListener("click", function () {
     popup.hidden = false;
-})
+});
+document.getElementById("note-close").addEventListener("click", function () {
+    popup.hidden = true;
+});
 document.getElementById("save").addEventListener("click", function () {
     // Save note
     var subject = document.getElementById("subject").value;
@@ -37,16 +66,20 @@ document.getElementById("save").addEventListener("click", function () {
         "subject": subject
     };
 
-    addNote(note);
-})
+    if (content != "") {
+        addNote(note, getDate(setDate));
+    }
+});
 
-function getDate(date) {
-    var year = date.getFullYear();
-    var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
+// Add Memo Popup
+document.getElementById("save-memo").addEventListener("click", function () {
+    // Save note
+    var memo = document.getElementById("memo-content").value;
 
-    return year + month + day;
-}
+    database.ref('calendar/' + uid + '/' + getDate(setDate) + '/memo').set(memo);
+    memo_popup.hidden = true;
+    fetchData(getDate(setDate))
+});
 
 // Get User info.
 firebase.auth().onAuthStateChanged((user) => {
@@ -63,23 +96,63 @@ firebase.auth().onAuthStateChanged((user) => {
 })
 
 function fetchData(date) {
-    // Read data
-    database.ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
+    if (signin) {
+        // Read data
+        firebase.database().ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                showData(snapshot.val());
+            } else {
+                console.log("No data available!");
+                console.log("Creating new...");
+                database.ref('calendar/' + uid + '/' + date).set({ memo: "", note: [], reminder: [] });
+                console.log("done.");
+            }
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+}
+
+function showData(json) {
+    // Parse JSON Data
+    notes.innerHTML = ''
+    reminder.innerHTML = ''
+
+    if (json.memo) {     /* json.memo is not null */
+        memo.innerText = json.memo
+        memo.classList += " active";
+    }
+    if (json.note) {     /* json.note is not null */
+        var notes_list = json.note;
+        for (var i = 0; i < notes_list.length; i++) {
+            notes.innerHTML += '<div class="note_item"><div class="subject ' + notes_list[i].subject + '"></div><span class="content">' + notes_list[i].content + '</span></div>'
+        }
+    }
+    if (json.reminder) { /* json.reminder is not null */
+        var reminder_list = json.reminder;
+        for (var i = 0; i < reminder_list.length; i++) {
+            reminder.innerHTML += '<li>' + reminder_list[i] + '</li>'
+        }
+    }
+}
+
+function addNote(note, date) {
+    database.ref('calendar/' + uid + '/' + date + '/note').get().then((snapshot) => {
         if (snapshot.exists()) {
-            return snapshot.val();
+            var original = snapshot.val();
+            original.push(note);
+            database.ref('calendar/' + uid + '/' + date + '/note').set(original);
+            document.getElementById("note-popup").hidden = true;
+            fetchData(getDate(setDate));
         } else {
-            console.log("No data available!");
-            console.log("Creating new...");
-            database.ref('calendar/' + uid + '/' + date).set({memo: "", note: [], reminder: []});
-            console.log("done.");
+            database.ref('calendar/' + uid + '/' + date + '/note').set([note]);
+            document.getElementById("note-popup").hidden = true;
+            fetchData(getDate(setDate));
         }
     }).catch((error) => {
         console.error(error);
     })
-}
-
-function addNote(note) {
-    console.log(fetchData(setDate))
 }
 
 document.getElementById("confirm").addEventListener('click', function (evt) {
