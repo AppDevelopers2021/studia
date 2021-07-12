@@ -19,6 +19,10 @@ function getDate(date) {
     return year + month + day;
 }
 
+function showDate() {
+    document.getElementsByClassName("date")[0].childNodes[0].innerText = ("0" + (1 + setDate.getMonth())).slice(-2) + "." + ("0" + setDate.getDate()).slice(-2);
+}
+showDate()
 
 // Event Listener
 var myDB = database.ref('calendar/' + uid + '/' + getDate(setDate));
@@ -106,6 +110,7 @@ function fetchData(date) {
                 console.log("Creating new...");
                 database.ref('calendar/' + uid + '/' + date).set({ memo: "", note: [], reminder: [] });
                 console.log("done.");
+                fetchData(getDate(setDate));
             }
         }).catch((error) => {
             console.error(error);
@@ -154,6 +159,18 @@ function addNote(note, date) {
         console.error(error);
     })
 }
+
+document.getElementById("back").addEventListener("click", function() {
+    setDate.setDate(setDate.getDate() -1);
+    showDate();
+    fetchData(getDate(setDate));
+})
+
+document.getElementById("forward").addEventListener("click", function() {
+    setDate.setDate(setDate.getDate() +1);
+    showDate();
+    fetchData(getDate(setDate));
+})
 
 document.getElementById("confirm").addEventListener('click', function (evt) {
     document.getElementById("confirm").style.cursor = "wait";

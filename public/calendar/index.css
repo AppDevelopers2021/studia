@@ -15,6 +15,12 @@ body {
     font-family: Verdana, sans-serif;
 }
 
+.main-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .vertical {
     display: flex;
     justify-content: center;
@@ -245,6 +251,7 @@ body {
     justify-content: center;
     margin: 10px auto 0 auto;
     cursor: pointer;
+    transition: .3s ease-in-out;
 }
 
 .plus span {
@@ -480,6 +487,23 @@ button:hover {
     border-radius: 3px;
     background-color: #2681F2;
     color: white;
+}
+
+.movedate {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: #eee;
+    border-radius: 50%;
+    font-size: 20px;
+    margin: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.movedate:hover {
+    background-color: #ddd;
 }
 
 @media screen and (max-height: 450px) {
