@@ -5,28 +5,29 @@ var database = firebase.database();
 var uid;
 var setDate = new Date();
 
+
+// Hamburger Buttons
 document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
     document.getElementsByClassName('sidenav')[0].style.width = "250px";
 });
-
 document.getElementsByClassName('close_nav')[0].addEventListener("click", function () {
     document.getElementsByClassName('sidenav')[0].style.width = "0"
 });
 
+// Login Popup
 document.getElementById("login").addEventListener("click", function () {
     login_popup.hidden = false;
     login_popup.style.opacity = 1;
 });
-
 document.getElementById("login-close").addEventListener("click", function () {
     login_popup.hidden = true;
     login_popup.style.opacity = 0;
 });
 
+// Add Note Popup
 document.getElementById("add").addEventListener("click", function () {
     popup.hidden = false;
 })
-
 document.getElementById("save").addEventListener("click", function () {
     // Save note
     var subject = document.getElementById("subject").value;
@@ -69,7 +70,7 @@ function fetchData(date) {
         } else {
             console.log("No data available!");
             console.log("Creating new...");
-            database.ref('calendar/' + uid).set({});
+            database.ref('calendar/' + uid + '/' + date).set({memo: "", note: [], reminder: []});
             console.log("done.");
         }
     }).catch((error) => {
@@ -173,7 +174,8 @@ document.getElementById("google").addEventListener("click", function () {
             var credential = result.credential;
             var token = credential.accessToken;
             var user = result.user;
-            console.log('login conplete')
+            login_popup.hidden = true;
+            login_popup.style.opacity = 0;
         }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;

@@ -237,6 +237,10 @@ body {
     cursor: pointer;
 }
 
+.plus span {
+    cursor: pointer;
+}
+
 .plus:hover {
     background-color: #ddd;
 }
@@ -292,11 +296,11 @@ body {
     transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
 .login-container {
     width: 440px;
     padding: 20px;
     margin: auto;
-    display: block;
     background-color: white;
     border-radius: 10px;
     position: relative;
