@@ -211,6 +211,11 @@ body {
     overflow: hidden;
 }
 
+.note-blank {
+    color: gray;
+    text-align: center;
+}
+
 .subject {
     width: 40px;
     height: 40px;
@@ -504,6 +509,36 @@ button:hover {
 
 .movedate:hover {
     background-color: #ddd;
+}
+
+.slideforward {
+    animation: slideforward 1s;
+}
+
+.slideback {
+    animation: slideback 1s;
+}
+
+@keyframes slideforward {
+    from {
+        opacity: 0;
+        transform: translate(20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes slideback {
+    from {
+        opacity: 0;
+        transform: translate(-20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 @media screen and (max-height: 450px) {

@@ -1,9 +1,11 @@
 // JS 코드는 추가해도 좋습니다.
-const popup = document.getElementsByClassName("popup")[0];
+let body = document.getElementsByClassName("body")[0];
+let popup = document.getElementsByClassName("popup")[0];
 let login_popup = document.getElementById("login-popup");
 let memo_popup = document.getElementById("memo-popup");
 let memo = document.getElementsByClassName("memo")[0];
 let notes = document.getElementsByClassName("note-list")[0];
+let notes_blank = document.getElementsByClassName("note-blank")[0];
 let reminder = document.getElementsByClassName("reminder-list")[0];
 var database = firebase.database();
 var uid;
@@ -36,14 +38,6 @@ document.getElementsByClassName('hamburger')[0].addEventListener("click", functi
 });
 document.getElementsByClassName('close_nav')[0].addEventListener("click", function () {
     document.getElementsByClassName('sidenav')[0].style.width = "0"
-});
-
-// Login Popup
-document.getElementById("login").addEventListener("click", function () {
-    login_popup.hidden = false;
-});
-document.getElementById("login-close").addEventListener("click", function () {
-    login_popup.hidden = true;
 });
 
 // Memo Popop
@@ -106,10 +100,7 @@ function fetchData(date) {
             if (snapshot.exists()) {
                 showData(snapshot.val());
             } else {
-                console.log("No data available!");
-                console.log("Creating new...");
                 database.ref('calendar/' + uid + '/' + date).set({ memo: "", note: [], reminder: [] });
-                console.log("done.");
                 fetchData(getDate(setDate));
             }
         }).catch((error) => {
@@ -127,12 +118,18 @@ function showData(json) {
     if (json.memo) {     /* json.memo is not null */
         memo.innerText = json.memo
         memo.classList += " active";
+    } else {
+        memo.innerText = "클릭하여 메모 추가"
+        memo.className = "memo"
     }
     if (json.note) {     /* json.note is not null */
         var notes_list = json.note;
+        notes_blank.hidden = true;
         for (var i = 0; i < notes_list.length; i++) {
             notes.innerHTML += '<div class="note_item"><div class="subject ' + notes_list[i].subject + '"></div><span class="content">' + notes_list[i].content + '</span></div>'
         }
+    } else {
+        notes_blank.hidden = false;
     }
     if (json.reminder) { /* json.reminder is not null */
         var reminder_list = json.reminder;
@@ -163,13 +160,21 @@ function addNote(note, date) {
 document.getElementById("back").addEventListener("click", function() {
     setDate.setDate(setDate.getDate() -1);
     showDate();
+    body.className = "body slideback"
     fetchData(getDate(setDate));
+    setTimeout(() => {
+        body.className = "body"
+    }, 1000);
 })
 
 document.getElementById("forward").addEventListener("click", function() {
     setDate.setDate(setDate.getDate() +1);
     showDate();
+    body.className = "body slideforward"
     fetchData(getDate(setDate));
+    setTimeout(() => {
+        body.className = "body"
+    }, 1000);
 })
 
 document.getElementById("confirm").addEventListener('click', function (evt) {
