@@ -242,6 +242,7 @@ body {
     margin-top: 30px;
     margin-left: 10px;
     padding: 5px;
+    cursor: pointer;
 }
 
 .plus {
@@ -494,6 +495,60 @@ button:hover {
     color: white;
 }
 
+#reminder-popup {
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #eee;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #ddd;
+}
+
+#reminder-popup h2 {
+    margin: 5px 0 0 10px;
+}
+
+#reminder-popup p {
+    margin: 0 0 5px 10px;
+}
+
+#reminder-popup textarea {
+    border: 1px solid gray;
+    border-radius: 0;
+    resize: none;
+    outline: none;
+    width: 280px;
+    height: 140px;
+    display: block;
+    margin: auto;
+}
+
+#reminder-close {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    width: 40px;
+    width: 40px;
+    margin: 0;
+    top: 0px;
+    right: 5px;
+}
+
+#save-reminder {
+    width: 50px;
+    height: 25px;
+    margin: 10px 0 0 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #2681F2;
+    color: white;
+}
+
 .movedate {
     width: 35px;
     height: 35px;
@@ -505,6 +560,7 @@ button:hover {
     font-family: 'Courier New', Courier, monospace;
     cursor: pointer;
     transition: .3s ease-in-out;
+    outline: none;
 }
 
 .movedate:hover {

@@ -3,6 +3,7 @@ let body = document.getElementsByClassName("body")[0];
 let popup = document.getElementsByClassName("popup")[0];
 let login_popup = document.getElementById("login-popup");
 let memo_popup = document.getElementById("memo-popup");
+var reminder_popup = document.getElementById("reminder-popup");
 let memo = document.getElementsByClassName("memo")[0];
 let notes = document.getElementsByClassName("note-list")[0];
 let notes_blank = document.getElementsByClassName("note-blank")[0];
@@ -48,6 +49,14 @@ document.getElementById("memo-close").addEventListener("click", function () {
     memo_popup.hidden = true;
 });
 
+// Reminder Popop
+document.getElementsByClassName("reminder")[0].addEventListener("click", function () {
+    reminder_popup.hidden = false;
+});
+document.getElementById("reminder-close").addEventListener("click", function () {
+    reminder_popup.hidden = true;
+});
+
 // Add Note Popup
 document.getElementById("add").addEventListener("click", function () {
     popup.hidden = false;
@@ -76,6 +85,18 @@ document.getElementById("save-memo").addEventListener("click", function () {
 
     database.ref('calendar/' + uid + '/' + getDate(setDate) + '/memo').set(memo);
     memo_popup.hidden = true;
+    fetchData(getDate(setDate))
+});
+
+// Add Reminder Popup
+document.getElementById("save-reminder").addEventListener("click", function () {
+    // Save reminder
+    var reminder = document.getElementById("reminder-content").value;
+    // Create Array, split by \n
+    var reminder_split = reminder.split("\n")
+
+    database.ref('calendar/' + uid + '/' + getDate(setDate) + '/reminder').set(reminder_split);
+    reminder_popup.hidden = true;
     fetchData(getDate(setDate))
 });
 
