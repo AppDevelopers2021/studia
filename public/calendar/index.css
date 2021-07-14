@@ -219,13 +219,101 @@ body {
 .subject {
     width: 40px;
     height: 40px;
+    border: 2px solid;
+    border-radius: 50%;
     background-position: center;
-    background-size: contain;
+    background-size: 30px;
     background-repeat: no-repeat;
 }
 
+.home {
+    background-image: url(./img/home.png);
+    background-color: #FFDAC1;
+    border-color: #ddd;
+}
+
+.science {
+    background-image: url(./img/science.png);
+    background-color: #FFB7B2;
+    border-color: #ddd;
+}
+
+.korean {
+    background-image: url(./img/korean.png);
+    background-color: #E2F0CB;
+    border-color: #ddd;
+}
+
+.tech {
+    background-image: url(./img/spanner.png);
+    background-color: #B5EAD7;
+    border-color: #ddd;
+}
+
+.moral {
+    background-image: url(./img/morality.png);
+    background-color: #C7CEEA;
+    border-color: #ddd;
+}
+
+.read {
+    background-image: url(./img/reading.png);
+    background-color: #EAFAF9;
+    border-color: #ddd;
+}
+
+.art {
+    background-image: url(./img/art.png);
+    background-color: #C1EDFA;
+    border-color: #ddd;
+}
+
 .social-studies {
-    background-image: url(./img/1.png);
+    background-image: url(./img/social_studies.png);
+    background-color: #91EBE8;
+    border-color: #ddd;
+}
+
+.math {
+    background-image: url(./img/math.png);
+    background-color: #E1C4F5;
+    border-color: #ddd;
+}
+
+.english {
+    background-image: url(./img/english.png);
+    background-color: #FFD1E8;
+    border-color: #ddd;
+}
+
+.music {
+    background-image: url(./img/music.png);
+    background-color: #F7E7DF;
+    border-color: #ddd;
+}
+
+.computer {
+    background-image: url(./img/computer.png);
+    background-color: #FCE7BA;
+    border-color: #ddd;
+}
+
+.path {
+    background-image: url(./img/path.png);
+    background-color: #F5C6D7;
+    border-color: #ddd;
+}
+
+.pe {
+    background-image: url(./img/pe.png);
+    background-color: #75CCF1;
+    border-color: #ddd;
+}
+
+.more {
+    background-image: url(./img/more.png);
+    background-color: #eee;
+    border-color: #ddd;
 }
 
 .content {
