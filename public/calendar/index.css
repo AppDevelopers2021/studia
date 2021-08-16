@@ -1,0 +1,704 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+}
+
+.main-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical {
+    display: flex;
+    justify-content: center;
+}
+
+.horizontal {
+    display: flex;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nav {
+    padding: 5px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: white;
+}
+
+.navitem {
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.logo {
+    height: 100%;
+}
+
+.right {
+    margin-left: auto;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 0 0 16px #00000047;
+}
+
+.sidenav a {
+    padding: 10px 8px 10px 32px;
+    text-decoration: none;
+    width: 250px;
+    height: 50px;
+    border-radius: 0 25px 25px 0;
+    font-size: 20px;
+    color: black;
+    display: block;
+}
+
+.sidenav a:hover {
+    background-color: #F1F3F4;
+}
+
+.sidenav .close_nav {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidenav .close_nav:hover {
+    cursor: pointer;
+}
+
+.hamburger {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.hamburger:hover {
+    background-color: #F1F3F4;
+}
+
+#login {
+    align-self: center;
+    width: 75px;
+    height: fit-content;
+    text-align: center;
+    text-decoration: none;
+    color: #777;
+    vertical-align: middle;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+}
+
+#signup {
+    align-self: center;
+    color: white;
+    height: fit-content;
+    text-decoration: none;
+    border: 1.5px solid #2681F2;
+    background-color: #2681F2;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.body {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100px auto 250px;
+    grid-template-rows: 70px 30px auto;
+    width: 80%;
+    margin: auto;
+    min-height: 300px;
+}
+
+.date {
+    position: relative;
+    font-family: 'Marvel';
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.date span {
+    position: absolute;
+    bottom: -5px;
+    width: 100%;
+    right: 0;
+    text-align: center;
+}
+
+.dday {
+    background-color: #2681F2;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.memo {
+    min-height: 100px;
+    border: 1px dashed black;
+    margin-top: 5px;
+    word-break: keep-all;
+    color: #888;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.memo.active {
+    color: #000;
+}
+
+.notes {
+    grid-column: 2/3;
+    grid-row: 1/4;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.note_item {
+    width: 100%;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.note-blank {
+    color: gray;
+    text-align: center;
+}
+
+.subject {
+    width: 40px;
+    height: 40px;
+    border: 2px solid;
+    border-radius: 50%;
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+.home {
+    background-image: url(./img/home.png);
+    background-color: #FFDAC1;
+    border-color: #ddd;
+}
+
+.science {
+    background-image: url(./img/science.png);
+    background-color: #FFB7B2;
+    border-color: #ddd;
+}
+
+.korean {
+    background-image: url(./img/korean.png);
+    background-color: #E2F0CB;
+    border-color: #ddd;
+}
+
+.tech {
+    background-image: url(./img/spanner.png);
+    background-color: #B5EAD7;
+    border-color: #ddd;
+}
+
+.moral {
+    background-image: url(./img/morality.png);
+    background-color: #C7CEEA;
+    border-color: #ddd;
+}
+
+.read {
+    background-image: url(./img/reading.png);
+    background-color: #EAFAF9;
+    border-color: #ddd;
+}
+
+.art {
+    background-image: url(./img/art.png);
+    background-color: #C1EDFA;
+    border-color: #ddd;
+}
+
+.social-studies {
+    background-image: url(./img/social_studies.png);
+    background-color: #91EBE8;
+    border-color: #ddd;
+}
+
+.math {
+    background-image: url(./img/math.png);
+    background-color: #E1C4F5;
+    border-color: #ddd;
+}
+
+.english {
+    background-image: url(./img/english.png);
+    background-color: #FFD1E8;
+    border-color: #ddd;
+}
+
+.music {
+    background-image: url(./img/music.png);
+    background-color: #F7E7DF;
+    border-color: #ddd;
+}
+
+.computer {
+    background-image: url(./img/computer.png);
+    background-color: #FCE7BA;
+    border-color: #ddd;
+}
+
+.path {
+    background-image: url(./img/path.png);
+    background-color: #F5C6D7;
+    border-color: #ddd;
+}
+
+.pe {
+    background-image: url(./img/pe.png);
+    background-color: #75CCF1;
+    border-color: #ddd;
+}
+
+.more {
+    background-image: url(./img/more.png);
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.content {
+    font-size: 25px;
+    margin-left: 10px;
+    width: max-content;
+}
+
+.reminder {
+    grid-column: 3/4;
+    grid-row: 1/4;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.plus {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #eee;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0 auto;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.plus span {
+    cursor: pointer;
+}
+
+.plus:hover {
+    background-color: #ddd;
+}
+
+.popup {
+    background-color: #eee;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 5px;
+    height: 150px;
+    width: 500px;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 5px #ddd;
+}
+
+#subject {
+    width: 50px;
+    height: 30px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+#note {
+    width: 370px;
+    height: 30px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+#save {
+    width: 50px;
+    height: 30px;
+    border: 1px solid #ddd;
+    outline: none;
+    cursor: pointer;
+    background-color: #2681F2;
+    color: white;
+}
+
+#login-popup {
+    width: 500px;
+    height: 450px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px #ddd;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.login-container {
+    width: 440px;
+    padding: 20px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    transition: .2s ease-in-out;
+}
+
+.login-container h1 {
+    text-align: center;
+}
+
+.login-container label {
+    display: block;
+}
+
+.login-container input {
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.login-container input[type=checkbox] {
+    display: inline-block;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.login-container input:focus {
+    border-color: #2681F2;
+}
+
+input[type=password] {
+    font-family: Verdana;
+    letter-spacing: 1px;
+}
+
+#confirm {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0 10px 0;
+    background-color: white;
+    border: 1.5px solid #2681F2;
+    border-radius: 5px;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+#confirm:hover {
+    background-color: #2681F2;
+    color: white;
+}
+
+#error {
+    color: #dd4124;
+}
+
+hr {
+    border-top: 2px solid #999;
+    border-bottom: none;
+    margin: 10px 0 10px 0;
+}
+
+button:hover {
+    cursor: pointer;
+    outline: none;
+}
+
+.keep-text {
+    margin: 0 0 0 5px;
+    height: 20px;
+}
+
+.social {
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    background-image: url(https://studia-kr.web.app/images/img/google.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 5px;
+    background-color: white;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.social:hover {
+    border-color: #2681F2;
+}
+
+#login-close {
+    background-color: white;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    width: 40px;
+    width: 40px;
+    margin: 0;
+    top: 20px;
+    right: 20px;
+}
+
+#note-close {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    width: 40px;
+    width: 40px;
+    margin: 0;
+    top: 10px;
+    right: 20px;
+}
+
+#memo-close {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    width: 40px;
+    width: 40px;
+    margin: 0;
+    top: 0px;
+    right: 5px;
+}
+
+#memo-popup {
+    width: 300px;
+    height: 170px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #eee;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #ddd;
+}
+
+#memo-popup h2 {
+    margin: 5px 0 5px 10px;
+}
+
+#memo-popup textarea {
+    border: 1px solid gray;
+    border-radius: 0;
+    resize: none;
+    outline: none;
+    width: 280px;
+    height: 80px;
+    display: block;
+    margin: auto;
+}
+
+#save-memo {
+    width: 50px;
+    height: 25px;
+    margin: 10px 0 0 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #2681F2;
+    color: white;
+}
+
+#reminder-popup {
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #eee;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #ddd;
+}
+
+#reminder-popup h2 {
+    margin: 5px 0 0 10px;
+}
+
+#reminder-popup p {
+    margin: 0 0 5px 10px;
+}
+
+#reminder-popup textarea {
+    border: 1px solid gray;
+    border-radius: 0;
+    resize: none;
+    outline: none;
+    width: 280px;
+    height: 140px;
+    display: block;
+    margin: auto;
+}
+
+#reminder-close {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    position: absolute;
+    width: 40px;
+    width: 40px;
+    margin: 0;
+    top: 0px;
+    right: 5px;
+}
+
+#save-reminder {
+    width: 50px;
+    height: 25px;
+    margin: 10px 0 0 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #2681F2;
+    color: white;
+}
+
+.movedate {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: #eee;
+    border-radius: 50%;
+    font-size: 20px;
+    margin: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    outline: none;
+}
+
+.movedate:hover {
+    background-color: #ddd;
+}
+
+.slideforward {
+    animation: slideforward 1s;
+}
+
+.slideback {
+    animation: slideback 1s;
+}
+
+@keyframes slideforward {
+    from {
+        opacity: 0;
+        transform: translate(20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes slideback {
+    from {
+        opacity: 0;
+        transform: translate(-20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 15px;
+    }
+}
+
+@font-face {
+    font-family: 'Marvel';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/marvel/v10/nwpVtKeoNgBV0qa4llTF.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

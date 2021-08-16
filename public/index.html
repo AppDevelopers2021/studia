@@ -6,11 +6,11 @@
   <meta charset="UTF-8">
 
   <!--Favicon Styles-->
-  <link rel="apple-touch-icon" sizes="180x180" href="https://wonchondev.web.app/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://wonchondev.web.app/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://wonchondev.web.app/images/favicon-16x16.png">
-  <link rel="manifest" href="https://wonchondev.web.app/images/site.webmanifest">
-  <link rel="mask-icon" href="https://wonchondev.web.app/images/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://studia-kr.web.app/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://studia-kr.web.app/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://studia-kr.web.app/images/favicon-16x16.png">
+  <link rel="manifest" href="https://studia-kr.web.app/images/site.webmanifest">
+  <link rel="mask-icon" href="https://studia-kr.web.app/images/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 
@@ -47,8 +47,8 @@
     }
 
     .navitem {
-      flex-grow: 0!important;
-      flex-shrink: 0!important;
+      flex-grow: 0 !important;
+      flex-shrink: 0 !important;
     }
 
     .logo {
@@ -135,6 +135,7 @@
       border-radius: 5px;
       vertical-align: middle;
     }
+
     /* End NAV style */
 
     footer {
@@ -168,20 +169,20 @@
 <body>
   <div class="sidenav">
     <div class="close_nav">&times;</div>
-    <a href="https://wonchondev.web.app">홈</a>
-    <a href="https://wonchondev.web.app/about">소개</a>
-    <a href="https://wonchondev.web.app/products">제품</a>
-    <a href="https://wonchondev.web.app/downloads">다운로드</a>
+    <a href="https://studia-kr.web.app">홈</a>
+    <a href="https://studia-kr.web.app/about">소개</a>
+    <a href="https://studia-kr.web.app/products">제품</a>
+    <a href="https://studia-kr.web.app/downloads">다운로드</a>
   </div>
   <div class="nav">
     <button class="navitem hamburger">
       &#9776;
     </button>
-    <a href="https://wonchondev.web.app">
+    <a href="https://studia-kr.web.app">
       <img class="navitem logo" src="images/logo/logo_long.png">
     </a>
-    <a id="login" class="navitem right" href="https://wonchondev.web.app/login">로그인</a>
-    <a id="signup" class="navitem" href="https://wonchondev.web.app/signup">회원가입</a>
+    <a id="login" class="navitem right" href="https://studia-kr.web.app/login">로그인</a>
+    <a id="signup" class="navitem" href="https://studia-kr.web.app/signup">회원가입</a>
   </div>
   <h1>제작중인 페이지</h1>
   <p>원촌중학교 1학년 자율동아리 App Developers 자율동아리 페이지 예정입니다.</p>
@@ -192,28 +193,31 @@
 
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
-      apiKey: "AIzaSyC__Hk4eO0_0S3vptQn7zeqCaVtizXwSJQ",
-      authDomain: "wonchondev.firebaseapp.com",
-      databaseURL: "https://wonchondev-default-rtdb.firebaseio.com",
-      projectId: "wonchondev",
-      storageBucket: "wonchondev.appspot.com",
-      messagingSenderId: "888936671741",
-      appId: "1:888936671741:web:f9e042963d934878d2d194"
+      apiKey: "AIzaSyBeJDdOCiCPl8dY45RDTZ_Dm6BXGOdsxAc",
+      authDomain: "studia-kr.firebaseapp.com",
+      databaseURL: "https://studia-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "studia-kr",
+      storageBucket: "studia-kr.appspot.com",
+      messagingSenderId: "654717768488",
+      appId: "1:654717768488:web:9145bccc0e7b33fe33361d",
+      measurementId: "G-VNTECBX1XJ"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
   </script>
   <script>
     // For SideNav
-    document.getElementsByClassName('hamburger')[0].addEventListener("click", function() {
+    document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
       document.getElementsByClassName('sidenav')[0].style.width = "250px";
     });
 
-    document.getElementsByClassName('close_nav')[0].addEventListener("click", function() {
+    document.getElementsByClassName('close_nav')[0].addEventListener("click", function () {
       document.getElementsByClassName('sidenav')[0].style.width = "0"
     });
 
@@ -229,13 +233,13 @@
     const msie = ua.indexOf('MSIE '); // IE <= 10
     const trident = ua.indexOf('Trident/'); // IE 11
 
-    if(msie > 0 || trident > 0) {
+    if (msie > 0 || trident > 0) {
       // IE Detected!
-      if(getParameter("noie") == "true") {
+      if (getParameter("noie") == "true") {
         // Ignored By User
       } else {
         // NOIE Page!
-        window.open("https://wonchondev.web.app/noie", "_self")
+        window.open("https://studia-kr.web.app/noie", "_self")
       }
     }
   </script>
