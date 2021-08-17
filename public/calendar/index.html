@@ -42,52 +42,85 @@
         <a href="https://studia-kr.web.app">
             <img class="navitem logo" src="https://studia-kr.web.app/images/logo/logo_long.png">
         </a>
-        <a id="login" class="navitem right" href="https://studia-kr.web.app/login">로그인</a>
-        <a id="signup" class="navitem" href="https://studia-kr.web.app/signup">회원가입</a>
     </div>
 
-    <iframe id="login-popup" src="https://studia-kr.web.app/login"></iframe>
+    <div id="login-popup" class="login-container" hidden>
+        <h1>로그인</h1>
+        <label>이메일 주소:</label> <input type="text" class="" id="email" placeholder="someone@example.com" />
+        <label>비밀번호: </label><input type="password" class="" id="pw">
+        <button id="confirm">로그인</button>
+        <div class="keep-container horizontal"><input type="checkbox" id="keep"><span class="keep-text">로그인 유지</span>
+        </div>
+        <p id="error"></p>
 
-    <div class="popup" hidden>
+        <hr>
+
+        <button class="social" id="google">Google 계정으로 로그인</button>
+    </div>
+
+    <div id="note-popup" class="popup" hidden>
+        <button id="note-close">&times;</button>
         <h2>빠른 노트 추가</h2>
         <select id="subject">
-            <option name="home">가정</option>
-            <option name="science">과학</option>
-            <option name="korean">국어</option>
-            <option name="tech">기술</option>
-            <option name="moral">도덕</option>
-            <option name="read">독서</option>
-            <option name="art">미술</option>
-            <option name="social">사회</option>
-            <option name="math">수학</option>
-            <option name="english">영어</option>
-            <option name="music">음악</option>
-            <option name="computer">정보</option>
-            <option name="path">진로</option>
-            <option name="pe">체육</option>
-            <option name="more">기타</option>
+            <option value="home">가정</option>
+            <option value="science">과학</option>
+            <option value="korean">국어</option>
+            <option value="tech">기술</option>
+            <option value="moral">도덕</option>
+            <option value="read">독서</option>
+            <option value="art">미술</option>
+            <option value="social-studies">사회</option>
+            <option value="math">수학</option>
+            <option value="english">영어</option>
+            <option value="music">음악</option>
+            <option value="computer">정보</option>
+            <option value="path">진로</option>
+            <option value="pe">체육</option>
+            <option value="more">기타</option>
         </select>
         <input id="note" type="text" placeholder="여기에 노트 추가">
         <button id="save">추가</button>
     </div>
 
-    <div class="body">
-        <div class="date"><span>01.01</span></div>
-        <div class="dday">D-3</div>
-        <div class="memo">클릭하여 메모 추가</div>
-        <div class="notes">
-            <div class="note_item">
-                <div class="subject"></div><span class="content">청소년의 사회화</span>
+    <div id="memo-popup" hidden>
+        <button id="memo-close">&times;</button>
+        <h2>메모 수정</h2>
+        <textarea id="memo-content"></textarea>
+        <button id="save-memo">저장</button>
+    </div>
+
+    <div id="reminder-popup" hidden>
+        <button id="reminder-close">&times;</button>
+        <h2>과제 및 준비물</h2>
+        <p>각 항목은 줄바꿈으로 분리해주세요.</p>
+        <textarea id="reminder-content"></textarea>
+        <button id="save-reminder">저장</button>
+    </div>
+
+    <div class="main-flex">
+        <button id="back" class="movedate">&#60;</button>
+        <div class="body">
+            <div class="date"><span>01.01</span></div>
+            <div class="dday">D-3</div>
+            <div class="memo">클릭하여 메모 추가</div>
+            <div class="notes">
+                <p class="note-blank" hidden>노트가 없습니다. 아래 버튼을 눌러 과목별 노트를 추가해보세요.</p>
+                <div class="note-list"></div>
+
+                <div id="add" class="plus"><span>&plus;</span></div>
             </div>
-            <div id="add" class="plus"><span>&plus;</span></div>
+            <div class="reminder">과제 및 준비물:
+                <ul class="reminder-list"></ul>
+            </div>
         </div>
-        <div class="reminder">과제 및 준비물:</div>
+        <button id="forward" class="movedate">&#62;</button>
+
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
