@@ -89,6 +89,7 @@
 			cursor: pointer;
 			background-color: transparent;
 			border: none;
+			outline: none;
 		}
 
 		.bar1,
@@ -170,7 +171,7 @@
 			text-decoration: none;
 			color: white;
 			border-radius: 0 25px 25px 0;
-			transition: .2s;
+			transition: .1s;
 		}
 
 		#sidenav a:hover {
@@ -180,7 +181,8 @@
 		.nav_devide {
 			border: none;
 			width: 250px;
-			height: 10px;
+			height: 15px;
+			margin: 0;
 		}
 
 		#close_nav {
@@ -241,6 +243,26 @@
 		.footer_sosumi {
 			color: #555;
 		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: #1871CA;
+			}
+			.body_wrap {
+				background-color: black;
+				color: white;
+			}
+			#navbar {
+				background-color: #1871CA;
+			}
+			footer {
+				background-color: #333;
+				border-color: #1871CA;
+			}
+			.footer_logo,.footer_sosumi {
+				color: #999;
+			}
+		}
 	</style>
 </head>
 
@@ -259,12 +281,12 @@
 
 	<div id="sidenav">
 		<button id="close_nav">&times;</button>
-		<a href="#">홈</a>
-		<a href="#">App Developers 소개</a>
+		<a href="https://studia-kr.web.app/">홈</a>
+		<a href="https://studia-kr.web.app/about/">App Developers 소개</a>
 		<hr class="nav_devide">
-		<a href="#"><i class="far fa-calendar-check"></i> 내  캘린더</a>
+		<a href="https://studia-kr.web.app/calendar/"><i class="far fa-calendar-check"></i> 내  캘린더</a>
 		<hr class="nav_devide">
-		<a href="#">도움말</a>
+		<a href="https://studia-kr.web.app/help/">도움말</a>
 	</div>
 
 	<div class="body_wrap">
