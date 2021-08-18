@@ -5,8 +5,6 @@
 <head>
 	<meta charset="UTF-8">
 
-	<noscript><meta http-equiv="refresh" content="0; url=https://studia-kr.web.app/nojs/"></noscript>
-
 	<!--Favicon Styles-->
 	<link rel="apple-touch-icon" sizes="180x180" href="https://studia-kr.web.app/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="https://studia-kr.web.app/images/favicon-32x32.png">
@@ -25,13 +23,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
-	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
+	<meta name="keywords" content="원촌중학교,App Developers,자율동아리">
 
-    <meta property="og:title" content="스튜디아 - 노트 정리도 스마트하게!">
-    <meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
-    <meta property="og:image" content="https://studia-kr.web.app/images/profile.jpg">
-
-	<title>404 Not Found</title>
+	<title>Javascript Disabled</title>
 
 	<style>
 		* {
@@ -211,23 +205,28 @@
 		}
 
 		.body {
-			padding: 20px;
-			padding-bottom: 200px;
+			padding: 40px 20px 200px 20px;
 		}
 
 		.body h1 {
-			margin: 0;
+			margin: 0 0 20px 0;
 			padding: 0;
-			font-size: 50px;
+			font-size: 30px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
 		.body p {
-			margin: 20px 0 0 0;
+			margin: 0;
 			padding: 0;
-			font-size: 20px;
+			font-size: 17px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
+
+        .body a {
+            display: block;
+            color: #555;
+            margin-top: 10px;
+        }
 
 		footer {
 			width: 100%;
@@ -297,8 +296,9 @@
 
 	<div class="body_wrap">
 		<div class="body">
-			<h1>404</h1>
-			<p>요청하신 항목을 찾을 수 없습니다.</p>
+			<h1>자바스크립를 활성화주세요.</h1>
+			<p>본 프로그램은 웹앱으로 제작되어 자바스크립트를 필요로 합니다. 브라우저 설정에서 자바스크립트를 활성화해주세요.</p>
+            <a href="https://studia-kr.web.app/help#javascript">자세히 알아보기</a>
 		</div>
 	</div>
 
@@ -325,18 +325,6 @@
 			hamburger.className = "nav_hamburger center";
 			sidenav.className = "";
 		})
-
-		// 'Sticky' Navbar
-		var prevScrollpos = window.pageYOffset;
-		window.onscroll = function () {
-			var currentScrollPos = window.pageYOffset;
-			if (prevScrollpos > currentScrollPos) {
-				navbar.style.top = "0";
-			} else {
-				navbar.style.top = "-50px";
-			}
-			prevScrollpos = currentScrollPos;
-		}
 	</script>
 </body>
 
