@@ -18,6 +18,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -160,8 +161,9 @@
 
 		#sidenav a {
 			display: block;
-			width: 250px;
+			width: 240px;
 			height: 40px;
+			margin-right: 10px;
 			padding-left: 10px;
 			line-height: 40px;
 			text-decoration: none;
@@ -175,8 +177,9 @@
 		}
 
 		.nav_devide {
-			border-top: 1px solid white;
-			width: 240px;
+			border: none;
+			width: 250px;
+			height: 10px;
 		}
 
 		#close_nav {
@@ -255,14 +258,14 @@
 
 	<div id="sidenav">
 		<button id="close_nav">&times;</button>
-		<a href="#">홈</a>
-		<a href="#">App Developers 소개</a>
+		<a href="#"><i class="fas fa-home"></i> 홈</a>
+		<a href="#"><i class="fas fa-users"></i> App Developers 소개</a>
 		<hr class="nav_devide">
-		<a href="#">노트 보기</a>
-		<a href="#">캘린더 보기</a>
+		<a href="#"><i class="far fa-sticky-note"></i> 노트 보기</a>
+		<a href="#"><i class="far fa-calendar-check"></i> 캘린더 보기</a>
 		<hr class="nav_devide">
-		<a href="#">설정</a>
-		<a href="#">도움말</a>
+		<a href="#"><i class="fas fa-cog"></i> 설정</a>
+		<a href="#"><i class="fas fa-question-circle"></i> 도움말</a>
 	</div>
 
 	<div class="body_wrap">
