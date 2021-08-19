@@ -11,3 +11,8 @@ close_nav_button.addEventListener("click", function () {
     hamburger.className = "nav_hamburger center";
     sidenav.className = "";
 })
+
+// Pikaday
+var field = document.getElementById("date_picker")
+var date_picker = new Pikaday({field: field, format: "YYYY/MM/DD"});
+date_picker.setDate(new Date())

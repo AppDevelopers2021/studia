@@ -189,11 +189,17 @@ body {
 .date_picker {
     border: none;
     text-align: center;
+    outline: none;
+    height: 40px;
+    width: 120px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
 }
 
-.date_picker::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+.date_flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 footer {

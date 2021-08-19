@@ -20,13 +20,19 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
-	<link rel="stylesheet" href="https://studia-kr.web.app/_libs/fontawesome/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    
 
     <link rel="stylesheet" href="index.css">
     <script defer src="index.js"></script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 	<meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
 	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
@@ -66,7 +72,7 @@
 			<div class="date">
                 <div class="date_flex">
                     <button id="date_back" class="date_button"><i class="fas fa-angle-left"></i></button>
-                    <input type="date" id="date_picker" class="date_picker">
+                    <input type="text" id="date_picker" class="date_picker" readonly>
                     <button id="date_forward" class="date_button"><i class="fas fa-angle-right"></i></button>
                 </div>
             </div>
