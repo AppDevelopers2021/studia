@@ -184,6 +184,10 @@ body {
     border: none;
     border-radius: 50%;
     font-size: 25px;
+    background: none;
+    outline: none;
+    transition: .5s;
+    cursor: pointer;
 }
 
 .date_picker {
@@ -194,12 +198,111 @@ body {
     width: 120px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .date_flex {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.arrow_back {
+    width: 15px;
+    height: 15px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);
+}
+
+.arrow_forward {
+    width: 15px;
+    height: 15px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(315deg);
+}
+
+.main_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: fit-content(1000px) 200px;
+    gap: 10px;
+    padding: 15px;
+}
+
+.notes {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border: 3px dashed #2291FF;
+    border-radius: 15px;
+    min-height: 250px;
+    padding: 10px;
+    position: relative;
+}
+
+.note_item {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #eee;
+    margin-bottom: 5px;
+}
+
+.add_note {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: #666;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    transition: .3s;
+}
+
+.add_note:hover {
+    background-color: #555;
+}
+
+.memo {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.reminder {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.blur_filter {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    display: none;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+}
+
+.blur_filter.blur {
+    display: block;
+    backdrop-filter: blur(10px);
 }
 
 footer {
@@ -221,6 +324,179 @@ footer {
 
 .footer_sosumi {
     color: #555;
+}
+
+.login_popup {
+    width: 40%;
+    height: 360px;
+    min-width: 250px;
+    min-height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid #2291FF;
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.login_popup h3 {
+    margin: 10px 0;
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.login_popup .input_text {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    padding: 5px;
+    transition: .5s;
+}
+
+.login_popup .input_text:focus {
+    border-color: #2291FF;
+}
+
+.checkbox_wrap {
+    width: 150px;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox_wrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.checkbox_wrap:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.checkbox_wrap input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox_wrap input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox_wrap .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.login_tooltip {
+    opacity: 0;
+    transform: translate(-5px, 0);
+    transition: .3s;
+    width: 93px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    font-size: 13px;
+    z-index: 1;
+    top: -15px;
+    left: 140px;
+}
+
+.login_tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.checkbox_wrap:hover .login_tooltip {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.login_button {
+    width: 100%;
+    height: 30px;
+    background: none;
+    border: 1px solid #2291FF;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    transition: .3s;
+}
+
+.login_button:hover {
+    background-color: #2291FF;
+    color: white;
+}
+
+.login_with_google {
+    margin-top: 50px;
+    width: 100%;
+    height: 30px;
+    background-image: url(https://studia-kr.web.app/calendar/img/google_login.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: left center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    transition: .3s;
+}
+
+.login_with_google:hover {
+    border-color: #2291FF;
 }
 
 @media (prefers-color-scheme: dark) {

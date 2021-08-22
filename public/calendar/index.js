@@ -16,3 +16,5 @@ close_nav_button.addEventListener("click", function () {
 var field = document.getElementById("date_picker")
 var date_picker = new Pikaday({field: field, format: "YYYY/MM/DD"});
 date_picker.setDate(new Date())
+
+console.log(date_picker.toString('YYYYMMDD'))
