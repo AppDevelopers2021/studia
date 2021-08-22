@@ -297,7 +297,7 @@ body {
     z-index: 10;
     display: none;
     transform: translate(-50%, -50%);
-    transition: .5s;
+    transition: backdrop-filter .5s;
 }
 
 .blur_filter.blur {
@@ -367,7 +367,7 @@ footer {
 }
 
 .checkbox_wrap {
-    width: 150px;
+    width: 120px;
     display: block;
     position: relative;
     padding-left: 35px;
@@ -442,7 +442,7 @@ footer {
     position: absolute;
     font-size: 13px;
     z-index: 1;
-    top: -15px;
+    top: -10px;
     left: 140px;
 }
 
@@ -465,13 +465,13 @@ footer {
 .login_button {
     width: 100%;
     height: 30px;
-    background: none;
+    background-color: white;
     border: 1px solid #2291FF;
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
     outline: none;
-    transition: .3s;
+    transition: .5s;
 }
 
 .login_button:hover {
@@ -483,10 +483,11 @@ footer {
     margin-top: 50px;
     width: 100%;
     height: 30px;
+    background-color: white;
     background-image: url(https://studia-kr.web.app/calendar/img/google_login.png);
     background-repeat: no-repeat;
     background-size: 15px;
-    background-position: left center;
+    background-position: 5px center;
     border: 1px solid #ddd;
     border-radius: 5px;
     cursor: pointer;
