@@ -460,6 +460,7 @@ footer {
 .checkbox_wrap:hover .login_tooltip {
     opacity: 1;
     transform: translate(0, 0);
+    transition-delay: .2s;
 }
 
 .login_button {
