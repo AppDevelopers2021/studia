@@ -294,14 +294,14 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 10;
-    display: none;
+    z-index: -1;
+    display: block;
     transform: translate(-50%, -50%);
     transition: backdrop-filter .5s;
 }
 
 .blur_filter.blur {
-    display: block;
+    z-index: 10;
     backdrop-filter: blur(10px);
 }
 
@@ -332,7 +332,7 @@ footer {
     min-width: 250px;
     min-height: 400px;
     position: absolute;
-    top: 50%;
+    top: 150%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -341,6 +341,11 @@ footer {
     z-index: 11;
     padding: 10px;
     font-family: 'Noto Sans KR', sans-serif;
+    transition: .3s;
+}
+
+.login_popup.open {
+    top: 50%;
 }
 
 .login_popup h3 {
@@ -360,6 +365,11 @@ footer {
     outline: none;
     padding: 5px;
     transition: .5s;
+}
+
+.input_text.login_error {
+    border-color: #FF3120;
+    animation: .4s shake ease-out;
 }
 
 .login_popup .input_text:focus {
@@ -460,7 +470,7 @@ footer {
 .checkbox_wrap:hover .login_tooltip {
     opacity: 1;
     transform: translate(0, 0);
-    transition-delay: .2s;
+    transition-delay: .4s;
 }
 
 .login_button {
@@ -501,6 +511,7 @@ footer {
     border-color: #2291FF;
 }
 
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #1871CA;
@@ -523,5 +534,38 @@ footer {
     .footer_logo,
     .footer_sosumi {
         color: #999;
+    }
+}
+
+/* Shake Animation for Invalid Text Input */
+@keyframes shake {
+    0% {
+        transform: translate(0,0);
+    }
+    20% {
+        transform: translate(20px,0);
+    }
+    40% {
+        transform: translate(0,0);
+    }
+    60% {
+        transform: translate(20px,0);
+    }
+    80% {
+        transform: translate(0,0);
+    }
+    90% {
+        transform: translate(10px,0);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+
+/* Fallback for backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+    .blur_filter.blur {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: none;
     }
 }

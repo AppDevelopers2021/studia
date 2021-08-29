@@ -43,7 +43,7 @@
 	<meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
 	<meta property="og:image" content="https://studia-kr.web.app/images/profile.jpg">
 
-	<title>404 Not Found</title>
+	<title>내 캘린더</title>
 </head>
 
 <body>
@@ -90,7 +90,7 @@
 		</div>
 	</div>
 
-	<div class="blur_filter"></div>
+	<div id="blur_bg" class="blur_filter"></div>
 
 	<div class="login_popup">
 		<h3>로그인</h3>
@@ -119,7 +119,31 @@
 
 	</footer>
 
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBeJDdOCiCPl8dY45RDTZ_Dm6BXGOdsxAc",
+            authDomain: "studia-kr.firebaseapp.com",
+            databaseURL: "https://studia-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "studia-kr",
+            storageBucket: "studia-kr.appspot.com",
+            messagingSenderId: "654717768488",
+            appId: "1:654717768488:web:9145bccc0e7b33fe33361d",
+            measurementId: "G-VNTECBX1XJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 </body>
 
 </html>
