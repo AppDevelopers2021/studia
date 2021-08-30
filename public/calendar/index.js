@@ -8,7 +8,6 @@
 console.log("%cstudia\n%cThe Best Way to Organize Your Notes.", "font-family:'Courgette', cursive;color:#2291FF;font-size:40px;", "font-family:Arial;font-size:13px;color:#333;")
 console.log("%c주의: 이 기능은 개발자들을 위한 것입니다. 알지 못하는 코드를 입력하지 마세요.", "font-family:Arial;color:red;font-size:15px;")
 
-// 
 const hamburger = document.getElementsByClassName("nav_hamburger")[0];
 const navbar = document.getElementById("navbar");
 const sidenav = document.getElementById("sidenav");
@@ -48,7 +47,87 @@ window.onload = function() {
 
 // Event listeners for login
 login_button.addEventListener("click", function() {
-    const email = document.getElementById("login_id").value;
-    const password = document.getElementById("login_pw").value;
-    const isPersistenceSet = document.getElementById("login_keep").value;
+    const email = document.getElementById("login_id");
+    const password = document.getElementById("login_pw");
+    const isPersistenceSet = document.getElementById("login_keep").checked;
+    const loader = document.getElementById("login_loader");
+
+    loader.classList.add("loading")
+
+    function shakeInput(elem) {
+        elem.classList.add("login_error");
+    }
+
+    if(isPersistenceSet) {
+        // 로그인 유지
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(() => {
+                // Persistence is set to LOCAL
+                return firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+                    .then(() => {
+                        // Signed in successfully
+                        console.log("Logged in successfully.");
+                        loader.classList.remove("loading");
+                        blur_bg.className = "blur_filter";
+                        login_modal.className = "login_popup";
+                    })
+                    .catch((error) => {
+                        // Error while login
+                        loader.classList.remove("loading");
+                        switch(error.code) {
+                            case "auth/wrong-password":
+                                shakeInput(password);
+                                break;
+                            case "auth/user-not-found":
+                                shakeInput(email);
+                                break;
+                            case "auth/invalid-email":
+                                shakeInput(email);
+                                break;
+                            default:
+                                console.error(`Error ${error.code}: ${error.message}`);
+                        }
+                    })
+            })
+            .catch((error) => {
+                // Error while setting persistence
+                loader.classList.remove("loading");
+                console.error(`Error while setting persistence to LOCAL :: ${error.code} : ${error.message}`);
+            })
+    } else {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(() => {
+                // Persistence is set to SESSION
+                return firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+                    .then(() => {
+                        // Signed in successfully
+                        console.log("Logged in successfully.")
+                        loader.classList.remove("loading");
+                        blur_bg.className = "blur_filter";
+                        login_modal.className = "login_popup";
+                    })
+                    .catch((error) => {
+                        // Error while login
+                        loader.classList.remove("loading");
+                        switch(error.code) {
+                            case "auth/wrong-password":
+                                shakeInput(password);
+                                break;
+                            case "auth/user-not-found":
+                                shakeInput(email);
+                                break;
+                            case "auth/invalid-email":
+                                shakeInput(email);
+                                break;
+                            default:
+                                console.error(`Error ${error.code}: ${error.message}`);
+                        }
+                    })
+            })
+            .catch((error) => {
+                // Error while setting persistence
+                loader.classList.remove("loading");
+                console.error(`Error while setting persistence to SESSION :: ${error.code} : ${error.message}`);
+            })
+    }
 })
