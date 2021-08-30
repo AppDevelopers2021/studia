@@ -16,6 +16,7 @@ const blur_bg = document.getElementById("blur_bg");
 
 const login_modal = document.getElementsByClassName("login_popup")[0];
 const login_button = document.getElementById("login_button");
+const login_google = document.getElementById("login_with_google");
 
 hamburger.addEventListener("click", function () {
     hamburger.classList.toggle("bar_open");
@@ -85,7 +86,7 @@ login_button.addEventListener("click", function() {
                                 shakeInput(email);
                                 break;
                             default:
-                                console.error(`Error ${error.code}: ${error.message}`);
+                                console.error(`Error while Auth :: ${error.code} : ${error.message}`);
                         }
                     })
             })
@@ -120,7 +121,7 @@ login_button.addEventListener("click", function() {
                                 shakeInput(email);
                                 break;
                             default:
-                                console.error(`Error ${error.code}: ${error.message}`);
+                                console.error(`Error while Auth :: ${error.code} : ${error.message}`);
                         }
                     })
             })
@@ -130,4 +131,21 @@ login_button.addEventListener("click", function() {
                 console.error(`Error while setting persistence to SESSION :: ${error.code} : ${error.message}`);
             })
     }
+})
+
+// Login with google
+login_google.addEventListener("click", function() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth()
+        .signInWithPopup(provider)
+        .then(() => {
+            // Signed in successfully
+            // Signed in successfully
+            console.log("Logged in successfully.")
+            blur_bg.className = "blur_filter";
+            login_modal.className = "login_popup";
+        }).catch((error) => {
+            console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);
+        })
 })
