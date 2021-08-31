@@ -296,12 +296,15 @@ body {
     left: 0;
     z-index: -1;
     display: block;
-    transition: backdrop-filter .5s;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: .5s;
+    opacity: 0;
 }
 
 .blur_filter.blur {
     z-index: 10;
-    backdrop-filter: blur(10px);
+    opacity: 1;
 }
 
 footer {
@@ -330,7 +333,7 @@ footer {
     height: 360px;
     min-width: 250px;
     min-height: 400px;
-    position: absolute;
+    position: fixed;
     top: 150%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -340,11 +343,19 @@ footer {
     z-index: 11;
     padding: 10px;
     font-family: 'Noto Sans KR', sans-serif;
-    transition: .5s;
+    animation-fill-mode: forwards;
 }
 
 .login_popup.open {
     top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.login_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
 }
 
 .login_popup h3 {
@@ -590,6 +601,35 @@ footer {
     }
 }
 
+/* Show Modal */
+@keyframes popup {
+    0% {
+        display: none;
+        top: 150%;
+    }
+    1% {
+        display: block;
+    }
+    100% {
+        top: 50%;
+    }
+}
+
+/* Hide Modal */
+@keyframes popdown {
+    0% {
+        top: 50%;
+        display: block;
+    }
+    99% {
+        display: block;
+    }
+    to {
+        top: 150%;
+        display: none;
+    }
+}
+
 /* Shake Animation for Invalid Text Input */
 @keyframes shake {
     0% {
@@ -623,7 +663,7 @@ footer {
 }
 
 /* Fallback for backdrop-filter */
-@supports not (backdrop-filter: blur(10px)) {
+@supports ( not ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)))) {
     .blur_filter.blur {
         background-color: rgba(0, 0, 0, 0.5);
     }

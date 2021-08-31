@@ -70,7 +70,7 @@ login_button.addEventListener("click", function() {
                         console.log("Logged in successfully.");
                         loader.classList.remove("loading");
                         blur_bg.className = "blur_filter";
-                        login_modal.className = "login_popup";
+                        login_modal.className = "login_popup closed";
                     })
                     .catch((error) => {
                         // Error while login
@@ -105,7 +105,7 @@ login_button.addEventListener("click", function() {
                         console.log("Logged in successfully.")
                         loader.classList.remove("loading");
                         blur_bg.className = "blur_filter";
-                        login_modal.className = "login_popup";
+                        login_modal.className = "login_popup closed";
                     })
                     .catch((error) => {
                         // Error while login
@@ -144,7 +144,7 @@ login_google.addEventListener("click", function() {
             // Signed in successfully
             console.log("Logged in successfully.")
             blur_bg.className = "blur_filter";
-            login_modal.className = "login_popup";
+            login_modal.className = "login_popup closed";
         }).catch((error) => {
             console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);
         })
