@@ -34,7 +34,7 @@
             font-family: Verdana, sans-serif;
             height: 100%;
             min-height: 100%;
-            background-color: white;
+            background-color: #eee;
         }
 
         .nav {
@@ -101,21 +101,6 @@
             cursor: pointer;
         }
 
-        .hamburger {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 50%;
-            background-color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .hamburger:hover {
-            background-color: #F1F3F4;
-        }
-
         #login {
             align-self: center;
             width: 75px;
@@ -137,24 +122,48 @@
             vertical-align: middle;
         }
 
-        .login-container {
+        .hamburger {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background-color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .hamburger:hover {
+            background-color: #F1F3F4;
+        }
+
+
+        .logo {
+            width: auto;
+            max-height: 50px;
+            display: inline;
+        }
+
+        .signup-container {
             width: 440px;
             padding: 20px;
             margin: auto;
+            margin-top: 20vh;
+            margin-bottom: 20vh;
             display: block;
             background-color: white;
             border-radius: 10px;
         }
 
-        .login-container h1 {
+        .signup-container h1 {
             text-align: center;
         }
 
-        .login-container label {
+        .signup-container label {
             display: block;
         }
 
-        .login-container input {
+        .signup-container input {
             display: block;
             width: 100%;
             height: 30px;
@@ -165,15 +174,12 @@
             transition: 0.3s ease-in-out;
         }
 
-        .login-container input[type=checkbox] {
-            display: inline-block;
-            margin: 10px 5px 20px 5px;
-            width: 20px;
-            height: 20px;
+        .signup-container input:focus {
+            border-color: #2681F2;
         }
 
-        .login-container input:focus {
-            border-color: #2681F2;
+        .signup-container input:invalid {
+            border-color: #dd4124;
         }
 
         input[type=password] {
@@ -184,7 +190,7 @@
         #confirm {
             width: 100%;
             height: 30px;
-            margin: 10px 0 10px 0;
+            margin: 10px 0 0;
             background-color: white;
             border: 1.5px solid #2681F2;
             border-radius: 5px;
@@ -199,6 +205,32 @@
 
         #error {
             color: #dd4124;
+        }
+
+        #success {
+            text-align: center;
+        }
+
+        #success img {
+            width: 30%;
+            min-width: 150px;
+            max-width: 400px;
+            display: block;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        #success_social {
+            text-align: center;
+        }
+
+        #success_social img {
+            width: 30%;
+            min-width: 150px;
+            max-width: 400px;
+            display: block;
+            margin: auto;
+            margin-top: 30px;
         }
 
         hr {
@@ -270,6 +302,9 @@
         @media (prefers-color-scheme: dark) {
 
             /*다크모드 상태*/
+            .underline:after {
+                background-color: black;
+            }
         }
     </style>
 
@@ -277,23 +312,54 @@
 </head>
 
 <body>
-
+    <div class="sidenav">
+        <div class="close_nav">&times;</div>
+        <a href="https://studia-kr.web.app">홈</a>
+        <a href="https://studia-kr.web.app/about">소개</a>
+        <a href="https://studia-kr.web.app/products">제품</a>
+        <a href="https://studia-kr.web.app/downloads">다운로드</a>
+    </div>
+    <div class="nav">
+        <button class="navitem hamburger">
+            &#9776;
+        </button>
+        <a href="https://studia-kr.web.app">
+            <img class="navitem logo" src="https://studia-kr.web.app/images/logo/logo_long.png">
+        </a>
+        <a id="login" class="navitem right" href="https://studia-kr.web.app/login">로그인</a>
+        <a id="signup" class="navitem" href="https://studia-kr.web.app/signup">회원가입</a>
+    </div>
     <div class="content">
-        <div class="login-container">
-            <h1>로그인</h1>
-            <label>이메일 주소:</label> <input type="text" class="" id="email" placeholder="someone@example.com" />
-            <label>비밀번호: </label><input type="password" class="" id="pw">
-            <button id="confirm">로그인</button>
-            <input type="checkbox" class="" id="keep">로그인 유지
+        <div class="signup-container">
+            <h1>회원가입</h1>
+            <p>App Developers 서비스를 이용하려면 회원으로 가입해 주세요.</p>
+            <label>이메일 주소:</label> <input type="text" class="signup" id="email" placeholder="someone@example.com" />
+            <label>비밀번호: </label><input type="password" class="signup" id="pw">
+            <label>비밀번호 확인: </label><input type="password" class="signup" id="pw-check">
+            <button id="confirm">회원가입</button>
             <p id="error"></p>
 
             <hr>
 
-            <button class="social" id="google">Google 계정으로 로그인</button>
+            <button class="social" id="google">Google 계정으로 가입</button>
         </div>
 
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <div id="success" hidden>
+            <img src="images/fireworks.png">
+            <h1>회원가입 완료!</h1>
+            <h2>이메일 주소 인증으로 가입을 완료해주세요.</h2>
+            <p>인증이 끝나면 모든 App Developers 서비스를 이용하실 수 있습니다. 지금 메일을 확인하고 인증 링크를 확인하세요!</p>
+        </div>
+
+        <div id="success_social" hidden>
+            <img src="images/fireworks.png">
+            <h1>회원가입 완료!</h1>
+            <h2>소셜계정으로 회원가입을 완료했어요.</h2>
+            <p>지금 바로 App Developers 서비스를 사용해 보세요!</p>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
         <script>
             // Your web app's Firebase configuration
@@ -319,86 +385,57 @@
                 document.getElementsByClassName('sidenav')[0].style.width = "0"
             });
 
-            document.getElementById("confirm").addEventListener('click', function (evt) {
-                document.getElementById("confirm").style.cursor = "wait";
+            // 회원가입 양식
+            document.getElementById("confirm").addEventListener('click', function () {
+                var log = document.getElementById("error");
+                log.innerText = "";
+                document.getElementById("email").style.borderColor = "#ddd"
+                document.getElementById("pw").style.borderColor = "#ddd"
+                document.getElementById("pw-check").style.borderColor = "#ddd"
 
                 var email = document.getElementById("email").value;
                 var pw = document.getElementById("pw").value;
-                var keep = document.getElementById("keep").value;
-                var log = document.getElementById("error");
-                log.innerText = ''
-
-                // Set Persistence
-                if (keep) {
-                    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-                        .then(() => {
-                            // Set to LOCAL
-                            return firebase.auth().signInWithEmailAndPassword(email, pw)
+                var email_check = new RegExp(
+                    '^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$');
+                if (email_check.test(email)) {
+                    if (pw.length >= 8) {
+                        if (pw == document.getElementById("pw-check").value) {
+                            // Password is valid
+                            firebase.auth().createUserWithEmailAndPassword(email, pw)
                                 .then((userCredential) => {
-                                    // Signed In
-                                    var user = userCredential.user;
-                                    window.open("https://studia-kr.web.app", "_self")
+                                    // Signed in
+                                    var user = firebase.auth().currentUser;
+
+                                    user.sendEmailVerification().then(function () {
+                                        // Verification Email Sent.
+                                        document.getElementsByClassName("signup-container")[0].style
+                                            .display = "none";
+                                        document.getElementById("success").hidden = false;
+                                    }).catch(function (error) {
+                                        // Error
+                                    })
                                 })
-                                .catch((error) => {
-                                    var errorCode = error.code;
-                                    var errorMessage = error.message;
-                                    console.error('Error while login: ' + errorCode + ' : ' +
-                                        errorMessage)
-                                    if (errorCode == "auth/wrong-password") {
-                                        log.innerText = "비밀번호가 잘못되었습니다."
-                                    } else if (errorCode == "auth/user-not-found") {
-                                        log.innerText = "계정을 찾을 수 없습니다."
-                                    } else if (errorCode == "auth/invalid-email") {
-                                        log.innerText = "잘못된 이메일 주소입니다."
-                                    } else {
-                                        log.innerText = "에러가 발생하였습니다."
-                                    }
+                                .catch((errorInfo) => {
+                                    var errorCode = errorInfo.code;
+                                    var errorMessage = errorInfo.message;
+
+                                    log.innerText = "Error " + errorCode + ": " + errorMessage;
                                 })
-                        })
-                        .catch((error) => {
-                            var errorCode = error.code;
-                            var errorMessage = error.message;
-                            console.error('Error while setting persistence: ' + errorCode + ' : ' +
-                                errorMessage)
-                        })
+                        } else {
+                            document.getElementById("pw-check").style.borderColor = "#dd4124"
+                            log.innerText = "비밀번호가 일치하지 않습니다."
+                        }
+                    } else {
+                        document.getElementById("pw").style.borderColor = "#dd4124"
+                        log.innerText = "비밀번호는 8자 이상이어야 합니다."
+                    }
                 } else {
-                    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-                        .then(() => {
-                            // Set to SESSION
-                            return firebase.auth().signInWithEmailAndPassword(email, pw)
-                                .then((userCredential) => {
-                                    // Signed In
-                                    var user = userCredential.user;
-                                    alert('ok')
-                                })
-                                .catch((error) => {
-                                    var errorCode = error.code;
-                                    var errorMessage = error.message;
-                                    console.error('Error while login: ' + errorCode + ' : ' +
-                                        errorMessage)
-                                    if (errorCode == "auth/wrong-password") {
-                                        log.innerText = "비밀번호가 잘못되었습니다."
-                                    } else if (errorCode == "auth/user-not-found") {
-                                        log.innerText = "계정을 찾을 수 없습니다."
-                                    } else if (errorCode == "auth/invalid-email") {
-                                        log.innerText = "잘못된 이메일 주소입니다."
-                                    } else {
-                                        log.innerText = "에러가 발생하였습니다."
-                                    }
-                                })
-                        })
-                        .catch((error) => {
-                            var errorCode = error.code;
-                            var errorMessage = error.message;
-                            console.error('Error while setting persistence: ' + errorCode + ' : ' +
-                                errorMessage)
-                        })
+                    document.getElementById("email").style.borderColor = "#dd4124"
+                    log.innerText = "이메일 주소가 잘못되었습니다."
                 }
-                document.getElementById("confirm").style.cursor = "none";
-
             });
 
-            // Login with google
+            // Signup with google
             document.getElementById("google").addEventListener("click", function () {
                 var log = document.getElementById("error");
                 var provider = new firebase.auth.GoogleAuthProvider();
@@ -409,7 +446,9 @@
                         var credential = result.credential;
                         var token = credential.accessToken;
                         var user = result.user;
-                        console.log('login conplete')
+                        console.log('signup conplete')
+                        document.getElementsByClassName("signup-container")[0].style.display = "none";
+                        document.getElementById("success_social").hidden = false;
                     }).catch((error) => {
                         var errorCode = error.code;
                         var errorMessage = error.message;

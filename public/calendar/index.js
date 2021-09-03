@@ -141,7 +141,6 @@ login_google.addEventListener("click", function() {
         .signInWithPopup(provider)
         .then(() => {
             // Signed in successfully
-            // Signed in successfully
             console.log("Logged in successfully.")
             blur_bg.className = "blur_filter";
             login_modal.className = "login_popup closed";
