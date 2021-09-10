@@ -40,10 +40,15 @@ date_picker.setDate(new Date())
 // SwiperJS
 const swiper = new Swiper('.swiper', {
     // Optional parameters
-    direction: 'vertical',
+    direction: 'horizontal',
     loop: true,
-});
 
+    // Navigation arrows
+    navigation: {
+        nextEl: '#date_forward',
+        prevEl: '#date_back',
+    }
+});
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
