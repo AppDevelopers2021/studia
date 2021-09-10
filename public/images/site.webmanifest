@@ -1,6 +1,6 @@
 {
-    "name": "App Developers",
-    "short_name": "App Developers",
+    "name": "STUDIA",
+    "short_name": "STUDIA",
     "icons": [
         {
             "src": "https://studia-kr.web.app/images/android-chrome-192x192.png",
@@ -13,6 +13,6 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#2291FF",
-    "background_color": "#FFFFFF"
+    "theme_color": "#2192ff",
+    "background_color": "#2192ff"
 }
