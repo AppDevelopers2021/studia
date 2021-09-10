@@ -28,9 +28,14 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
+	<!-- Date Picker Library -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+
+	<!-- Swiper Library -->
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 
 	<link rel="stylesheet" href="index.css">
@@ -80,15 +85,24 @@
 					<button id="date_forward" class="date_button"><i class="arrow_forward"></i></button>
 				</div>
 			</div>
-			<div class="main_grid">
-				<div class="notes">
-					<div class="note_item"></div>
 
-					<button class="add_note">+</button>
+			<div class="swiper">
+				<div class="swiper_wrapper">
+					<div class="swiper_slide">
+						<div class="main_grid">
+							<div class="notes">
+								<div class="note_item"></div>
+
+								<button class="add_note">+</button>
+							</div>
+							<div class="memo"></div>
+							<div class="reminder"></div>
+						</div>
+					</div>
 				</div>
-				<div class="memo"></div>
-				<div class="reminder"></div>
 			</div>
+
+
 		</div>
 	</div>
 

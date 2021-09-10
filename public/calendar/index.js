@@ -29,14 +29,24 @@ close_nav_button.addEventListener("click", function () {
 
 // Pikaday
 var field = document.getElementById("date_picker")
-var date_picker = new Pikaday({field: field, format: "YYYY/MM/DD"});
+var date_picker = new Pikaday({
+    field: field,
+    format: "YYYY/MM/DD"
+});
 date_picker.setDate(new Date())
 
 // console.log(date_picker.toString('YYYYMMDD'))
 
-// Open login modal when logged out
-window.onload = function() {
-    if(firebase.auth().currentUser) {
+// SwiperJS
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'vertical',
+    loop: true,
+});
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
         // User already signed in
     } else {
         // User needs login
@@ -44,10 +54,10 @@ window.onload = function() {
         blur_bg.className = "blur_filter blur";
         login_modal.className = "login_popup open";
     }
-}
+});
 
 // Event listeners for login
-login_button.addEventListener("click", function() {
+login_button.addEventListener("click", function () {
     const email = document.getElementById("login_id");
     const password = document.getElementById("login_pw");
     const isPersistenceSet = document.getElementById("login_keep").checked;
@@ -59,7 +69,7 @@ login_button.addEventListener("click", function() {
         elem.classList.add("login_error");
     }
 
-    if(isPersistenceSet) {
+    if (isPersistenceSet) {
         // 로그인 유지
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
@@ -75,7 +85,7 @@ login_button.addEventListener("click", function() {
                     .catch((error) => {
                         // Error while login
                         loader.classList.remove("loading");
-                        switch(error.code) {
+                        switch (error.code) {
                             case "auth/wrong-password":
                                 shakeInput(password);
                                 break;
@@ -110,7 +120,7 @@ login_button.addEventListener("click", function() {
                     .catch((error) => {
                         // Error while login
                         loader.classList.remove("loading");
-                        switch(error.code) {
+                        switch (error.code) {
                             case "auth/wrong-password":
                                 shakeInput(password);
                                 break;
@@ -134,7 +144,7 @@ login_button.addEventListener("click", function() {
 })
 
 // Login with google
-login_google.addEventListener("click", function() {
+login_google.addEventListener("click", function () {
     var provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth()
