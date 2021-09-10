@@ -531,7 +531,7 @@ footer {
 }
 
 .login_link {
-    width: 110px;
+    width: 100px;
     height: 30px;
     background-color: white;
     border: 1px solid white;
@@ -540,6 +540,7 @@ footer {
     color: #555;
     transition: .5s;
     cursor: pointer;
+    padding: 0;
 }
 
 .login_link_signup {
