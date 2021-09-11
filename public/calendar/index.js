@@ -6,7 +6,7 @@
 
 // Warn message in console
 console.log("%cstudia\n%cThe Best Way to Organize Your Notes.", "font-family:'Courgette', cursive;color:#2291FF;font-size:40px;", "font-family:Arial;font-size:13px;color:#333;")
-console.log("%c주의: 이 기능은 개발자들을 위한 것입니다. 알지 못하는 코드를 입력하지 마세요.", "font-family:Arial;color:red;font-size:15px;")
+console.log("%c주의: 여기에 코드를 입력하면 해커가 Self-XSS라는 공격을 이용해 계정 비밀번호를 유출시킬 수 있습니다. 알지 못하는 코드를 입력하지 마세요.", "font-family:Arial;color:red;font-size:15px;")
 
 const hamburger = document.getElementsByClassName("nav_hamburger")[0];
 const navbar = document.getElementById("navbar");
@@ -17,6 +17,9 @@ const blur_bg = document.getElementById("blur_bg");
 const login_modal = document.getElementsByClassName("login_popup")[0];
 const login_button = document.getElementById("login_button");
 const login_google = document.getElementById("login_with_google");
+
+const date_forward_button = document.getElementById("date_forward");
+const date_backward_button = document.getElementById("date_back");
 
 hamburger.addEventListener("click", function () {
     hamburger.classList.toggle("bar_open");
@@ -44,12 +47,26 @@ const swiper = new Swiper('.swiper', {
     loop: true,
 
     // Navigation arrows
+    /*
     navigation: {
         nextEl: '#date_forward',
         prevEl: '#date_back',
+    },*/
+
+    // Event handlers
+    on: {
+        slideChangeTransitionStart: (swiper) => {
+            if (swiper.touches.diff < 0) {
+                changeDate(true);
+            } else if (swiper.touches.diff > 0) {
+                changeDate(false);
+            }
+        }
     }
 });
 
+
+// Detect If User is Signed In
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User already signed in
@@ -163,3 +180,28 @@ login_google.addEventListener("click", function () {
             console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);
         })
 })
+
+// Change date when swipe
+function changeDate(isSwipeDirectionRight) {
+    var temp_date = new Date(date_picker.toString('YYYY-MM-DD'));
+
+    if(isSwipeDirectionRight) {
+        // Mode to tomorrow
+        temp_date.setDate(temp_date.getDate() + 1);
+        date_picker.setDate(temp_date);
+    } else {
+        // Move to yesterday
+        temp_date.setDate(temp_date.getDate() - 1);
+        date_picker.setDate(temp_date);
+    }
+}
+
+// When date change button is pressed
+date_forward_button.addEventListener("click", () => {
+    swiper.slideNext();
+    changeDate(true);
+});
+date_backward_button.addEventListener("click", () => {
+    swiper.slidePrev();
+    changeDate(false);
+});
