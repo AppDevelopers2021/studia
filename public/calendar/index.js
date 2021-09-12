@@ -30,6 +30,12 @@ close_nav_button.addEventListener("click", function () {
     sidenav.className = "";
 })
 
+// Add CSS if in iOS Web App Mode
+if(("standalone" in window.navigator) && (window.navigator.standalone)) {
+    // Web App Mode
+    document.body.classList.add("webapp")
+}
+
 // Pikaday
 var field = document.getElementById("date_picker")
 var date_picker = new Pikaday({
@@ -64,7 +70,6 @@ const swiper = new Swiper('.swiper', {
         }
     }
 });
-
 
 // Detect If User is Signed In
 firebase.auth().onAuthStateChanged(function (user) {
