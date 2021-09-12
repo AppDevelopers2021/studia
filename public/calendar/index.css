@@ -674,7 +674,7 @@ footer {
 }
 
 /* In iOS web app mode */
-body.webapp #navbar {
+body.webapp>#navbar>.nav_hamburger,.nav_ade {
     display: none;
 }
 
