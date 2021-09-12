@@ -672,16 +672,3 @@ footer {
         background-color: rgba(0, 0, 0, 0.5);
     }
 }
-
-/* In iOS web app mode */
-body.webapp>#navbar>.nav_hamburger,.nav_ade {
-    display: none;
-}
-
-body.webapp footer {
-    display: none;
-}
-
-body.webapp .body_wrap {
-    margin-bottom: 0;
-}

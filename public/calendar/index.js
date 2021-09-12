@@ -30,12 +30,6 @@ close_nav_button.addEventListener("click", function () {
     sidenav.className = "";
 })
 
-// Add CSS if in iOS Web App Mode
-if(("standalone" in window.navigator) && (window.navigator.standalone)) {
-    // Web App Mode
-    document.body.classList.add("webapp")
-}
-
 // Pikaday
 var field = document.getElementById("date_picker")
 var date_picker = new Pikaday({
@@ -51,13 +45,6 @@ const swiper = new Swiper('.swiper', {
     // Optional parameters
     direction: 'horizontal',
     loop: true,
-
-    // Navigation arrows
-    /*
-    navigation: {
-        nextEl: '#date_forward',
-        prevEl: '#date_back',
-    },*/
 
     // Event handlers
     on: {
@@ -201,12 +188,15 @@ function changeDate(isSwipeDirectionRight) {
     }
 }
 
+
 // When date change button is pressed
 date_forward_button.addEventListener("click", () => {
+    swiper.touches.diff = 0;
     swiper.slideNext();
     changeDate(true);
 });
 date_backward_button.addEventListener("click", () => {
+    swiper.touches.diff = 0;
     swiper.slidePrev();
     changeDate(false);
 });
