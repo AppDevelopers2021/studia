@@ -121,12 +121,24 @@
 					<div class="swiper-slide">
 						<div class="main_grid">
 							<div class="notes">
-								<div class="note_item"></div>
+								<div class="notes_container">
+									<div class="note_item">
+										<div class="note_profile">국어</div>
+										<p class="note_content">예시 텍스트 Note Text Lorem Ipsum</p>
+										<button class="note_more"><i class="fas fa-ellipsis-v"></i></button>
+									</div>
+								</div>
 
-								<button class="add_note">+</button>
+								<button class="add_note"><i class="fas fa-plus"></i></button>
 							</div>
-							<div class="memo"></div>
-							<div class="reminder"></div>
+							<div class="memo">
+								<h2>메모</h2>
+								<pre class="memo_content"></pre>
+							</div>
+							<div class="reminder">
+								<h2>과제 및 준비물</h2>
+								<pre class="reminder_content"></pre>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -134,6 +146,11 @@
 
 
 		</div>
+	</div>
+
+	<div id="contextmenu" class="context_menu" hidden>
+		<a id="context_menu_edit"><i class="fas fa-pen"></i> 노트 수정</a>
+		<a id="context_menu_delete"><i class="fas fa-trash"></i> 노트 삭제</a>
 	</div>
 
 	<div id="blur_bg" class="blur_filter"></div>
@@ -169,7 +186,6 @@
 			<p class="footer_logo">studia</p>
 			<p class="footer_sosumi">Copyright &copy; 2021 App Developers.<br>All Rights Reserved.</p>
 		</div>
-
 	</footer>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->

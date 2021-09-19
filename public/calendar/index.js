@@ -12,6 +12,7 @@ const hamburger = document.getElementsByClassName("nav_hamburger")[0];
 const navbar = document.getElementById("navbar");
 const sidenav = document.getElementById("sidenav");
 const close_nav_button = document.getElementById("close_nav");
+const contextmenu = document.getElementById("contextmenu");
 const blur_bg = document.getElementById("blur_bg");
 
 const login_modal = document.getElementsByClassName("login_popup")[0];
@@ -20,6 +21,8 @@ const login_google = document.getElementById("login_with_google");
 
 const date_forward_button = document.getElementById("date_forward");
 const date_backward_button = document.getElementById("date_back");
+
+var database = firebase.database();
 
 hamburger.addEventListener("click", function () {
     hamburger.classList.toggle("bar_open");
@@ -34,7 +37,10 @@ close_nav_button.addEventListener("click", function () {
 var field = document.getElementById("date_picker")
 var date_picker = new Pikaday({
     field: field,
-    format: "YYYY/MM/DD"
+    format: "YYYY/MM/DD",
+    onSelect: () => {
+        load()
+    }
 });
 date_picker.setDate(new Date())
 
@@ -177,7 +183,7 @@ login_google.addEventListener("click", function () {
 function changeDate(isSwipeDirectionRight) {
     var temp_date = new Date(date_picker.toString('YYYY-MM-DD'));
 
-    if(isSwipeDirectionRight) {
+    if (isSwipeDirectionRight) {
         // Mode to tomorrow
         temp_date.setDate(temp_date.getDate() + 1);
         date_picker.setDate(temp_date);
@@ -187,7 +193,6 @@ function changeDate(isSwipeDirectionRight) {
         date_picker.setDate(temp_date);
     }
 }
-
 
 // When date change button is pressed
 date_forward_button.addEventListener("click", () => {
@@ -200,3 +205,48 @@ date_backward_button.addEventListener("click", () => {
     swiper.slidePrev();
     changeDate(false);
 });
+
+// Context menu event listener
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+    contextmenu.hidden = false;
+    contextmenu.style.top = event.pageY + 'px';
+    contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
+}, false);
+
+// Parse JSON input and show in screen
+function parseJSON(json) {
+    var memo_content = document.getElementsByClassName("memo_content");
+    var reminder_content = document.getElementsByClassName("reminder_content");
+    var notes_container = document.getElementsByClassName("notes_container");
+
+    function replaceAll(nodeList, text) {
+        for(var i=0; i<nodeList.length; i++) {
+            nodeList[i].innerText = text;
+        }
+    }
+
+    // Write to memo
+    replaceAll(memo_content, json.memo)
+    // Write to reminder
+    replaceAll(reminder_content, json.reminder)
+}
+
+// Retrieve data from DB
+function load() {
+    if (firebase.auth().currentUser) {
+        var date = date_picker.toString("YYYYMMDD");
+        var uid = firebase.auth().currentUser.uid;
+
+        firebase.database().ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                parseJSON(snapshot.val());
+            } else {
+                // DB Empty
+                parseJSON({memo: "ho"})
+            }
+        }).catch((error) => {
+            console.error(`Error while fetching data :: ${error.code} : ${error.message}`);
+        })
+    }
+}

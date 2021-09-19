@@ -253,16 +253,67 @@ body {
     border-radius: 10px;
     background-color: #eee;
     margin-bottom: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.note_profile {
+    width: 30px;
+    height: 30px;
+    background-color: purple;
+    color: white;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.note_content {
+    flex-grow: 1;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: scroll;
+
+    scrollbar-width: none;
+}
+
+.note_content::-webkit-scrollbar {
+    display: none;
+}
+
+.note_more {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s ease;
+    transition-property: background-color opacity;
+    opacity: 0;
+}
+
+.note_item:hover .note_more {
+    opacity: 1;
+}
+
+.note_more:hover {
+    background-color: #ddd;
 }
 
 .add_note {
     width: 40px;
     height: 40px;
-    min-width: 40px;
-    min-height: 40px;
+    font-size: 20px;
     border: none;
     border-radius: 20px;
-    font-size: 25px;
     background-color: #666;
     color: white;
     cursor: pointer;
@@ -288,6 +339,39 @@ body {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
+}
+
+.context_menu {
+    position: fixed;
+    width: 130px;
+    height: 90px;
+    padding: 10px 0;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    z-index: 900;
+}
+
+.context_menu a {
+    display: block;
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    cursor: pointer;
+    transition: background-color .3s;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 16px;
+    color: #333;
+    padding-left: 15px;
+}
+
+.context_menu a:hover {
+    background-color: #f5f5f5;
+}
+
+.context_menu a>i {
+    width: 20px;
 }
 
 .blur_filter {
@@ -328,6 +412,7 @@ footer {
 }
 
 .footer_sosumi {
+    margin: 10px 0;
     color: #555;
 }
 
@@ -605,15 +690,24 @@ footer {
     }
 }
 
+/* When on Mobile */
+@media screen and (max-width: 400px) {
+    .note_more {
+        opacity: 1;
+    }
+}
+
 /* Show Modal */
 @keyframes popup {
     0% {
         display: none;
         top: 150%;
     }
+
     1% {
         display: block;
     }
+
     100% {
         top: 50%;
     }
@@ -625,9 +719,11 @@ footer {
         top: 50%;
         display: block;
     }
+
     99% {
         display: block;
     }
+
     to {
         top: 150%;
         display: none;
@@ -637,19 +733,23 @@ footer {
 /* Shake Animation for Invalid Text Input */
 @keyframes shake {
     0% {
-        transform: translate(0,0);
+        transform: translate(0, 0);
     }
+
     25% {
-        transform: translate(15px,0);
+        transform: translate(15px, 0);
     }
+
     50% {
-        transform: translate(-15px,0);
+        transform: translate(-15px, 0);
     }
+
     75% {
-        transform: translate(15px,0);
+        transform: translate(15px, 0);
     }
+
     100% {
-        transform: translate(0,0);
+        transform: translate(0, 0);
     }
 }
 
@@ -658,16 +758,18 @@ footer {
     0% {
         left: -95%;
     }
+
     50% {
         left: 95%;
     }
+
     100% {
         left: -95%;
     }
 }
 
 /* Fallback for backdrop-filter */
-@supports ( not ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)))) {
+@supports (not ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)))) {
     .blur_filter.blur {
         background-color: rgba(0, 0, 0, 0.5);
     }
