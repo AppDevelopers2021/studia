@@ -1,3 +1,9 @@
+:root {
+    --theme-color: #2291FF;
+    --footer-bg-color: #eee;
+    --footer-text-color: #555;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,7 +20,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -39,7 +45,7 @@ body {
 #navbar {
     width: 100%;
     height: 50px;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -174,7 +180,7 @@ body {
     padding-top: 50px;
 }
 
-.main_container {
+.main_content {
     padding-bottom: 200px;
 }
 
@@ -240,7 +246,7 @@ body {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    border: 3px dashed #2291FF;
+    border: 3px dashed var(--theme-color);
     border-radius: 15px;
     min-height: 250px;
     padding: 10px;
@@ -344,7 +350,7 @@ body {
 .context_menu {
     position: fixed;
     width: 130px;
-    height: 90px;
+    height: 120px;
     padding: 10px 0;
     background-color: white;
     border: none;
@@ -359,7 +365,8 @@ body {
     height: 34px;
     line-height: 34px;
     cursor: pointer;
-    transition: background-color .3s;
+    transition: .3s;
+    transition-property: background-color, color;
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 16px;
     color: #333;
@@ -368,6 +375,10 @@ body {
 
 .context_menu a:hover {
     background-color: #f5f5f5;
+}
+
+#context_menu_delete:hover {
+    color: #FF3120;
 }
 
 .context_menu a>i {
@@ -397,23 +408,23 @@ body {
 footer {
     width: 100%;
     height: 200px;
-    background-color: #eee;
+    background-color: var(--footer-bg-color);
     padding-left: 30px;
     margin-top: -200px;
-    border-bottom: 10px solid #2291FF;
+    border-bottom: 10px solid var(--theme-color);
 }
 
 .footer_logo {
     font-family: 'Courgette', cursive;
     font-size: 40px;
-    color: #555;
+    color: var(--footer-text-color);
     margin: 0;
     padding: 0;
 }
 
 .footer_sosumi {
     margin: 10px 0;
-    color: #555;
+    color: var(--footer-text-color);
 }
 
 .login_popup {
@@ -426,7 +437,7 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    border: 2px solid #2291FF;
+    border: 2px solid var(--theme-color);
     border-radius: 10px;
     z-index: 11;
     padding: 10px;
@@ -471,7 +482,7 @@ footer {
 }
 
 .login_popup .input_text:focus {
-    border-color: #2291FF;
+    border-color: var(--theme-color);
 }
 
 .checkbox_wrap {
@@ -575,7 +586,7 @@ footer {
     width: 100%;
     height: 30px;
     background-color: white;
-    border: 1px solid #2291FF;
+    border: 1px solid var(--theme-color);
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
@@ -584,7 +595,7 @@ footer {
 }
 
 .login_button:hover {
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     color: white;
 }
 
@@ -603,7 +614,7 @@ footer {
     height: 5px;
     border-radius: 2px;
     position: absolute;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     opacity: 0;
     transition: .3s;
 }
@@ -639,7 +650,7 @@ footer {
 }
 
 .login_link:hover {
-    border: 1px solid #2291FF;
+    border: 1px solid var(--theme-color);
     color: black;
 }
 
@@ -661,32 +672,15 @@ footer {
 }
 
 .login_with_google:hover {
-    border-color: #2291FF;
+    border-color: var(--theme-color);
 }
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1871CA;
-    }
-
-    .body_wrap {
-        background-color: black;
-        color: white;
-    }
-
-    #navbar {
-        background-color: #1871CA;
-    }
-
-    footer {
-        background-color: #333;
-        border-color: #1871CA;
-    }
-
-    .footer_logo,
-    .footer_sosumi {
-        color: #999;
+    :root {
+        --theme-color: #1871CA;
+        --footer-bg-color: #333;
+        --footer-text-color: #999;
     }
 }
 
