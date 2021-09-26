@@ -123,7 +123,7 @@
 							<div class="notes">
 								<div class="notes_container">
 									<div class="note_item">
-										<div class="note_profile">국어</div>
+										<div class="note_profile note_profile_">국어</div>
 										<p class="note_content">예시 텍스트 Note Text Lorem Ipsum</p>
 										<button class="note_more"><i class="fas fa-ellipsis-v"></i></button>
 									</div>
@@ -133,23 +133,31 @@
 							</div>
 							<div class="memo">
 								<h2>메모</h2>
-								<pre class="memo_content"></pre>
+								<pre class="memo_content">에헤헤헤 메모 내용입니다</pre>
 							</div>
 							<div class="reminder">
 								<h2>과제 및 준비물</h2>
-								<pre class="reminder_content"></pre>
+								<ul class="reminder_content">
+									<li>Hello</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 
+	<footer class="vertical">
+		<div>
+			<p class="footer_logo">studia</p>
+			<p class="footer_sosumi">Copyright &copy; 2021 App Developers.<br>All Rights Reserved.</p>
+		</div>
+	</footer>
+
 	<div id="contextmenu" class="context_menu" hidden>
 		<a id="context_menu_edit"><i class="fas fa-pen"></i> 노트 수정</a>
+		<a id="context_menu_copy"><i class="fas fa-clone"></i> 내용 복사</a>
 		<a id="context_menu_delete"><i class="fas fa-trash"></i> 노트 삭제</a>
 	</div>
 
@@ -180,13 +188,19 @@
 		<button class="login_with_google" id="login_with_google">Google 계정으로 로그인</button>
 	</div>
 
+	<div class="add_note_popup">
+		<h3>노트 추가</h3>
 
-	<footer class="vertical">
-		<div>
-			<p class="footer_logo">studia</p>
-			<p class="footer_sosumi">Copyright &copy; 2021 App Developers.<br>All Rights Reserved.</p>
+		<div class="add_note_popup_flex">
+			<select id="add_note_subject"></select>
+			<input type="text" id="add_note_text" />
 		</div>
-	</footer>
+
+		<button id="add_note_submit"></button>
+	</div>
+
+
+	
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>

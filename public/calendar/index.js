@@ -207,7 +207,7 @@ date_backward_button.addEventListener("click", () => {
 });
 
 // Context menu event listener
-document.addEventListener('contextmenu', function(event) {
+document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
     contextmenu.hidden = false;
     contextmenu.style.top = event.pageY + 'px';
@@ -216,18 +216,24 @@ document.addEventListener('contextmenu', function(event) {
 
 // Parse JSON input and show in screen
 function parseJSON(json) {
+    //console.log(json)
     var memo_content = document.getElementsByClassName("memo_content");
     var reminder_content = document.getElementsByClassName("reminder_content");
     var notes_container = document.getElementsByClassName("notes_container");
 
+    // Write to ALL swiping slides
     function replaceAll(nodeList, text) {
-        for(var i=0; i<nodeList.length; i++) {
+        // Check if text exists
+        if (!text) {text = ""}
+
+        for (var i = 0; i < nodeList.length; i++) {
             nodeList[i].innerText = text;
         }
     }
 
     // Write to memo
     replaceAll(memo_content, json.memo)
+
     // Write to reminder
     replaceAll(reminder_content, json.reminder)
 }
@@ -238,12 +244,19 @@ function load() {
         var date = date_picker.toString("YYYYMMDD");
         var uid = firebase.auth().currentUser.uid;
 
-        firebase.database().ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
+        database.ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
             if (snapshot.exists()) {
                 parseJSON(snapshot.val());
             } else {
-                // DB Empty
-                parseJSON({memo: "ho"})
+                // DB is empty: initialize value
+                database.ref('calendar/' + uid + '/' + date).set({
+                    memo: "",
+                    note: [],
+                    reminder: []
+                })
+
+                // Show empty screen
+                parseJSON({});
             }
         }).catch((error) => {
             console.error(`Error while fetching data :: ${error.code} : ${error.message}`);
