@@ -777,6 +777,11 @@ footer {
     animation-fill-mode: forwards;
 }
 
+.add_note_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
 .add_note_popup h3 {
     margin: 0 0 10px 0;
     width: 100%;
