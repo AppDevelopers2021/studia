@@ -850,6 +850,18 @@ footer {
     .note_more {
         opacity: 1;
     }
+
+    .main_grid {
+        grid-template-rows: fit-content(1000px) 200px 200px;
+    }
+    .memo {
+        grid-column-end: 3;
+    }
+    .reminder {
+        grid-column-start: 1;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
 }
 
 /* Show Modal */
@@ -923,15 +935,16 @@ footer {
     }
 }
 
-/* Spinner */
+/* Fade in Animation */
 @keyframes fadein {
     from {
-        opacity: 0;;
+        opacity: 0;
     }
+
     to {
         opacity: 1;
     }
-  }
+}
 
 /* Fallback for backdrop-filter */
 @supports (not ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)))) {
