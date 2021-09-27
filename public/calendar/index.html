@@ -121,25 +121,21 @@
 					<div class="swiper-slide">
 						<div class="main_grid">
 							<div class="notes">
-								<div class="notes_container">
-									<div class="note_item">
-										<div class="note_profile note_profile_">국어</div>
-										<p class="note_content">예시 텍스트 Note Text Lorem Ipsum</p>
-										<button class="note_more"><i class="fas fa-ellipsis-v"></i></button>
-									</div>
-								</div>
+								<div class="notes_container"></div>
 
 								<button class="add_note"><i class="fas fa-plus"></i></button>
 							</div>
 							<div class="memo">
 								<h2>메모</h2>
-								<pre class="memo_content">에헤헤헤 메모 내용입니다</pre>
+								<pre class="memo_content"></pre>
+
+								<button class="add_memo"><i class="fas fa-pen"></i></button>
 							</div>
 							<div class="reminder">
 								<h2>과제 및 준비물</h2>
-								<ul class="reminder_content">
-									<li>Hello</li>
-								</ul>
+								<ul class="reminder_content"></ul>
+
+								<button class="add_reminder"><i class="fas fa-pen"></i></button>
 							</div>
 						</div>
 					</div>
@@ -192,15 +188,32 @@
 		<h3>노트 추가</h3>
 
 		<div class="add_note_popup_flex">
-			<select id="add_note_subject"></select>
+			<select id="add_note_subject">
+				<option value="가정">가정</option>
+				<option value="과학">과학</option>
+				<option value="국어" selected>국어</option>
+				<option value="기술">기술</option>
+				<option value="도덕">도덕</option>
+				<option value="독서">독서</option>
+				<option value="미술">미술</option>
+				<option value="사회">사회</option>
+				<option value="수학">수학</option>
+				<option value="영어">영어</option>
+				<option value="음악">음악</option>
+				<option value="정보">정보</option>
+				<option value="진로">진로</option>
+				<option value="창체">창체</option>
+				<option value="체육">체육</option>
+				<option value="기타">기타</option>
+			</select>
 			<input type="text" id="add_note_text" />
 		</div>
 
-		<button id="add_note_submit"></button>
+		<button id="add_note_submit">완료</button>
 	</div>
 
 
-	
+
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>

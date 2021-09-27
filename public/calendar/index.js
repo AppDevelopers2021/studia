@@ -19,6 +19,11 @@ const login_modal = document.getElementsByClassName("login_popup")[0];
 const login_button = document.getElementById("login_button");
 const login_google = document.getElementById("login_with_google");
 
+const add_note_button = document.getElementsByClassName("add_note");
+const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
+const add_note_subject = document.getElementById("add_note_subject");
+const add_note_submit = document.getElementById("add_note_submit");
+
 const date_forward_button = document.getElementById("date_forward");
 const date_backward_button = document.getElementById("date_back");
 
@@ -68,6 +73,8 @@ const swiper = new Swiper('.swiper', {
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User already signed in
+        // Load calendar data
+        load();
     } else {
         // User needs login
         // Show login modal
@@ -101,6 +108,7 @@ login_button.addEventListener("click", function () {
                         loader.classList.remove("loading");
                         blur_bg.className = "blur_filter";
                         login_modal.className = "login_popup closed";
+                        load();
                     })
                     .catch((error) => {
                         // Error while login
@@ -136,6 +144,7 @@ login_button.addEventListener("click", function () {
                         loader.classList.remove("loading");
                         blur_bg.className = "blur_filter";
                         login_modal.className = "login_popup closed";
+                        load;
                     })
                     .catch((error) => {
                         // Error while login
@@ -174,6 +183,7 @@ login_google.addEventListener("click", function () {
             console.log("Logged in successfully.")
             blur_bg.className = "blur_filter";
             login_modal.className = "login_popup closed";
+            load();
         }).catch((error) => {
             console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);
         })
@@ -214,28 +224,50 @@ document.addEventListener('contextmenu', function (event) {
     contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
 }, false);
 
-// Parse JSON input and show in screen
+// Parse JSON input and display
 function parseJSON(json) {
     //console.log(json)
-    var memo_content = document.getElementsByClassName("memo_content");
+    var memo_content = document.getElementsByClassName("memo_content");i
     var reminder_content = document.getElementsByClassName("reminder_content");
-    var notes_container = document.getElementsByClassName("notes_container");
+    var note_container_list = document.getElementsByClassName("notes_container");
 
-    // Write to ALL swiping slides
-    function replaceAll(nodeList, text) {
-        // Check if text exists
-        if (!text) {text = ""}
-
-        for (var i = 0; i < nodeList.length; i++) {
-            nodeList[i].innerText = text;
+    // Write to memo
+    if (json.memo) {
+        for (var i=0; i<memo_content.length; i++) {
+            memo_content[i].innerText = json.memo;
         }
     }
 
-    // Write to memo
-    replaceAll(memo_content, json.memo)
-
     // Write to reminder
-    replaceAll(reminder_content, json.reminder)
+    if (json.reminder) {
+        for (var i = 0; i<reminder_content.length; i++) {
+            for(var j=0; j<json.reminder.length; j++) {
+                reminder_content[i].innerHTML = reminder_content[i].innerHTML+"<li class='reminder_elem'></li>";
+                var reminder_li = reminder_content[i].getElementsByClassName("reminder_elem");
+                reminder_li[reminder_li.length-1].innerText = json.reminder[j];
+            }
+        }
+    }
+
+    // Write to notes
+    for (var i = 0; i < note_container_list.length; i++) {
+        var note_container = note_container_list[i];
+        var notes_to_insert = json.note;
+        note_container.innerHTML = ""
+
+        if ((notes_to_insert) && (notes_to_insert.length > 0)) {
+            // Note Exists
+            for (var j = 0; j < notes_to_insert.length; j++) {
+                // Insert Note
+                var note_profile = note_container.getElementsByClassName('note_profile');
+                var note_content = note_container.getElementsByClassName('note_content');
+                note_container.innerHTML += '<div class="note_item"><div class="note_profile"></div><p class="note_content"></p><button class="note_more"><i class="fas fa-ellipsis-v"></i></button></div>';
+                note_profile[note_profile.length - 1].innerText = notes_to_insert[j].subject;
+                note_profile[note_profile.length - 1].className = "note_profile note_profile_" + notes_to_insert[j].subject;
+                note_content[note_content.length - 1].innerText = notes_to_insert[j].content;
+            }
+        }
+    }
 }
 
 // Retrieve data from DB
@@ -253,7 +285,7 @@ function load() {
                     memo: "",
                     note: [],
                     reminder: []
-                })
+                });
 
                 // Show empty screen
                 parseJSON({});
@@ -262,4 +294,12 @@ function load() {
             console.error(`Error while fetching data :: ${error.code} : ${error.message}`);
         })
     }
+}
+
+// Add note popup
+for (var i = 0; i < add_note_button.length; i++) {
+    add_note_button[i].addEventListener("click", function () {
+        blur_bg.className = "blur_filter blur";
+        add_note_modal.className = "add_note_popup open";
+    })
 }
