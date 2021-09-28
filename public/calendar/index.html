@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="ko">
 
 <head>
 	<meta charset="UTF-8">
@@ -19,35 +19,6 @@
 	<meta name="msapplication-TileColor" content="#2192ff">
 	<meta name="msapplication-config" content="https://studia-kr.web.app/images/browserconfig.xml">
 	<meta name="theme-color" content="#2192ff">
-
-	<!-- Apple Meta Tags -->
-	<link href="https://studia-kr.web.app/images/splash/iphone6_splash.png"
-		media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/iphoneplus_splash.png"
-		media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/iphonex_splash.png"
-		media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/iphonexr_splash.png"
-		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/iphonexsmax_splash.png"
-		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/ipad_splash.png"
-		media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/ipadpro1_splash.png"
-		media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/ipadpro3_splash.png"
-		media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
-		rel="apple-touch-startup-image" />
-	<link href="https://studia-kr.web.app/images/splash/ipadpro2_splash.png"
-		media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
-		rel="apple-touch-startup-image" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +41,7 @@
 	<link rel="stylesheet" href="index.css">
 	<script defer src="index.js"></script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
 	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
@@ -84,7 +55,7 @@
 
 <body>
 	<div id="navbar">
-		<button class="nav_hamburger center">
+		<button class="nav_hamburger center" aria-label="Open Menu">
 			<div>
 				<div class="bar1"></div>
 				<div class="bar2"></div>
@@ -109,9 +80,9 @@
 		<div class="main_content">
 			<div class="date">
 				<div class="date_flex">
-					<button id="date_back" class="date_button"><i class="arrow_back"></i></button>
+					<button id="date_back" class="date_button" aria-label="이전 날짜로 이동"><i class="arrow_back"></i></button>
 					<input type="text" id="date_picker" class="date_picker" readonly>
-					<button id="date_forward" class="date_button"><i class="arrow_forward"></i></button>
+					<button id="date_forward" class="date_button" aria-label="다음 날짜로 이동"><i class="arrow_forward"></i></button>
 				</div>
 			</div>
 
@@ -122,19 +93,19 @@
 							<div class="notes">
 								<div class="notes_container"></div>
 
-								<button class="add_note"><i class="fas fa-plus"></i></button>
+								<button class="add_note" aria-label="새 노트 작성"><i class="fas fa-plus"></i></button>
 							</div>
 							<div class="memo">
 								<h2>메모</h2>
 								<pre class="memo_content"></pre>
 
-								<button class="add_memo"><i class="fas fa-pen"></i></button>
+								<button class="add_memo" aria-label="메모 수정"><i class="fas fa-pen"></i></button>
 							</div>
 							<div class="reminder">
 								<h2>과제 및 준비물</h2>
 								<ul class="reminder_content"></ul>
 
-								<button class="add_reminder"><i class="fas fa-pen"></i></button>
+								<button class="add_reminder" aria-label="과제 및 준비물 수정"><i class="fas fa-pen"></i></button>
 							</div>
 						</div>
 					</div>
@@ -151,9 +122,9 @@
 	</footer>
 
 	<div id="contextmenu" class="context_menu" hidden>
-		<a id="context_menu_edit"><i class="fas fa-pen"></i> 노트 수정</a>
-		<a id="context_menu_copy"><i class="fas fa-clone"></i> 내용 복사</a>
-		<a id="context_menu_delete"><i class="fas fa-trash"></i> 노트 삭제</a>
+		<p id="context_menu_edit"><i class="fas fa-pen"></i> 노트 수정</p>
+		<p id="context_menu_copy"><i class="fas fa-clone"></i> 내용 복사</p>
+		<p id="context_menu_delete"><i class="fas fa-trash"></i> 노트 삭제</p>
 	</div>
 
 	<div id="blur_bg" class="blur_filter"></div>
@@ -161,9 +132,9 @@
 	<div class="login_popup">
 		<h3>로그인</h3>
 
-		<span class="login_id_label">이메일 주소:</span>
+		<label for="login_id" class="login_id_label">이메일 주소:</label>
 		<input type="text" id="login_id" class="input_text">
-		<span class="login_pw_label">비밀번호:</span>
+		<label for="login_pw" class="login_pw_label">비밀번호:</label>
 		<input type="password" id="login_pw" class="input_text">
 
 		<label class="checkbox_wrap">로그인 유지
