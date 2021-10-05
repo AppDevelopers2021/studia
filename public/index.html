@@ -260,6 +260,7 @@
 			z-index: 2;
 
 			transition-delay: 1s;
+			will-change: bottom, left;
 		}
 
 		.section_intro.load .studia-ss {
@@ -282,6 +283,7 @@
 			z-index: 3;
 
 			transition-delay: .5s;
+			will-change: bottom, left;
 		}
 
 		.section_intro.load .devtools-ss {
@@ -304,6 +306,7 @@
 			z-index: 1;
 
 			transition-delay: .8s;
+			will-change: top, left;
 		}
 
 		.section_intro.load .help-ss {
@@ -436,9 +439,9 @@
 	<div class="body_wrap">
 		<div class="body">
 			<div class="section_intro">
-				<div class="ss devtools-ss"></div>
-				<div class="ss studia-ss"></div>
-				<div class="ss help-ss"></div>
+				<div id="devtools-ss" class="ss devtools-ss"></div>
+				<div id="studia-ss" class="ss studia-ss"></div>
+				<div id="help-ss" class="ss help-ss"></div>
 				<div class="intro_text_container">
 					<h1 class="intro_text">노트 필기의 대혁명.</h1>
 					<a href="" class="open_web"></a>
@@ -502,6 +505,17 @@
 		// Anim
 		window.onload = function() {
 			document.getElementsByClassName("section_intro")[0].classList.add("load")
+		}
+		// Remove will-change
+		const animationElem = [
+			document.getElementById("studia-ss"),
+			document.getElementById("devtools-ss"),
+			document.getElementById("help-ss")
+		];
+		for(var i=0; i<animationElem.length; i++) {
+			animationElem[i].addEventListener("transitionend", function(event) {
+				event.currentTarget.style.willChange = 'auto'
+			})
 		}
 	</script>
 </body>
