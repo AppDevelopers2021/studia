@@ -230,18 +230,25 @@
 		.intro_text_container {
 			position: absolute;
 			top: 20vh;
-			left: 50vw;
+			left: 55vw;
+			opacity: 0;
+		}
+
+		.section_intro.load .intro_text_container {
+			opacity: 1;
+			transition: 1s;
+			transition-delay: 4s;
 		}
 
 		.intro_text {
 			margin: 0;
 			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 5vw;
+			font-size: 4vw;
 			color: black;
 		}
 
 		.ss {
-			transition-timing-function: cubic-bezier(.25,1.51,.32,1.02);
+			transition-timing-function: cubic-bezier(.25, 1.51, .32, 1.02);
 			transition-duration: 2s;
 		}
 
@@ -411,13 +418,14 @@
 			}
 		}
 
-		@media screen and (min-width: 1800px) {
+		@media only screen and (min-width: 1800px) {
 			.studia-ss {
 				width: 1200px;
 				height: 1000px;
 				bottom: -1000px;
 				left: -1000px;
 			}
+
 			.section_intro.load .studia-ss {
 				left: -100px;
 				bottom: -200px;
@@ -429,6 +437,7 @@
 				left: 300px;
 				bottom: -1200px;
 			}
+
 			.section_intro.load .devtools-ss {
 				left: 500px;
 				bottom: -500px;
@@ -439,10 +448,65 @@
 				height: 700px;
 				bottom: 600px;
 			}
+
 			.section_intro.load .help-ss {
 				top: auto;
 				bottom: 400px;
 			}
+		}
+
+		@media only screen and (max-width: 1100px) {
+			.section_intro {
+				height: 1000px;
+			}
+
+			.ss {
+				transition: none;
+			}
+
+			.studia-ss,
+			.devtools-ss,
+			.help-ss {
+				will-change: auto;
+			}
+
+			.section_intro.load .studia-ss {
+				bottom: -90px;
+				left: -60px;
+				top: auto;
+				right: auto;
+			}
+
+			.section_intro.load .devtools-ss {
+				bottom: -200px;
+				right: -100px;
+				top: auto;
+				left: auto;
+			}
+
+			.section_intro.load .help-ss {
+				bottom: 100px;
+				left: -150px;
+				top: auto;
+				right: auto;
+			}
+
+			.intro_text_container {
+				top: 130px;
+				left: 50%;
+				transform: translate(-50%, 0);
+				width: 400px;
+			}
+
+			.intro_text {
+				font-size: 45px;
+				width: 100%;
+				text-align: center;
+			}
+		}
+
+		@media only screen and (max-width: 600px) {
+			/**/
 		}
 	</style>
 </head>
@@ -537,7 +601,7 @@
 		}
 
 		// Anim
-		window.onload = function() {
+		window.onload = function () {
 			document.getElementsByClassName("section_intro")[0].classList.add("load")
 		}
 		// Remove will-change
@@ -546,8 +610,8 @@
 			document.getElementById("devtools-ss"),
 			document.getElementById("help-ss")
 		];
-		for(var i=0; i<animationElem.length; i++) {
-			animationElem[i].addEventListener("transitionend", function(event) {
+		for (var i = 0; i < animationElem.length; i++) {
+			animationElem[i].addEventListener("transitionend", function (event) {
 				event.currentTarget.style.willChange = 'auto'
 				event.currentTarget.style.transition = "none"
 			})

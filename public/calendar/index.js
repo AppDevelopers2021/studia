@@ -24,6 +24,16 @@ const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
 const add_note_subject = document.getElementById("add_note_subject");
 const add_note_submit = document.getElementById("add_note_submit");
 
+const add_memo_button = document.getElementsByClassName("add_memo");
+const add_memo_modal = document.getElementsByClassName("add_memo_popup")[0];
+const add_memo_textarea = document.getElementById("add_memo_text");
+const add_memo_submit = document.getElementById("add_memo_submit");
+
+const add_reminder_button = document.getElementsByClassName("add_reminder");
+const add_reminder_modal = document.getElementsByClassName("add_reminder_popup")[0];
+const add_reminder_textarea = document.getElementById("add_reminder_text");
+const add_reminder_submit = document.getElementById("add_reminder_submit");
+
 const date_forward_button = document.getElementById("date_forward");
 const date_backward_button = document.getElementById("date_back");
 
@@ -54,8 +64,9 @@ date_picker.setDate(new Date())
 // SwiperJS
 const swiper = new Swiper('.swiper', {
     // Optional parameters
-    direction: 'horizontal',
-    loop: true,
+    direction: 'horizontal',    // Swipe direction
+    loop: true,                 // Infinite swiping
+    simulateTouch: false,       // Disable drag
 
     // Event handlers
     on: {
@@ -312,6 +323,8 @@ blur_bg.addEventListener("click", function() {
 
     // Close Modal
     add_note_modal.className = "add_note_popup closed";
+    add_memo_modal.className = "add_memo_popup closed";
+    add_reminder_modal.className = "add_reminder_popup closed";
 })
 
 // Add note popup
@@ -319,5 +332,21 @@ for (var i = 0; i < add_note_button.length; i++) {
     add_note_button[i].addEventListener("click", function () {
         blur_bg.className = "blur_filter blur";
         add_note_modal.className = "add_note_popup open";
+    })
+}
+
+// Add memo popup
+for (var i = 0; i < add_note_button.length; i++) {
+    add_memo_button[i].addEventListener("click", function () {
+        blur_bg.className = "blur_filter blur";
+        add_memo_modal.className = "add_memo_popup open"
+    })
+}
+
+// Add reminder popup
+for (var i = 0; i < add_reminder_button.length; i++) {
+    add_reminder_button[i].addEventListener("click", function () {
+        blur_bg.className = "blur_filter blur";
+        add_reminder_modal.className = "add_reminder_popup open"
     })
 }
