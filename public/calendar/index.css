@@ -476,8 +476,8 @@ body {
     left: 0;
     z-index: -1;
     display: block;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     transition: .5s, width 1ms, height 1ms;
     opacity: 0;
 }
@@ -1125,7 +1125,7 @@ footer {
 }
 
 /* Fallback for backdrop-filter */
-@supports (not ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)))) {
+@supports (not ((backdrop-filter:blur(5px)) or (-webkit-backdrop-filter:blur(5px)))) {
     .blur_filter.blur {
         background-color: rgba(0, 0, 0, 0.5);
     }

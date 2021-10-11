@@ -64,9 +64,9 @@ date_picker.setDate(new Date())
 // SwiperJS
 const swiper = new Swiper('.swiper', {
     // Optional parameters
-    direction: 'horizontal',    // Swipe direction
-    loop: true,                 // Infinite swiping
-    simulateTouch: false,       // Disable drag
+    direction: 'horizontal', // Swipe direction
+    loop: true, // Infinite swiping
+    simulateTouch: false, // Disable drag
 
     // Event handlers
     on: {
@@ -238,33 +238,34 @@ document.addEventListener('contextmenu', function (event) {
 // Parse JSON input and display
 function parseJSON(json) {
     //console.log(json)
-    var memo_content = document.getElementsByClassName("memo_content");i
+    var memo_content = document.getElementsByClassName("memo_content");
+    i
     var reminder_content = document.getElementsByClassName("reminder_content");
     var note_container_list = document.getElementsByClassName("notes_container");
 
     // Write to memo
     if (json.memo) {
-        for (var i=0; i<memo_content.length; i++) {
+        for (var i = 0; i < memo_content.length; i++) {
             memo_content[i].innerText = json.memo;
         }
     } else {
-        for (var i=0; i<memo_content.length; i++) {
+        for (var i = 0; i < memo_content.length; i++) {
             memo_content[i].innerText = "";
         }
     }
 
     // Write to reminder
     if (json.reminder) {
-        for (var i = 0; i<reminder_content.length; i++) {
+        for (var i = 0; i < reminder_content.length; i++) {
             reminder_content[i].innerHTML = "";
-            for(var j=0; j<json.reminder.length; j++) {
+            for (var j = 0; j < json.reminder.length; j++) {
                 reminder_content[i].innerHTML += "<li class='reminder_elem'></li>";
                 var reminder_li = reminder_content[i].getElementsByClassName("reminder_elem");
-                reminder_li[reminder_li.length-1].innerText = json.reminder[j];
+                reminder_li[reminder_li.length - 1].innerText = json.reminder[j];
             }
         }
     } else {
-        for (var i = 0; i<reminder_content.length; i++) {
+        for (var i = 0; i < reminder_content.length; i++) {
             reminder_content[i].innerHTML = "";
         }
     }
@@ -317,14 +318,20 @@ function load() {
 }
 
 // Close popup when blur is clicked
-blur_bg.addEventListener("click", function() {
-    // Un-Blur
-    blur_bg.className = "blur_filter";
+blur_bg.addEventListener("click", function (e) {
+    e.preventDefault();
 
-    // Close Modal
-    add_note_modal.className = "add_note_popup closed";
-    add_memo_modal.className = "add_memo_popup closed";
-    add_reminder_modal.className = "add_reminder_popup closed";
+    // Only when logged in
+    if (firebase.auth().currentUser) {
+        // Un-Blur
+        blur_bg.className = "blur_filter";
+
+        // Close Modal
+        add_note_modal.className = "add_note_popup closed";
+        add_memo_modal.className = "add_memo_popup closed";
+        add_reminder_modal.className = "add_reminder_popup closed";
+    }
+
 })
 
 // Add note popup
