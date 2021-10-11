@@ -5,6 +5,10 @@
 <head>
 	<meta charset="UTF-8">
 
+	<noscript>
+		<meta http-equiv="refresh" content="0; url=https://studia-kr.web.app/nojs/">
+	</noscript>
+
 	<!--Favicon Styles-->
 	<link rel="apple-touch-icon" sizes="180x180" href="https://studia-kr.web.app/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="https://studia-kr.web.app/images/favicon-32x32.png">
@@ -25,9 +29,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
-	<meta name="keywords" content="원촌중학교,App Developers,자율동아리">
+	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
 
-	<title>Browser Not Supported</title>
+	<meta property="og:title" content="스튜디아 - 노트 정리도 스마트하게!">
+	<meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
+	<meta property="og:image" content="https://studia-kr.web.app/images/profile.jpg">
+
+	<title>가입을 축하합니다</title>
 
 	<style>
 		* {
@@ -207,27 +215,59 @@
 		}
 
 		.body {
-			padding: 40px 20px 200px 20px;
+			padding: 20px;
+			padding-bottom: 200px;
 		}
 
 		.body h1 {
-			margin: 0 0 20px 0;
+			margin: 0;
 			padding: 0;
-			font-size: 30px;
+			font-size: 50px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
 		.body p {
-			margin: 0;
+			margin: 20px 0 0 0;
 			padding: 0;
-			font-size: 17px;
+			font-size: 20px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
-		.body a {
-			display: block;
-			color: #555;
-			margin-top: 10px;
+		.welcome {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 30px;
+		}
+
+		.welcome_text {
+			margin-top: 40px;
+			text-align: center;
+		}
+
+		.welcome_text h1,
+		h2 {
+			font-family: 'Noto Sans KR', sans-serif;
+			margin: 0 0 10px 0;
+		}
+
+		.welcome_text h1 {
+			font-size: 50px;
+
+		}
+
+		.welcome_text h2 {
+			font-size: 25px;
+			margin-bottom: 50px;
+		}
+
+		.paper_plane_svg {
+			width: 40vw;
+			height: 40vw;
+			max-width: 140px;
+			max-height: 140px;
+			fill: #2291FF;
 		}
 
 		footer {
@@ -303,9 +343,28 @@
 
 	<div class="body_wrap">
 		<div class="body">
-			<h1>이 사이트는 Internet Explorer에서 동작하지 않습니다.</h1>
-			<p>Internet Explorer은 국제 웹 표준을 따르지 않습니다. 이 웹사이트에서 사용된 코드의 일부는 작동하지 않을 수 있습니다.</p>
-			<a href="https://studia-kr.web.app/?noie=true">무시하고 계속</a>
+			<div class="welcome">
+				<svg class="paper_plane_svg" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
+					xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="m113.47 309.41-17.822 66.532-65.139 1.378c-19.467-36.107-30.509-77.418-30.509-121.32 0-42.451 10.324-82.483 28.624-117.73h0.014l57.992 10.632 25.404 57.644c-5.317 15.501-8.215 32.141-8.215 49.456 2e-3 18.792 3.406 36.797 9.651 53.408z"
+						fill="#FBBB00" />
+					<path
+						d="m507.53 208.18c2.94 15.486 4.473 31.479 4.473 47.824 0 18.328-1.927 36.206-5.598 53.451-12.462 58.683-45.025 109.92-90.134 146.19l-0.014-0.014-73.044-3.727-10.338-64.535c29.932-17.554 53.324-45.025 65.646-77.911h-136.89v-101.28h138.89 107.01z"
+						fill="#518EF8" />
+					<path
+						d="m416.25 455.62 0.014 0.014c-43.871 35.263-99.601 56.362-160.27 56.362-97.491 0-182.25-54.491-225.49-134.68l82.961-67.91c21.619 57.698 77.278 98.771 142.53 98.771 28.047 0 54.323-7.582 76.87-20.818l83.383 68.262z"
+						fill="#28B446" />
+					<path
+						d="m419.4 58.936-82.933 67.896c-23.335-14.586-50.919-23.012-80.471-23.012-66.729 0-123.43 42.957-143.96 102.72l-83.397-68.276h-0.014c42.606-82.145 128.44-138.27 227.38-138.27 62.115 0 119.07 22.126 163.4 58.936z"
+						fill="#F14336" />
+				</svg>
+
+				<div class="welcome_text">
+					<h1>가입 완료!</h1>
+					<h2>구글 계정으로 스튜디아를 더욱 편리하게 사용하세요</h2>
+				</div>
+			</div>
 		</div>
 	</div>
 

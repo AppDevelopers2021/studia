@@ -5,6 +5,10 @@
 <head>
 	<meta charset="UTF-8">
 
+	<noscript>
+		<meta http-equiv="refresh" content="0; url=https://studia-kr.web.app/nojs/">
+	</noscript>
+
 	<!--Favicon Styles-->
 	<link rel="apple-touch-icon" sizes="180x180" href="https://studia-kr.web.app/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="https://studia-kr.web.app/images/favicon-32x32.png">
@@ -25,9 +29,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
-	<meta name="keywords" content="원촌중학교,App Developers,자율동아리">
+	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
 
-	<title>Browser Not Supported</title>
+	<meta property="og:title" content="스튜디아 - 노트 정리도 스마트하게!">
+	<meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
+	<meta property="og:image" content="https://studia-kr.web.app/images/profile.jpg">
+
+	<title>인증 메일 전송됨</title>
 
 	<style>
 		* {
@@ -207,27 +215,58 @@
 		}
 
 		.body {
-			padding: 40px 20px 200px 20px;
+			padding: 20px;
+			padding-bottom: 200px;
 		}
 
 		.body h1 {
-			margin: 0 0 20px 0;
+			margin: 0;
 			padding: 0;
-			font-size: 30px;
+			font-size: 50px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
 		.body p {
-			margin: 0;
+			margin: 20px 0 0 0;
 			padding: 0;
-			font-size: 17px;
+			font-size: 20px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
-		.body a {
-			display: block;
-			color: #555;
-			margin-top: 10px;
+		.welcome {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 30px;
+		}
+
+		.welcome_text {
+			margin-top: 40px;
+			text-align: center;
+		}
+
+		.welcome_text h1,
+		h2 {
+			font-family: 'Noto Sans KR', sans-serif;
+			margin: 0 0 10px 0;
+		}
+
+		.welcome_text h1 {
+			font-size: 50px;
+		}
+
+		.welcome_text h2 {
+			font-size: 30px;
+			margin-bottom: 50px;
+		}
+
+		.paper_plane_svg {
+			width: 40vw;
+			height: 40vw;
+			max-width: 230px;
+			max-height: 230px;
+			fill: #2291FF;
 		}
 
 		footer {
@@ -249,6 +288,17 @@
 
 		.footer_sosumi {
 			color: #555;
+		}
+
+		@media screen and (max-width: 400px) {
+			.welcome_text h1 {
+				font-size: 40px;
+
+			}
+
+			.welcome_text h2 {
+				font-size: 20px;
+			}
 		}
 
 		@media (prefers-color-scheme: dark) {
@@ -273,6 +323,10 @@
 			.footer_logo,
 			.footer_sosumi {
 				color: #999;
+			}
+
+			.paper_plane_svg {
+				fill: white;
 			}
 		}
 	</style>
@@ -303,9 +357,26 @@
 
 	<div class="body_wrap">
 		<div class="body">
-			<h1>이 사이트는 Internet Explorer에서 동작하지 않습니다.</h1>
-			<p>Internet Explorer은 국제 웹 표준을 따르지 않습니다. 이 웹사이트에서 사용된 코드의 일부는 작동하지 않을 수 있습니다.</p>
-			<a href="https://studia-kr.web.app/?noie=true">무시하고 계속</a>
+			<div class="welcome">
+				<svg class="paper_plane_svg" viewBox="-10 0 512 512" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="m396 186c5.5195 0 10-4.4805 10-10 0-5.5195-4.4805-10-10-10-5.5195 0-10 4.4805-10 10 0 5.5195 4.4805 10 10 10z" />
+					<path
+						d="m388.2 442.25c5.2773 6.5977 15.926 4.0742 17.613-4.2695l85.98-425.91c0.63281-3.0156-0.14453-6.1641-2.1523-8.5352-0.003907 0-0.003907 0-0.007813-0.003906v-0.003907c-2.6602-3.1289-6.2188-3.3398-6.3203-3.4414-1.5039-0.15625-2.8711-0.10938-4.4805 0.43359l-465.82 145.94c-9.0469 2.8359-9.4141 15.57-0.52344 18.906l152.48 57.18-18.863 132.04c-0.007812 0.050781-0.003906 0.097657-0.007812 0.14453-1.0039 7.8789 7.1914 13.809 14.383 10.215l118.48-59.246zm2.2422-29.211c-6.4219-8.0312-134.75-168.44-140.79-175.99l216.47-198.87zm-343.7-256.19 372.65-116.75-244.7 164.73zm138.53 64.969 192.31-129.47-148.35 136.29c-0.039062 0.035157-0.070312 0.074219-0.10938 0.10938-0.12891 0.12109-0.25 0.25-0.375 0.37891-0.11328 0.12109-0.22656 0.24219-0.33203 0.36719-0.09375 0.10938-0.18359 0.21875-0.26953 0.33203-0.12891 0.16016-0.25 0.32031-0.36328 0.48828-0.035156 0.050781-0.074218 0.09375-0.10547 0.14453l-55.547 83.316zm-0.0625 108.4 51.527-77.289 29.441 36.801z" />
+					<path
+						d="m367.64 355.44c5.4609 0.81641 10.555-2.9414 11.375-8.4062l19.527-130.23c0.82031-5.4609-2.9414-10.555-8.4062-11.375-5.4648-0.8125-10.551 2.9453-11.371 8.4062l-19.531 130.23c-0.82031 5.4648 2.9453 10.555 8.4062 11.375z" />
+					<path
+						d="m2.9297 509.07c3.9062 3.9062 10.234 3.9023 14.141 0l66.004-66c3.9023-3.9062 3.9023-10.238 0-14.145-3.9062-3.9023-10.238-3.9023-14.145 0l-66 66c-3.9062 3.9062-3.9062 10.238 0 14.145z" />
+					<path
+						d="m168.93 428.93-66 66.004c-3.9062 3.9023-3.9062 10.234 0 14.141s10.238 3.9062 14.145 0l66-66c3.9062-3.9062 3.9062-10.238 0-14.145-3.9062-3.9023-10.238-3.9023-14.145 0z" />
+					<path
+						d="m2.9297 409.07c3.9062 3.9023 10.234 3.9023 14.141 0l66.004-66c3.9023-3.9062 3.9023-10.238 0-14.145-3.9062-3.9062-10.238-3.9062-14.145 0l-66 66c-3.9062 3.9062-3.9062 10.238 0 14.145z" />
+				</svg>
+				<div class="welcome_text">
+					<h1>인증 메일 전송됨</h1>
+					<h2>이메일을 확인해 주세요</h2>
+				</div>
+			</div>
 		</div>
 	</div>
 

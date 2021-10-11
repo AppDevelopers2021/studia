@@ -1,301 +1,359 @@
-// JS 코드는 추가해도 좋습니다.
-let body = document.getElementsByClassName("body")[0];
-let popup = document.getElementsByClassName("popup")[0];
-let login_popup = document.getElementById("login-popup");
-let memo_popup = document.getElementById("memo-popup");
-var reminder_popup = document.getElementById("reminder-popup");
-let memo = document.getElementsByClassName("memo")[0];
-let notes = document.getElementsByClassName("note-list")[0];
-let notes_blank = document.getElementsByClassName("note-blank")[0];
-let reminder = document.getElementsByClassName("reminder-list")[0];
+///////////////////////////////////////////////////////////////////////
+// 𝓼𝓽𝓾𝓭𝓲𝓪 // The Best Way to Organize Your Notes. ////////////////////
+///////////////////////////////////////////////////////////////////////
+// Copyright (c) 2021 App Developers. All Rights Reserved. ////////////
+///////////////////////////////////////////////////////////////////////
+
+// Warn message in console
+console.log("%cstudia\n%cThe Best Way to Organize Your Notes.", "font-family:'Courgette', cursive;color:#2291FF;font-size:40px;", "font-family:Arial;font-size:13px;color:#333;")
+console.log("%c주의: 여기에 코드를 입력하면 해커가 Self-XSS라는 공격을 이용해 계정 비밀번호를 유출시킬 수 있습니다. 알지 못하는 코드를 입력하지 마세요.", "font-family:Arial;color:red;font-size:15px;")
+
+const hamburger = document.getElementsByClassName("nav_hamburger")[0];
+const navbar = document.getElementById("navbar");
+const sidenav = document.getElementById("sidenav");
+const close_nav_button = document.getElementById("close_nav");
+const contextmenu = document.getElementById("contextmenu");
+const blur_bg = document.getElementById("blur_bg");
+
+const login_modal = document.getElementsByClassName("login_popup")[0];
+const login_button = document.getElementById("login_button");
+const login_google = document.getElementById("login_with_google");
+
+const add_note_button = document.getElementsByClassName("add_note");
+const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
+const add_note_subject = document.getElementById("add_note_subject");
+const add_note_submit = document.getElementById("add_note_submit");
+
+const add_memo_button = document.getElementsByClassName("add_memo");
+const add_memo_modal = document.getElementsByClassName("add_memo_popup")[0];
+const add_memo_textarea = document.getElementById("add_memo_text");
+const add_memo_submit = document.getElementById("add_memo_submit");
+
+const add_reminder_button = document.getElementsByClassName("add_reminder");
+const add_reminder_modal = document.getElementsByClassName("add_reminder_popup")[0];
+const add_reminder_textarea = document.getElementById("add_reminder_text");
+const add_reminder_submit = document.getElementById("add_reminder_submit");
+
+const date_forward_button = document.getElementById("date_forward");
+const date_backward_button = document.getElementById("date_back");
+
 var database = firebase.database();
-var uid;
-var signin;
-var setDate = new Date();
 
-
-function getDate(date) {
-    var year = date.getFullYear();
-    var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
-
-    return year + month + day;
-}
-
-function showDate() {
-    document.getElementsByClassName("date")[0].childNodes[0].innerText = ("0" + (1 + setDate.getMonth())).slice(-2) + "." + ("0" + setDate.getDate()).slice(-2);
-}
-showDate()
-
-// Event Listener
-var myDB = database.ref('calendar/' + uid + '/' + getDate(setDate));
-myDB.on('value', function () {
-    fetchData(getDate(setDate))
-});
-
-// Hamburger Buttons
-document.getElementsByClassName('hamburger')[0].addEventListener("click", function () {
-    document.getElementsByClassName('sidenav')[0].style.width = "250px";
-});
-document.getElementsByClassName('close_nav')[0].addEventListener("click", function () {
-    document.getElementsByClassName('sidenav')[0].style.width = "0"
-});
-
-// Memo Popop
-document.getElementsByClassName("memo")[0].addEventListener("click", function () {
-    memo_popup.hidden = false;
-});
-document.getElementById("memo-close").addEventListener("click", function () {
-    memo_popup.hidden = true;
-});
-
-// Reminder Popop
-document.getElementsByClassName("reminder")[0].addEventListener("click", function () {
-    reminder_popup.hidden = false;
-});
-document.getElementById("reminder-close").addEventListener("click", function () {
-    reminder_popup.hidden = true;
-});
-
-// Add Note Popup
-document.getElementById("add").addEventListener("click", function () {
-    popup.hidden = false;
-});
-document.getElementById("note-close").addEventListener("click", function () {
-    popup.hidden = true;
-});
-document.getElementById("save").addEventListener("click", function () {
-    // Save note
-    var subject = document.getElementById("subject").value;
-    var content = document.getElementById("note").value;
-    var note = {
-        "content": content,
-        "subject": subject
-    };
-
-    if (content != "") {
-        addNote(note, getDate(setDate));
-    }
-});
-
-// Add Memo Popup
-document.getElementById("save-memo").addEventListener("click", function () {
-    // Save note
-    var memo = document.getElementById("memo-content").value;
-
-    database.ref('calendar/' + uid + '/' + getDate(setDate) + '/memo').set(memo);
-    memo_popup.hidden = true;
-    fetchData(getDate(setDate))
-});
-
-// Add Reminder Popup
-document.getElementById("save-reminder").addEventListener("click", function () {
-    // Save reminder
-    var reminder = document.getElementById("reminder-content").value;
-    // Create Array, split by \n
-    var reminder_split = reminder.split("\n")
-
-    database.ref('calendar/' + uid + '/' + getDate(setDate) + '/reminder').set(reminder_split);
-    reminder_popup.hidden = true;
-    fetchData(getDate(setDate))
-});
-
-// Get User info.
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        // User is signed in
-        uid = user.uid;
-        signin = true;
-
-        fetchData(getDate(setDate));
-    } else {
-        // User is not signed in
-        signin = false;
-    }
+hamburger.addEventListener("click", function () {
+    hamburger.classList.toggle("bar_open");
+    sidenav.classList.toggle("side_open");
+})
+close_nav_button.addEventListener("click", function () {
+    hamburger.className = "nav_hamburger center";
+    sidenav.className = "";
 })
 
-function fetchData(date) {
-    if (signin) {
-        // Read data
-        firebase.database().ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
-            if (snapshot.exists()) {
-                showData(snapshot.val());
-            } else {
-                database.ref('calendar/' + uid + '/' + date).set({ memo: "", note: [], reminder: [] });
-                fetchData(getDate(setDate));
+// Pikaday
+var field = document.getElementById("date_picker")
+var date_picker = new Pikaday({
+    field: field,
+    format: "YYYY/MM/DD",
+    onSelect: () => {
+        load()
+    }
+});
+date_picker.setDate(new Date())
+
+// console.log(date_picker.toString('YYYYMMDD'))
+
+// SwiperJS
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal', // Swipe direction
+    loop: true, // Infinite swiping
+    simulateTouch: false, // Disable drag
+
+    // Event handlers
+    on: {
+        slideChangeTransitionStart: (swiper) => {
+            if (swiper.touches.diff < 0) {
+                changeDate(true);
+            } else if (swiper.touches.diff > 0) {
+                changeDate(false);
             }
-        }).catch((error) => {
-            console.error(error);
-        })
+        }
     }
+});
 
-}
-
-function showData(json) {
-    // Parse JSON Data
-    notes.innerHTML = ''
-    reminder.innerHTML = ''
-
-    if (json.memo) {     /* json.memo is not null */
-        memo.innerText = json.memo
-        memo.classList += " active";
+// Detect If User is Signed In
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        // User already signed in
+        // Load calendar data
+        load();
     } else {
-        memo.innerText = "클릭하여 메모 추가"
-        memo.className = "memo"
+        // User needs login
+        // Show login modal
+        blur_bg.className = "blur_filter blur";
+        login_modal.className = "login_popup open";
     }
-    if (json.note) {     /* json.note is not null */
-        var notes_list = json.note;
-        notes_blank.hidden = true;
-        for (var i = 0; i < notes_list.length; i++) {
-            notes.innerHTML += '<div class="note_item"><div class="subject ' + notes_list[i].subject + '"></div><span class="content">' + notes_list[i].content + '</span></div>'
-        }
-    } else {
-        notes_blank.hidden = false;
+});
+
+// Event listeners for login
+login_button.addEventListener("click", function () {
+    const email = document.getElementById("login_id");
+    const password = document.getElementById("login_pw");
+    const isPersistenceSet = document.getElementById("login_keep").checked;
+    const loader = document.getElementById("login_loader");
+
+    loader.classList.add("loading")
+
+    function shakeInput(elem) {
+        elem.classList.add("login_error");
     }
-    if (json.reminder) { /* json.reminder is not null */
-        var reminder_list = json.reminder;
-        for (var i = 0; i < reminder_list.length; i++) {
-            reminder.innerHTML += '<li>' + reminder_list[i] + '</li>'
-        }
-    }
-}
 
-function addNote(note, date) {
-    database.ref('calendar/' + uid + '/' + date + '/note').get().then((snapshot) => {
-        if (snapshot.exists()) {
-            var original = snapshot.val();
-            original.push(note);
-            database.ref('calendar/' + uid + '/' + date + '/note').set(original);
-            document.getElementById("note-popup").hidden = true;
-            fetchData(getDate(setDate));
-        } else {
-            database.ref('calendar/' + uid + '/' + date + '/note').set([note]);
-            document.getElementById("note-popup").hidden = true;
-            fetchData(getDate(setDate));
-        }
-    }).catch((error) => {
-        console.error(error);
-    })
-}
-
-document.getElementById("back").addEventListener("click", function() {
-    setDate.setDate(setDate.getDate() -1);
-    showDate();
-    body.className = "body slideback"
-    fetchData(getDate(setDate));
-    setTimeout(() => {
-        body.className = "body"
-    }, 1000);
-})
-
-document.getElementById("forward").addEventListener("click", function() {
-    setDate.setDate(setDate.getDate() +1);
-    showDate();
-    body.className = "body slideforward"
-    fetchData(getDate(setDate));
-    setTimeout(() => {
-        body.className = "body"
-    }, 1000);
-})
-
-document.getElementById("confirm").addEventListener('click', function (evt) {
-    document.getElementById("confirm").style.cursor = "wait";
-
-    var email = document.getElementById("email").value;
-    var pw = document.getElementById("pw").value;
-    var keep = document.getElementById("keep").value;
-    var log = document.getElementById("error");
-    log.innerText = ''
-
-    // Set Persistence
-    if (keep) {
+    if (isPersistenceSet) {
+        // 로그인 유지
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
-                // Set to LOCAL
-                return firebase.auth().signInWithEmailAndPassword(email, pw)
-                    .then((userCredential) => {
-                        // Signed In
-                        var user = userCredential.user;
-                        login_popup.hidden = true;
-                        login_popup.style.opacity = 0;
+                // Persistence is set to LOCAL
+                return firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+                    .then(() => {
+                        // Signed in successfully
+                        console.log("Logged in successfully.");
+                        loader.classList.remove("loading");
+                        blur_bg.className = "blur_filter";
+                        login_modal.className = "login_popup closed";
+                        load();
                     })
                     .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.error('Error while login: ' + errorCode + ' : ' +
-                            errorMessage)
-                        if (errorCode == "auth/wrong-password") {
-                            log.innerText = "비밀번호가 잘못되었습니다."
-                        } else if (errorCode == "auth/user-not-found") {
-                            log.innerText = "계정을 찾을 수 없습니다."
-                        } else if (errorCode == "auth/invalid-email") {
-                            log.innerText = "잘못된 이메일 주소입니다."
-                        } else {
-                            log.innerText = "에러가 발생하였습니다."
+                        // Error while login
+                        loader.classList.remove("loading");
+                        switch (error.code) {
+                            case "auth/wrong-password":
+                                shakeInput(password);
+                                break;
+                            case "auth/user-not-found":
+                                shakeInput(email);
+                                break;
+                            case "auth/invalid-email":
+                                shakeInput(email);
+                                break;
+                            default:
+                                console.error(`Error while Auth :: ${error.code} : ${error.message}`);
                         }
                     })
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.error('Error while setting persistence: ' + errorCode + ' : ' +
-                    errorMessage)
+                // Error while setting persistence
+                loader.classList.remove("loading");
+                console.error(`Error while setting persistence to LOCAL :: ${error.code} : ${error.message}`);
             })
     } else {
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .then(() => {
-                // Set to SESSION
-                return firebase.auth().signInWithEmailAndPassword(email, pw)
-                    .then((userCredential) => {
-                        // Signed In
-                        var user = userCredential.user;
-                        login_popup.hidden = true;
-                        login_popup.style.opacity = 0;
+                // Persistence is set to SESSION
+                return firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+                    .then(() => {
+                        // Signed in successfully
+                        console.log("Logged in successfully.")
+                        loader.classList.remove("loading");
+                        blur_bg.className = "blur_filter";
+                        login_modal.className = "login_popup closed";
+                        load;
                     })
                     .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.error('Error while login: ' + errorCode + ' : ' +
-                            errorMessage)
-                        if (errorCode == "auth/wrong-password") {
-                            log.innerText = "비밀번호가 잘못되었습니다."
-                        } else if (errorCode == "auth/user-not-found") {
-                            log.innerText = "계정을 찾을 수 없습니다."
-                        } else if (errorCode == "auth/invalid-email") {
-                            log.innerText = "잘못된 이메일 주소입니다."
-                        } else {
-                            log.innerText = "에러가 발생하였습니다."
+                        // Error while login
+                        loader.classList.remove("loading");
+                        switch (error.code) {
+                            case "auth/wrong-password":
+                                shakeInput(password);
+                                break;
+                            case "auth/user-not-found":
+                                shakeInput(email);
+                                break;
+                            case "auth/invalid-email":
+                                shakeInput(email);
+                                break;
+                            default:
+                                console.error(`Error while Auth :: ${error.code} : ${error.message}`);
                         }
                     })
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.error('Error while setting persistence: ' + errorCode + ' : ' +
-                    errorMessage)
+                // Error while setting persistence
+                loader.classList.remove("loading");
+                console.error(`Error while setting persistence to SESSION :: ${error.code} : ${error.message}`);
             })
     }
-    document.getElementById("confirm").style.cursor = "none";
-
-});
+})
 
 // Login with google
-document.getElementById("google").addEventListener("click", function () {
-    var log = document.getElementById("error");
+login_google.addEventListener("click", function () {
     var provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth()
         .signInWithPopup(provider)
-        .then((result) => {
-            var credential = result.credential;
-            var token = credential.accessToken;
-            var user = result.user;
-            login_popup.hidden = true;
-            login_popup.style.opacity = 0;
+        .then(() => {
+            // Signed in successfully
+            console.log("Logged in successfully.")
+            blur_bg.className = "blur_filter";
+            login_modal.className = "login_popup closed";
+            load();
         }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            log.innerText = "Error " + errorCode + ": " + errorMessage;
+            console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);
         })
+})
+
+// Change date when swipe
+function changeDate(isSwipeDirectionRight) {
+    var temp_date = new Date(date_picker.toString('YYYY-MM-DD'));
+
+    if (isSwipeDirectionRight) {
+        // Mode to tomorrow
+        temp_date.setDate(temp_date.getDate() + 1);
+        date_picker.setDate(temp_date);
+    } else {
+        // Move to yesterday
+        temp_date.setDate(temp_date.getDate() - 1);
+        date_picker.setDate(temp_date);
+    }
+}
+
+// When date change button is pressed
+date_forward_button.addEventListener("click", () => {
+    swiper.touches.diff = 0;
+    swiper.slideNext();
+    changeDate(true);
 });
+date_backward_button.addEventListener("click", () => {
+    swiper.touches.diff = 0;
+    swiper.slidePrev();
+    changeDate(false);
+});
+
+// Context menu event listener
+document.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+    contextmenu.hidden = false;
+    contextmenu.style.top = event.pageY + 'px';
+    contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
+}, false);
+
+// Parse JSON input and display
+function parseJSON(json) {
+    //console.log(json)
+    var memo_content = document.getElementsByClassName("memo_content");
+    i
+    var reminder_content = document.getElementsByClassName("reminder_content");
+    var note_container_list = document.getElementsByClassName("notes_container");
+
+    // Write to memo
+    if (json.memo) {
+        for (var i = 0; i < memo_content.length; i++) {
+            memo_content[i].innerText = json.memo;
+        }
+    } else {
+        for (var i = 0; i < memo_content.length; i++) {
+            memo_content[i].innerText = "";
+        }
+    }
+
+    // Write to reminder
+    if (json.reminder) {
+        for (var i = 0; i < reminder_content.length; i++) {
+            reminder_content[i].innerHTML = "";
+            for (var j = 0; j < json.reminder.length; j++) {
+                reminder_content[i].innerHTML += "<li class='reminder_elem'></li>";
+                var reminder_li = reminder_content[i].getElementsByClassName("reminder_elem");
+                reminder_li[reminder_li.length - 1].innerText = json.reminder[j];
+            }
+        }
+    } else {
+        for (var i = 0; i < reminder_content.length; i++) {
+            reminder_content[i].innerHTML = "";
+        }
+    }
+
+    // Write to notes
+    for (var i = 0; i < note_container_list.length; i++) {
+        var note_container = note_container_list[i];
+        var notes_to_insert = json.note;
+        note_container.innerHTML = ""
+
+        if ((notes_to_insert) && (notes_to_insert.length > 0)) {
+            // Note Exists
+            for (var j = 0; j < notes_to_insert.length; j++) {
+                // Insert Note
+                var note_profile = note_container.getElementsByClassName('note_profile');
+                var note_content = note_container.getElementsByClassName('note_content');
+                note_container.innerHTML += '<div class="note_item"><div class="note_profile"></div><p class="note_content"></p><button class="note_more"><i class="fas fa-ellipsis-v"></i></button></div>';
+                note_profile[note_profile.length - 1].innerText = notes_to_insert[j].subject;
+                note_profile[note_profile.length - 1].className = "note_profile note_profile_" + notes_to_insert[j].subject;
+                note_content[note_content.length - 1].innerText = notes_to_insert[j].content;
+            }
+        }
+    }
+}
+
+// Retrieve data from DB
+function load() {
+    if (firebase.auth().currentUser) {
+        var date = date_picker.toString("YYYYMMDD");
+        var uid = firebase.auth().currentUser.uid;
+
+        database.ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                parseJSON(snapshot.val());
+            } else {
+                // DB is empty: initialize value
+                database.ref('calendar/' + uid + '/' + date).set({
+                    memo: "",
+                    note: [],
+                    reminder: []
+                });
+
+                // Show empty screen
+                parseJSON({});
+            }
+        }).catch((error) => {
+            console.error(`Error while fetching data :: ${error.code} : ${error.message}`);
+        })
+    }
+}
+
+// Close popup when blur is clicked
+blur_bg.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // Only when logged in
+    if (firebase.auth().currentUser) {
+        // Un-Blur
+        blur_bg.className = "blur_filter";
+
+        // Close Modal
+        add_note_modal.className = "add_note_popup closed";
+        add_memo_modal.className = "add_memo_popup closed";
+        add_reminder_modal.className = "add_reminder_popup closed";
+    }
+
+})
+
+// Add note popup
+for (var i = 0; i < add_note_button.length; i++) {
+    add_note_button[i].addEventListener("click", function () {
+        blur_bg.className = "blur_filter blur";
+        add_note_modal.className = "add_note_popup open";
+    })
+}
+
+// Add memo popup
+for (var i = 0; i < add_note_button.length; i++) {
+    add_memo_button[i].addEventListener("click", function () {
+        blur_bg.className = "blur_filter blur";
+        add_memo_modal.className = "add_memo_popup open"
+    })
+}
+
+// Add reminder popup
+for (var i = 0; i < add_reminder_button.length; i++) {
+    add_reminder_button[i].addEventListener("click", function () {
+        blur_bg.className = "blur_filter blur";
+        add_reminder_modal.className = "add_reminder_popup open"
+    })
+}
