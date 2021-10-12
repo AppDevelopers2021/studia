@@ -302,13 +302,6 @@ function load() {
             if (snapshot.exists()) {
                 parseJSON(snapshot.val());
             } else {
-                // DB is empty: initialize value
-                database.ref('calendar/' + uid + '/' + date).set({
-                    memo: "",
-                    note: [],
-                    reminder: []
-                });
-
                 // Show empty screen
                 parseJSON({});
             }
