@@ -21,6 +21,7 @@ const login_google = document.getElementById("login_with_google");
 
 const add_note_button = document.getElementsByClassName("add_note");
 const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
+const add_note_text = document.getElementById("add_note_text");
 const add_note_subject = document.getElementById("add_note_subject");
 const add_note_submit = document.getElementById("add_note_submit");
 
@@ -347,6 +348,9 @@ for (var i = 0; i < add_note_button.length; i++) {
     add_memo_button[i].addEventListener("click", function () {
         blur_bg.className = "blur_filter blur";
         add_memo_modal.className = "add_memo_popup open"
+
+        // Set value
+        add_memo_textarea.value = document.getElementsByClassName("memo_content")[0].innerText;
     })
 }
 
@@ -355,5 +359,80 @@ for (var i = 0; i < add_reminder_button.length; i++) {
     add_reminder_button[i].addEventListener("click", function () {
         blur_bg.className = "blur_filter blur";
         add_reminder_modal.className = "add_reminder_popup open"
+
+        // Set value
+        add_reminder_textarea.value = document.getElementsByClassName("reminder_content")[0].innerText;
     })
 }
+
+// Add note
+add_note_submit.addEventListener("click", function () {
+    // Get original data
+    var date = date_picker.toString("YYYYMMDD");
+    var uid = firebase.auth().currentUser.uid;
+
+    database.ref('calendar/' + uid + '/' + date + '/note').get().then((snapshot) => {
+        if (snapshot.exists()) {
+            var original = snapshot.val();
+            original.push({
+                content: add_note_text.value,
+                subject: add_note_subject.value
+            })
+
+            // Submit
+            database.ref('calendar/' + uid + '/' + date + '/note').set(original).then(() => {
+                load();
+
+                blur_bg.className = "blur_filter"
+                add_note_modal.className = "add_note_popup closed"
+            }).catch((error) => {
+                console.error(`Error while adding note (setData) :: ${error.code} : ${error.message}`);
+            })
+        } else {
+            // DB is empty
+            database.ref('calendar/' + uid + '/' + date + '/note').set([{
+                content: add_note_text.value,
+                subject: add_note_subject.value
+            }]).then(() => {
+                load();
+
+                blur_bg.className = "blur_filter"
+                add_note_modal.className = "add_note_popup closed"
+            }).catch((error) => {
+                console.error(`Error while adding note (setData) :: ${error.code} : ${error.message}`);
+            })
+        }
+    }).catch((error) => {
+        console.error(`Error while adding note (fetchData) :: ${error.code} : ${error.message}`);
+    })
+})
+
+// Add memo
+add_memo_submit.addEventListener("click", function () {
+    var date = date_picker.toString("YYYYMMDD");
+    var uid = firebase.auth().currentUser.uid;
+
+    database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
+        load();
+
+        blur_bg.className = "blur_filter"
+        add_memo_modal.className = "add_note_popup closed"
+    }).catch((error) => {
+        console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
+    })
+})
+
+// Add reminder
+add_reminder_submit.addEventListener("click", function () {
+    var date = date_picker.toString("YYYYMMDD");
+    var uid = firebase.auth().currentUser.uid;
+
+    database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
+        load();
+
+        blur_bg.className = "blur_filter"
+        add_reminder_modal.className = "add_note_popup closed"
+    }).catch((error) => {
+        console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
+    })
+})
