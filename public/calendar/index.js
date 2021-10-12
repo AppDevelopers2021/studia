@@ -348,6 +348,9 @@ for (var i = 0; i < add_note_button.length; i++) {
     add_memo_button[i].addEventListener("click", function () {
         blur_bg.className = "blur_filter blur";
         add_memo_modal.className = "add_memo_popup open"
+
+        // Set value
+        add_memo_textarea.value = document.getElementsByClassName("memo_content")[0].innerText;
     })
 }
 
@@ -398,5 +401,18 @@ add_note_submit.addEventListener("click", function () {
         }
     }).catch((error) => {
         console.error(`Error while adding note (fetchData) :: ${error.code} : ${error.message}`);
+    })
+})
+
+// Add memo
+add_memo_submit.addEventListener("click", function() {
+    var date = date_picker.toString("YYYYMMDD");
+    var uid = firebase.auth().currentUser.uid;
+
+    database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
+        load();
+
+        blur_bg.className = "blur_filter"
+        add_memo_modal.className = "add_note_popup closed"
     })
 })
