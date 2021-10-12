@@ -359,6 +359,9 @@ for (var i = 0; i < add_reminder_button.length; i++) {
     add_reminder_button[i].addEventListener("click", function () {
         blur_bg.className = "blur_filter blur";
         add_reminder_modal.className = "add_reminder_popup open"
+
+        // Set value
+        add_reminder_textarea.value = document.getElementsByClassName("reminder_content")[0].innerText;
     })
 }
 
@@ -405,7 +408,7 @@ add_note_submit.addEventListener("click", function () {
 })
 
 // Add memo
-add_memo_submit.addEventListener("click", function() {
+add_memo_submit.addEventListener("click", function () {
     var date = date_picker.toString("YYYYMMDD");
     var uid = firebase.auth().currentUser.uid;
 
@@ -414,5 +417,18 @@ add_memo_submit.addEventListener("click", function() {
 
         blur_bg.className = "blur_filter"
         add_memo_modal.className = "add_note_popup closed"
+    })
+})
+
+// Add reminder
+add_reminder_submit.addEventListener("click", function () {
+    var date = date_picker.toString("YYYYMMDD");
+    var uid = firebase.auth().currentUser.uid;
+
+    database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
+        load();
+
+        blur_bg.className = "blur_filter"
+        add_reminder_modal.className = "add_note_popup closed"
     })
 })
