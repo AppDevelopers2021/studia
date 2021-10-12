@@ -21,6 +21,7 @@ const login_google = document.getElementById("login_with_google");
 
 const add_note_button = document.getElementsByClassName("add_note");
 const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
+const add_note_text = document.getElementById("add_note_text");
 const add_note_subject = document.getElementById("add_note_subject");
 const add_note_submit = document.getElementById("add_note_submit");
 
@@ -357,3 +358,45 @@ for (var i = 0; i < add_reminder_button.length; i++) {
         add_reminder_modal.className = "add_reminder_popup open"
     })
 }
+
+// Add note
+add_note_submit.addEventListener("click", function () {
+    // Get original data
+    var date = date_picker.toString("YYYYMMDD");
+    var uid = firebase.auth().currentUser.uid;
+
+    database.ref('calendar/' + uid + '/' + date + '/note').get().then((snapshot) => {
+        if (snapshot.exists()) {
+            var original = snapshot.val();
+            original.push({
+                content: add_note_text.value,
+                subject: add_note_subject.value
+            })
+
+            // Submit
+            database.ref('calendar/' + uid + '/' + date + '/note').set(original).then(() => {
+                load();
+
+                blur_bg.className = "blur_filter"
+                add_note_modal.className = "add_note_popup closed"
+            }).catch((error) => {
+                console.error(`Error while adding note (setData) :: ${error.code} : ${error.message}`);
+            })
+        } else {
+            // DB is empty
+            database.ref('calendar/' + uid + '/' + date + '/note').set([{
+                content: add_note_text.value,
+                subject: add_note_subject.value
+            }]).then(() => {
+                load();
+
+                blur_bg.className = "blur_filter"
+                add_note_modal.className = "add_note_popup closed"
+            }).catch((error) => {
+                console.error(`Error while adding note (setData) :: ${error.code} : ${error.message}`);
+            })
+        }
+    }).catch((error) => {
+        console.error(`Error while adding note (fetchData) :: ${error.code} : ${error.message}`);
+    })
+})
