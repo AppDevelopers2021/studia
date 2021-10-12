@@ -417,6 +417,8 @@ add_memo_submit.addEventListener("click", function () {
 
         blur_bg.className = "blur_filter"
         add_memo_modal.className = "add_note_popup closed"
+    }).catch((error) => {
+        console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
     })
 })
 
@@ -430,5 +432,7 @@ add_reminder_submit.addEventListener("click", function () {
 
         blur_bg.className = "blur_filter"
         add_reminder_modal.className = "add_note_popup closed"
+    }).catch((error) => {
+        console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
     })
 })
