@@ -281,12 +281,14 @@ function parseJSON(json) {
             // Note Exists
             for (var j = 0; j < notes_to_insert.length; j++) {
                 // Insert Note
+                var note_item = note_container.getElementsByClassName('note_item');
                 var note_profile = note_container.getElementsByClassName('note_profile');
                 var note_content = note_container.getElementsByClassName('note_content');
                 note_container.innerHTML += '<div class="note_item"><div class="note_profile"></div><p class="note_content"></p><button class="note_more"><i class="fas fa-ellipsis-v"></i></button></div>';
                 note_profile[note_profile.length - 1].innerText = notes_to_insert[j].subject;
-                note_profile[note_profile.length - 1].className = "note_profile note_profile_" + notes_to_insert[j].subject;
+                note_profile[note_profile.length - 1].setAttribute("data-subject", notes_to_insert[j].subject)
                 note_content[note_content.length - 1].innerText = notes_to_insert[j].content;
+                note_item[note_content.length - 1].setAttribute("data-index", j)
             }
         }
     }
