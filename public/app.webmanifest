@@ -1,0 +1,21 @@
+{
+    "short_name": "STUDIA",
+    "name": "STUDIA",
+    "icons": [
+        {
+            "src": "https://studia-kr.web.app/images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://studia-kr.web.app/images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/app/",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/app/",
+    "description": "The Best Way To Organize Your Notes."
+}

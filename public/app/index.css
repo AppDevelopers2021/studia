@@ -1,0 +1,1132 @@
+:root {
+    --theme-color: #2291FF;
+    --navbar-text-color: #FFFFFF;
+    --sidenav-bg-color: #111111;
+    --footer-bg-color: #EEEEEE;
+    --footer-text-color: #555555;
+    --plain-text-color: #000000;
+    --error-text-color: #FF3120;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--theme-color);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* Align Items With FLEX */
+.vertical {
+    display: flex;
+    align-items: center;
+}
+
+.horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navigation Bar CSS */
+#navbar {
+    width: 100%;
+    height: 50px;
+    background-color: var(--theme-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+
+    position: fixed;
+    top: 0;
+    transition: top 0.3s;
+}
+
+.nav_hamburger {
+    width: 60px;
+    height: 40px;
+    min-width: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 20px;
+    height: 3px;
+    border-radius: 1px;
+    background-color: var(--navbar-text-color);
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.bar1 {
+    transform-origin: right center;
+}
+
+.bar3 {
+    transform-origin: right center;
+}
+
+.bar_open .bar1 {
+    transform: translate(-3px, 0) rotate(-45deg);
+}
+
+.bar_open .bar2 {
+    opacity: 0;
+}
+
+.bar_open .bar3 {
+    transform: translate(-3px, 0) rotate(45deg);
+}
+
+.nav_home {
+    font-family: 'Courgette', cursive;
+    color: var(--navbar-text-color);
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.nav_ade {
+    width: 60px;
+    height: 40px;
+    background-image: url(https://studia-kr.web.app/images/logo/logo_long_white.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.temp {
+    height: 10000px;
+}
+
+#sidenav {
+    position: fixed;
+    width: 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: var(--sidenav-bg-color);
+    padding-top: 70px;
+    z-index: 2;
+    transition: .5s ease;
+    overflow: hidden;
+}
+
+#sidenav.side_open {
+    width: 250px;
+}
+
+#sidenav a {
+    display: block;
+    width: 240px;
+    height: 50px;
+    font-size: 17px;
+    margin-right: 10px;
+    padding-left: 10px;
+    line-height: 50px;
+    text-decoration: none;
+    color: white;
+    border-radius: 0 25px 25px 0;
+    transition: .1s;
+}
+
+#sidenav a:hover {
+    background-color: #333;
+}
+
+.nav_devide {
+    border: none;
+    width: 250px;
+    height: 15px;
+    margin: 0;
+}
+
+#close_nav {
+    font-size: 35px;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.body_wrap {
+    background-color: white;
+    width: 100%;
+    min-height: 100%;
+    margin-bottom: -200px;
+    padding-top: 50px;
+}
+
+.main_content {
+    padding-bottom: 200px;
+}
+
+.date_button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    background: none;
+    outline: none;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.date_picker {
+    border: none;
+    text-align: center;
+    outline: none;
+    height: 40px;
+    width: 140px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.date_flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.arrow_back {
+    width: 15px;
+    height: 15px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);
+}
+
+.arrow_forward {
+    width: 15px;
+    height: 15px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(315deg);
+}
+
+.main_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: fit-content(1000px) 200px;
+    gap: 10px;
+    padding: 15px;
+}
+
+.notes {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border: 3px dashed var(--theme-color);
+    border-radius: 15px;
+    min-height: 250px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.note_item {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #eee;
+    margin-bottom: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    animation: fadein .3s;
+}
+
+.note_profile {
+    width: 30px;
+    height: 30px;
+    background-color: purple;
+    color: white;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.note_content {
+    flex-grow: 1;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.note_content::-webkit-scrollbar {
+    display: none;
+}
+
+.note_more {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s ease;
+    transition-property: background-color opacity;
+    opacity: 0;
+}
+
+.note_item:hover .note_more {
+    opacity: 1;
+}
+
+.note_more:hover {
+    background-color: #ddd;
+}
+
+.add_note {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #666;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    transition: .3s;
+}
+
+.add_note:hover {
+    background-color: #555;
+}
+
+.memo {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 13px 10px;
+    position: relative;
+}
+
+.memo h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.memo_content {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    margin: 10px 0 0 0;
+}
+
+.add_memo {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #666;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    transition: .3s;
+}
+
+.add_memo:hover {
+    background-color: #555;
+}
+
+.reminder {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 13px 10px;
+    position: relative;
+}
+
+.reminder_content {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+}
+
+.reminder h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.add_reminder {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #666;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    transition: .3s;
+}
+
+.add_reminder:hover {
+    background-color: #555;
+}
+
+.context_menu {
+    position: fixed;
+    width: 130px;
+    height: 120px;
+    padding: 10px 0;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    z-index: 900;
+}
+
+.context_menu p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    cursor: pointer;
+    transition: .3s;
+    transition-property: background-color, color;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 16px;
+    color: #333;
+    padding-left: 15px;
+}
+
+.context_menu p:hover {
+    background-color: #f5f5f5;
+}
+
+#context_menu_delete:hover {
+    color: #FF3120;
+}
+
+.context_menu p>i {
+    width: 20px;
+}
+
+.blur_filter {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: .5s, width 1ms, height 1ms;
+    opacity: 0;
+}
+
+.blur_filter.blur {
+    z-index: 10;
+    opacity: 1;
+}
+
+footer {
+    width: 100%;
+    height: 200px;
+    background-color: var(--footer-bg-color);
+    padding-left: 30px;
+    margin-top: -200px;
+    border-bottom: 10px solid var(--theme-color);
+}
+
+.footer_logo {
+    font-family: 'Courgette', cursive;
+    font-size: 40px;
+    color: var(--footer-text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.footer_sosumi {
+    margin: 10px 0;
+    color: var(--footer-text-color);
+}
+
+/* Popup for login */
+.login_popup {
+    width: 40%;
+    height: 360px;
+    min-width: 250px;
+    min-height: 400px;
+    position: fixed;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--theme-color);
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    animation-fill-mode: forwards;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.login_popup.open {
+    top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.login_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
+.login_popup h3 {
+    margin: 10px 0;
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.login_popup .input_text {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    padding: 5px;
+    transition: border-color .5s;
+}
+
+.input_text.login_error {
+    border-color: #FF3120;
+    animation: .4s shake linear;
+}
+
+.login_popup .input_text:focus {
+    border-color: var(--theme-color);
+}
+
+.checkbox_wrap {
+    width: 120px;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox_wrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.checkbox_wrap:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.checkbox_wrap input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox_wrap input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox_wrap .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.login_tooltip {
+    opacity: 0;
+    transform: translate(-5px, 0);
+    transition: .3s;
+    width: 93px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    font-size: 13px;
+    z-index: 1;
+    top: -10px;
+    left: 140px;
+}
+
+.login_tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.checkbox_wrap:hover .login_tooltip {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition-delay: .4s;
+}
+
+.login_button {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    transition: .5s;
+}
+
+.login_button:hover {
+    background-color: var(--theme-color);
+    color: white;
+}
+
+.login_loader {
+    margin-top: 5px;
+    width: 100%;
+    height: 5px;
+    position: relative;
+    border-radius: 2px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.login_loader_bar {
+    width: 100%;
+    height: 5px;
+    border-radius: 2px;
+    position: absolute;
+    background-color: var(--theme-color);
+    opacity: 0;
+    transition: .3s;
+}
+
+.login_loader_bar.loading {
+    animation: 3s loading ease-in-out infinite;
+    opacity: 1;
+}
+
+.login_links {
+    margin-top: 5px;
+}
+
+.login_link {
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #555;
+    transition: .5s;
+    cursor: pointer;
+    padding: 0;
+}
+
+.login_link_signup {
+    float: left;
+}
+
+.login_link_iforgot {
+    float: right;
+}
+
+.login_link:hover {
+    border: 1px solid var(--theme-color);
+    color: black;
+}
+
+.login_with_google {
+    margin-top: 30px;
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    background-image: url(https://studia-kr.web.app/app/img/google_login.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 5px center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    transition: .3s;
+}
+
+.login_with_google:hover {
+    border-color: var(--theme-color);
+}
+
+/* Popup for add note */
+.add_note_popup {
+    width: 80%;
+    max-width: 800px;
+    height: 150px;
+    position: fixed;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--theme-color);
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    animation-fill-mode: forwards;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.add_note_popup.open {
+    top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.add_note_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
+.add_note_popup h3 {
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.add_note_popup_flex {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#add_note_subject {
+    width: 75px;
+    border: 1px solid var(--theme-color);
+    border-radius: 3px;
+    outline: none;
+}
+
+#add_note_text {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .5s;
+}
+
+#add_note_text:focus {
+    border-color: var(--theme-color);
+}
+
+#add_note_submit {
+    width: 75px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    transition: .3s;
+}
+
+#add_note_submit:hover {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
+/* Popup for edit memo */
+.add_memo_popup {
+    width: 80%;
+    max-width: 800px;
+    height: 200px;
+    position: fixed;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--theme-color);
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    animation-fill-mode: forwards;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.add_memo_popup.open {
+    top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.add_memo_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
+.add_memo_popup h3 {
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#add_memo_text {
+    width: 100%;
+    height: 95px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .5s;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#add_memo_text:focus {
+    border-color: var(--theme-color);
+}
+
+#add_memo_submit {
+    width: 75px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    transition: .3s;
+}
+
+#add_memo_submit:hover {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
+/* Popup for edit reminder */
+.add_reminder_popup {
+    width: 80%;
+    max-width: 800px;
+    height: 200px;
+    position: fixed;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--theme-color);
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    animation-fill-mode: forwards;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.add_reminder_popup.open {
+    top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.add_reminder_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
+.add_reminder_popup h3 {
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#add_reminder_text {
+    width: 100%;
+    height: 95px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .5s;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#add_reminder_text:focus {
+    border-color: var(--theme-color);
+}
+
+#add_reminder_submit {
+    width: 75px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    transition: .3s;
+}
+
+#add_reminder_submit:hover {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --theme-color: #1871CA;
+        --footer-bg-color: #333;
+        --footer-text-color: #999;
+    }
+}
+
+/* When on Mobile */
+@media screen and (max-width: 400px) {
+    .note_more {
+        opacity: 1;
+    }
+
+    .main_grid {
+        grid-template-rows: fit-content(1000px) 200px 200px;
+    }
+    .memo {
+        grid-column-end: 3;
+    }
+    .reminder {
+        grid-column-start: 1;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --theme-color: #1871CA;
+        --footer-bg-color: #333;
+        --footer-text-color: #999;
+    }
+}
+
+/* When on Mobile */
+@media screen and (max-width: 400px) {
+    .note_more {
+        opacity: 1;
+    }
+
+    .main_grid {
+        grid-template-rows: fit-content(1000px) 200px 200px;
+    }
+    .memo {
+        grid-column-end: 3;
+    }
+    .reminder {
+        grid-column-start: 1;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+}
+
+/* Show Modal */
+@keyframes popup {
+    0% {
+        display: none;
+        top: 150%;
+    }
+
+    1% {
+        display: block;
+    }
+
+    100% {
+        top: 50%;
+    }
+}
+
+/* Hide Modal */
+@keyframes popdown {
+    0% {
+        top: 50%;
+        display: block;
+    }
+
+    99% {
+        display: block;
+    }
+
+    to {
+        top: 150%;
+        display: none;
+    }
+}
+
+/* Shake Animation for Invalid Text Input */
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(15px, 0);
+    }
+
+    50% {
+        transform: translate(-15px, 0);
+    }
+
+    75% {
+        transform: translate(15px, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Loading Animation */
+@keyframes loading {
+    0% {
+        left: -95%;
+    }
+
+    50% {
+        left: 95%;
+    }
+
+    100% {
+        left: -95%;
+    }
+}
+
+/* Fade in Animation */
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fallback for backdrop-filter */
+@supports (not ((backdrop-filter:blur(5px)) or (-webkit-backdrop-filter:blur(5px)))) {
+    .blur_filter.blur {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
