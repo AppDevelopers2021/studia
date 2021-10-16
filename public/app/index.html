@@ -13,12 +13,13 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="https://studia-kr.web.app/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="https://studia-kr.web.app/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="https://studia-kr.web.app/images/favicon-16x16.png">
-	<link rel="manifest" href="https://studia-kr.web.app/images/site.webmanifest">
+	<link rel="manifest" href="/app.webmanifest">
 	<link rel="mask-icon" href="https://studia-kr.web.app/images/safari-pinned-tab.svg" color="#2192ff">
 	<link rel="shortcut icon" href="https://studia-kr.web.app/images/favicon.ico">
 	<meta name="msapplication-TileColor" content="#2192ff">
 	<meta name="msapplication-config" content="https://studia-kr.web.app/images/browserconfig.xml">
-	<meta name="theme-color" content="#2192ff">
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#2192ff">
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1871CA">
 
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
@@ -31,13 +32,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 	<!-- Date Picker Library -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.min.css">
+	<script src="https://studia-kr.web.app/libs/moment.js"></script>
+	<script src="https://studia-kr.web.app/libs/pikaday.js"></script>
+	<link rel="stylesheet" href="https://studia-kr.web.app/libs/pikaday.css">
 
 	<!-- Swiper Library -->
-	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	<link rel="stylesheet" href="https://studia-kr.web.app/libs/swiper.css" />
+	<script src="https://studia-kr.web.app/libs/swiper.js"></script>
 
 	<link rel="stylesheet" href="index.css">
 	<script defer src="index.js"></script>
@@ -72,7 +73,7 @@
 		<a href="https://studia-kr.web.app/">홈</a>
 		<a href="https://studia-kr.web.app/about/">App Developers 소개</a>
 		<hr class="nav_devide">
-		<a href="https://studia-kr.web.app/calendar/"><i class="far fa-calendar-check"></i> 내 캘린더</a>
+		<a href="https://studia-kr.web.app/app/">내 캘린더</a>
 		<hr class="nav_devide">
 		<a href="https://studia-kr.web.app/help/">도움말</a>
 	</div>
@@ -223,6 +224,11 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+
+		// PWA: Add Service Worker
+		if('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/serviceworker.js')
+		}
 	</script>
 </body>
 
