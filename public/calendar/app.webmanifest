@@ -1,6 +1,6 @@
 {
-    "name": "STUDIA",
     "short_name": "STUDIA",
+    "name": "STUDIA: 노트 정리도 스마트하게!",
     "icons": [
         {
             "src": "https://studia-kr.web.app/images/android-chrome-192x192.png",
@@ -13,7 +13,9 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#2192ff",
-    "background_color": "#2192ff",
-    "display": "standalone"
+    "start_url": "https://studia-kr.web.app/calendar/?source=pwa",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "description": "The Best Way To Organize Your Notes."
 }

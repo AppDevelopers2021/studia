@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Connection Lost - STUDIA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 30px 20px;
+
+            background-color: #2192FF;
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 200px;
+            font-weight: 900;
+            color: white;
+            margin: 0;
+        }
+
+        h1:hover {
+            content: '\u003a\u0029';
+        }
+
+        p {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 30px;
+            font-weight: 500;
+            color: white;
+            margin: 50px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="draggable" class="draggable"><span class="easteregg">:(</span></h1>
+    <p>인터넷 연결이 유실되었습니다.</p>
+
+    <script>
+        const hamburger = document.getElementsByClassName("nav_hamburger")[0];
+        const navbar = document.getElementById("navbar");
+        const sidenav = document.getElementById("sidenav");
+        const close_nav_button = document.getElementById("close_nav");
+
+        hamburger.addEventListener("click", function () {
+            hamburger.classList.toggle("bar_open");
+            sidenav.classList.toggle("side_open");
+        })
+        close_nav_button.addEventListener("click", function () {
+            hamburger.className = "nav_hamburger center";
+            sidenav.className = "";
+        })
+    </script>
+</body>
+
+</html>
