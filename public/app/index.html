@@ -57,19 +57,19 @@
 
 <body>
 	<div id="navbar">
-		<button class="nav_hamburger center" aria-label="Open Menu">
+		<button class="nav_hamburger center" aria-label="사이드 패널 열기">
 			<div>
 				<div class="bar1"></div>
 				<div class="bar2"></div>
 				<div class="bar3"></div>
 			</div>
 		</button>
-		<a class="nav_home" href="https://studia-kr.web.app/">studia</a>
-		<a class="nav_ade" href="https://studia-kr.web.app/about/"></a>
+		<a class="nav_home" href="https://studia-kr.web.app/" aria-label="홈으로">studia</a>
+		<a class="nav_ade" href="https://studia-kr.web.app/about/" aria-label="App Developers 소개"></a>
 	</div>
 
 	<div id="sidenav">
-		<button id="close_nav">&times;</button>
+		<button id="close_nav" aria-label="사이드 패널 닫기">&times;</button>
 		<a href="https://studia-kr.web.app/">홈</a>
 		<a href="https://studia-kr.web.app/about/">App Developers 소개</a>
 		<hr class="nav_devide">
@@ -83,7 +83,7 @@
 			<div class="date">
 				<div class="date_flex">
 					<button id="date_back" class="date_button" aria-label="이전 날짜로 이동"><i class="arrow_back"></i></button>
-					<input type="text" id="date_picker" class="date_picker" readonly>
+					<input type="text" id="date_picker" class="date_picker" aria-label="날짜 선택" readonly>
 					<button id="date_forward" class="date_button" aria-label="다음 날짜로 이동"><i class="arrow_forward"></i></button>
 				</div>
 			</div>
