@@ -160,7 +160,7 @@
 		<h3>노트 추가</h3>
 
 		<div class="add_note_popup_flex">
-			<select id="add_note_subject">
+			<select id="add_note_subject" aria-label="노트 과목 선택">
 				<option value="가정">가정</option>
 				<option value="과학">과학</option>
 				<option value="국어" selected>국어</option>
@@ -181,7 +181,7 @@
 				<option value="자율">자율</option>
 				<option value="기타">기타</option>
 			</select>
-			<input type="text" id="add_note_text" />
+			<input type="text" id="add_note_text" aria-label="노트 내용 작성" />
 		</div>
 
 		<button id="add_note_submit">완료</button>
@@ -190,7 +190,7 @@
 	<div class="add_memo_popup">
 		<h3>메모 수정</h3>
 		
-		<textarea id="add_memo_text"></textarea>
+		<textarea id="add_memo_text" aria-label="메모 작성"></textarea>
 
 		<button id="add_memo_submit">완료</button>
 	</div>
@@ -198,7 +198,7 @@
 	<div class="add_reminder_popup">
 		<h3>과제 및 준비물</h3>
 		
-		<textarea id="add_reminder_text"></textarea>
+		<textarea id="add_reminder_text" aria-label="과제 및 준비물 작성"></textarea>
 
 		<button id="add_reminder_submit">완료</button>
 	</div>
