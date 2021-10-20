@@ -789,14 +789,18 @@ footer {
 .login_link {
     width: 100px;
     height: 30px;
+    line-height: 28px;
     background-color: white;
     border: 1px solid white;
     border-radius: 5px;
     font-size: 15px;
     color: #555;
+    text-decoration: none;
+    text-align: center;
     transition: .5s;
     cursor: pointer;
     padding: 0;
+    cursor: pointer;
 }
 
 .login_link_signup {

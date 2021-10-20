@@ -1,3 +1,13 @@
+:root {
+    --theme-color: #2291FF;
+    --navbar-text-color: #FFFFFF;
+    --sidenav-bg-color: #111111;
+    --footer-bg-color: #EEEEEE;
+    --footer-text-color: #555555;
+    --plain-text-color: #000000;
+    --error-text-color: #FF3120;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,8 +24,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2291FF;
-    font-family: 'Nanum Gothic', sans-serif;
+    background-color: var(--theme-color);
 }
 
 /* Align Items With FLEX */
@@ -39,12 +48,13 @@ body {
 #navbar {
     width: 100%;
     height: 50px;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    z-index: 3;
+    position: fixed;
+    z-index: 5;
 }
 
 .nav_hamburger {
@@ -64,7 +74,7 @@ body {
     width: 20px;
     height: 3px;
     border-radius: 1px;
-    background-color: white;
+    background-color: var(--navbar-text-color);
     margin: 4px 0;
     transition: 0.4s;
 }
@@ -91,7 +101,7 @@ body {
 
 .nav_home {
     font-family: 'Courgette', cursive;
-    color: white;
+    color: var(--navbar-text-color);
     text-decoration: none;
     font-size: 25px;
 }
@@ -105,17 +115,13 @@ body {
     background-position: center;
 }
 
-.temp {
-    height: 10000px;
-}
-
 #sidenav {
     position: fixed;
     width: 0;
     top: 0;
     left: 0;
     height: 100vh;
-    background-color: #111;
+    background-color: var(--sidenav-bg-color);
     padding-top: 70px;
     z-index: 2;
     transition: .5s ease;
@@ -174,19 +180,19 @@ body {
     padding-bottom: 200px;
 }
 
-.signup_popup {
+.iforgot_popup {
     width: 400px;
-    height: 410px;
+    height: 200px;
     max-width: 95%;
     background-color: white;
-    border: 2px solid #2291FF;
+    border: 2px solid var(--theme-color);
     border-radius: 10px;
     padding: 10px;
     font-family: 'Noto Sans KR', sans-serif;
     margin: 50px 0;
 }
 
-.signup_popup h3 {
+.iforgot_popup h3 {
     margin: 10px 0;
     width: 100%;
     font-size: 25px;
@@ -194,7 +200,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.signup_popup .input_text {
+.iforgot_popup .input_text {
     width: 100%;
     height: 40px;
     margin-bottom: 10px;
@@ -205,54 +211,20 @@ body {
     transition: .5s;
 }
 
-.input_text.signup_error {
-    border-color: #FF3120;
+.input_text.iforgot_error {
+    border-color: var(--error-text-color);
     animation: .4s shake linear;
 }
 
-.signup_popup .input_text:focus {
-    border-color: #2291FF;
+.iforgot_popup .input_text:focus {
+    border-color: var(--theme-color);
 }
 
-.signup_tooltip {
-    opacity: 0;
-    transform: translate(-5px, 0);
-    transition: .3s;
-    width: 93px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    font-size: 13px;
-    z-index: 1;
-    top: -10px;
-    left: 140px;
-}
-
-.signup_tooltip::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent black transparent transparent;
-}
-
-.checkbox_wrap:hover .signup_tooltip {
-    opacity: 1;
-    transform: translate(0, 0);
-    transition-delay: .4s;
-}
-
-.signup_button {
+.iforgot_button {
     width: 100%;
     height: 30px;
     background-color: white;
-    border: 1px solid #2291FF;
+    border: 1px solid var(--theme-color);
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
@@ -260,12 +232,12 @@ body {
     transition: .5s;
 }
 
-.signup_button:hover {
-    background-color: #2291FF;
+.iforgot_button:hover {
+    background-color: var(--theme-color);
     color: white;
 }
 
-.signup_loader {
+.iforgot_loader {
     margin-top: 5px;
     width: 100%;
     height: 5px;
@@ -275,46 +247,29 @@ body {
     overflow: hidden;
 }
 
-.signup_loader_bar {
+.iforgot_loader_bar {
     width: 100%;
     height: 5px;
     border-radius: 2px;
     position: absolute;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     opacity: 0;
     transition: .3s;
 }
 
-.signup_loader_bar.loading {
+.iforgot_loader_bar.loading {
     animation: 3s loading ease-in-out infinite;
     opacity: 1;
 }
 
-.signup_with_google {
-    margin-top: 15px;
-    width: 100%;
-    height: 30px;
-    background-color: white;
-    background-image: url(https://studia-kr.web.app/signup/img/google_signup.png);
-    background-repeat: no-repeat;
-    background-size: 15px;
-    background-position: 5px center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    outline: none;
-    transition: .3s;
+.iforgot_links {
+    margin-top: 5px;
 }
 
-.signup_with_google:hover {
-    border-color: #2291FF;
-}
-
-.signup_log {
-    font-family: "NotoSans", sans-serif;
+.iforgot_log {
+    font-family: "Noto Sans KR", sans-serif;
     display: block;
-    color: #FF3120;
+    color: var(--error-text-color);
     margin: 0;
     height: 24px;
 }
@@ -322,46 +277,34 @@ body {
 footer {
     width: 100%;
     height: 200px;
-    background-color: #eee;
+    background-color: var(--footer-bg-color);
     padding-left: 30px;
     margin-top: -200px;
-    border-bottom: 10px solid #2291FF;
+    border-bottom: 10px solid var(--theme-color);
 }
 
 .footer_logo {
     font-family: 'Courgette', cursive;
     font-size: 40px;
-    color: #555;
+    color: var(--footer-text-color);
     margin: 0;
     padding: 0;
 }
 
 .footer_sosumi {
-    color: #555;
+    color: var(--footer-text-color);
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1871CA;
+    :root {
+        --theme-color: #1871CA;
+        --footer-bg-color: #333;
+        --footer-text-color: #999;
     }
 
     .body_wrap {
         background-color: black;
         color: white;
-    }
-
-    #navbar {
-        background-color: #1871CA;
-    }
-
-    footer {
-        background-color: #333;
-        border-color: #1871CA;
-    }
-
-    .footer_logo,
-    .footer_sosumi {
-        color: #999;
     }
 }
 

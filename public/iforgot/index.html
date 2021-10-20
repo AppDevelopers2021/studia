@@ -23,24 +23,22 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+	<link rel="stylesheet" href="index.css">
+	<script defer src="index.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<meta name="description" content="원촌중학교 1학년 자율동아리 App Developers 입니다.">
 	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
 
-	<link rel="stylesheet" href="index.css">
-	<script defer src="index.js"></script>
-
-	<meta property="og:title" content="회워가입 - 스튜디아">
+	<meta property="og:title" content="스튜디아 - 노트 정리도 스마트하게!">
 	<meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
 	<meta property="og:image" content="https://studia-kr.web.app/images/profile.jpg">
 
-	<title>회원가입</title>
+	<title>비밀번호 재설정</title>
 </head>
 
 <body>
@@ -61,32 +59,24 @@
 		<a href="https://studia-kr.web.app/">홈</a>
 		<a href="https://studia-kr.web.app/about/">App Developers 소개</a>
 		<hr class="nav_devide">
-		<a href="https://studia-kr.web.app/app/"><i class="far fa-calendar-check"></i> 내 캘린더</a>
+		<a href="https://studia-kr.web.app/app/">내 캘린더</a>
 		<hr class="nav_devide">
 		<a href="https://studia-kr.web.app/help/">도움말</a>
 	</div>
 
 	<div class="body_wrap">
 		<div class="body center">
-			<div class="signup_popup">
-				<h3>회원가입</h3>
+			<div class="iforgot_popup">
+				<h3>비밀번호 재설정</h3>
 
-				<span class="signup_id_label">이메일 주소:</span>
-				<input type="text" id="signup_id" class="input_text">
-				<span class="signup_pw_label">비밀번호:</span>
-				<input type="password" id="signup_pw" class="input_text">
-				<span class="signup_pw_label">비밀번호 확인:</span>
-				<input type="password" id="signup_pw_check" class="input_text">
+				<span class="iforgot_id_label">이메일 주소:</span>
+				<input type="text" id="iforgot_id" class="input_text">
 
-				<button class="signup_button" id="signup_button">회원가입</button>
+				<button class="iforgot_button" id="iforgot_button">재설정 이메일 보내기</button>
 
-				<div class="signup_loader">
-					<div class="signup_loader_bar" id="signup_loader"></div>
+				<div class="iforgot_loader">
+					<div class="iforgot_loader_bar" id="iforgot_loader"></div>
 				</div>
-
-				<p class="signup_log" id="signup_log"></p>
-
-				<button class="signup_with_google" id="signup_with_google">Google 계정으로 가입</button>
 			</div>
 		</div>
 	</div>
