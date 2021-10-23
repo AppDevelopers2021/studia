@@ -182,7 +182,6 @@ body {
 
 .iforgot_popup {
     width: 400px;
-    height: 200px;
     max-width: 95%;
     background-color: white;
     border: 2px solid var(--theme-color);
@@ -262,16 +261,12 @@ body {
     opacity: 1;
 }
 
-.iforgot_links {
-    margin-top: 5px;
-}
-
-.iforgot_log {
-    font-family: "Noto Sans KR", sans-serif;
-    display: block;
-    color: var(--error-text-color);
+.iforgot_done {
     margin: 0;
-    height: 24px;
+    padding: 0;
+    color: #555;
+    font-size: 15px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 footer {

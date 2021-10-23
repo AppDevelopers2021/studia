@@ -15,6 +15,7 @@ close_nav_button.addEventListener("click", function () {
 const button = document.getElementById("iforgot_button");
 const loader = document.getElementById("iforgot_loader");
 const email = document.getElementById("iforgot_id");
+const done = document.getElementById("iforgot_done");
 
 function shakeInput(elem) {
     elem.classList.add("iforgot_error");
@@ -26,6 +27,7 @@ button.addEventListener("click", function () {
         .then(() => {
             // Email is sent
             loader.classList.remove("loading");
+            done.hidden = false;
         })
         .catch((error) => {
             // Error
