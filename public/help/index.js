@@ -11,15 +11,3 @@ close_nav_button.addEventListener("click", function () {
     hamburger.className = "nav_hamburger center";
     sidenav.className = "";
 })
-
-// 'Sticky' Navbar
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-        navbar.style.top = "0";
-    } else {
-        navbar.style.top = "-50px";
-    }
-    prevScrollpos = currentScrollPos;
-}
