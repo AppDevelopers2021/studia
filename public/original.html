@@ -38,16 +38,6 @@
 	<title>스튜디아</title>
 
 	<style>
-		:root {
-			--theme-color: #2291FF;
-			--navbar-text-color: #FFFFFF;
-			--sidenav-bg-color: #111111;
-			--footer-bg-color: #EEEEEE;
-			--footer-text-color: #555555;
-			--plain-text-color: #000000;
-			--error-text-color: #FF3120;
-		}
-
 		* {
 			box-sizing: border-box;
 		}
@@ -64,7 +54,7 @@
 			width: 100%;
 			margin: 0;
 			padding: 0;
-			background-color: var(--theme-color);
+			background-color: #2291FF;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
@@ -89,12 +79,12 @@
 		#navbar {
 			width: 100%;
 			height: 50px;
-			background-color: var(--theme-color);
+			background-color: #2291FF;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
-			z-index: 3;
+			z-index: 4;
 
 			position: fixed;
 			top: 0;
@@ -171,7 +161,7 @@
 			height: 100vh;
 			background-color: #111;
 			padding-top: 70px;
-			z-index: 2;
+			z-index: 4;
 			transition: .5s ease;
 			overflow: hidden;
 		}
@@ -221,92 +211,165 @@
 			width: 100%;
 			min-height: 100%;
 			margin-bottom: -200px;
+			padding: 0;
 		}
 
 		.body {
+			padding: 0;
 			padding-bottom: 200px;
 		}
 
-		.intro {
+		.section_intro {
 			width: 100%;
 			height: 100vh;
-			background-color: white;
-
 			position: relative;
+			overflow: hidden;
+			background-color: #FFF4BD;
 		}
 
-		.intro_logo {
+		.intro_text_container {
 			position: absolute;
-			top: 200px;
-			left: 0;
-			right: 0;
-			width: 200px;
-			text-align: center;
-			margin: 0 auto;
-			color: var(--theme-color);
-			font-family: 'Courgette', cursive;
-			font-size: 50px;
+			top: 20vh;
+			left: 55vw;
+			opacity: 0;
+		}
 
-			transition: ease-in-out 1s;
-			transition-delay: 1s;
-
-			transform: translate(0, 40px) scale(1.5);
+		.section_intro.load .intro_text_container {
+			opacity: 1;
+			transition: 1s;
+			transition-delay: 4s;
 		}
 
 		.intro_text {
-			position: absolute;
-			top: 260px;
-			left: 0;
-			right: 0;
-			width: 400px;
-			margin: 0 auto !important;
-			color: black;
+			margin: 0;
 			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 40px;
-			text-align: center;
-			margin: 0 0;
-
-			transition: ease 1s;
-			transition-delay: 1.5s;
-
-			opacity: 0;
-			transform: translate(0, 30px);
+			font-size: 4vw;
+			color: black;
 		}
 
-		.intro.load .intro_logo {
-			transform: none;
+		.ss {
+			transition-timing-function: cubic-bezier(.25, 1.51, .32, 1.02);
+			transition-duration: 2s;
 		}
 
-		.intro.load .intro_text {
-			transform: none;
-			opacity: 1;
+		.studia-ss {
+			background-image: url(https://studia-kr.web.app/images/mainpage-images/screenshots/main.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+
+			width: 800px;
+			height: 600px;
+
+			position: absolute;
+			bottom: -800px;
+			left: -900px;
+			z-index: 2;
+
+			transition-delay: 1s;
+			will-change: bottom, left;
 		}
 
-		.intro_sticky {
+		.section_intro.load .studia-ss {
+			bottom: -90px;
+			left: -60px;
+		}
+
+		.devtools-ss {
+			background-image: url(https://studia-kr.web.app/images/mainpage-images/screenshots/devtools.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+
+			width: 550px;
+			height: 600px;
+
+			position: absolute;
+			bottom: -600px;
+			left: 200px;
+			z-index: 3;
+
+			transition-delay: .5s;
+			will-change: bottom, left;
+		}
+
+		.section_intro.load .devtools-ss {
+			bottom: -200px;
+			left: 400px;
+		}
+
+		.help-ss {
+			background-image: url(https://studia-kr.web.app/images/mainpage-images/screenshots/help.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+
+			width: 800px;
+			height: 600px;
+
+			position: absolute;
+			top: -100px;
+			left: -800px;
+			z-index: 1;
+
+			transition-delay: .8s;
+			will-change: top, left;
+		}
+
+		.section_intro.load .help-ss {
+			top: max(90px, calc(100vh - 800px));
+			left: -150px;
+		}
+
+		.section_sticky_container {
+			width: 100%;
+			height: 1500px;
+
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: center;
+		}
+
+		.section_sticky_side {
+			width: 50%;
+			height: 100vh;
 			position: sticky;
 			top: 0;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 		}
 
-		.intro_wrap {
-			height: 230vh;
-		}
-
-		.intro_main_image {
-			width: 100%;
-			position: relative;
-		}
-
-		.intro_main_title {
-			text-align: center;
-			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 90px;
+		.section_sticky_icon {
+			font-size: 120px;
 			margin: 0;
-			position: relative;
 		}
-		
-		.intro_hide {
-			background-color: white;
-			position: relative;
+
+		.section_sticky_header {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 50px;
+			margin: 0;
+		}
+
+		.section_sticky_desc {
+			font-family: 'Nanum Gothic', sans-serif;
+			font-size: 15px;
+			margin: 0;
+		}
+
+		.section_scroll_area {
+			width: 50%;
+		}
+
+		.section_sticky_web {
+			background-color: #F3D2D0;
+		}
+
+		.section_sticky_app {
+			background-color: #97D6D4;
 		}
 
 		footer {
@@ -315,7 +378,7 @@
 			background-color: #eee;
 			padding-left: 30px;
 			margin-top: -200px;
-			border-bottom: 10px solid var(--theme-color);
+			border-bottom: 10px solid #2291FF;
 		}
 
 		.footer_logo {
@@ -331,15 +394,22 @@
 		}
 
 		@media (prefers-color-scheme: dark) {
-			:root {
-				--theme-color: #1871CA;
-				--footer-bg-color: #333;
-				--footer-text-color: #999;
+			body {
+				background-color: #1871CA;
 			}
 
 			.body_wrap {
 				background-color: black;
 				color: white;
+			}
+
+			#navbar {
+				background-color: #1871CA;
+			}
+
+			footer {
+				background-color: #333;
+				border-color: #1871CA;
 			}
 
 			.footer_logo,
@@ -348,24 +418,95 @@
 			}
 		}
 
-		@media screen and (max-width: 400px) {
-			.intro_logo {
-				font-size: 40px;
+		@media only screen and (min-width: 1800px) {
+			.studia-ss {
+				width: 1200px;
+				height: 1000px;
+				bottom: -1000px;
+				left: -1000px;
+			}
+
+			.section_intro.load .studia-ss {
+				left: -100px;
+				bottom: -200px;
+			}
+
+			.devtools-ss {
+				width: 800px;
+				height: 1000px;
+				left: 300px;
+				bottom: -1200px;
+			}
+
+			.section_intro.load .devtools-ss {
+				left: 500px;
+				bottom: -500px;
+			}
+
+			.help-ss {
+				width: 800px;
+				height: 700px;
+				bottom: 600px;
+			}
+
+			.section_intro.load .help-ss {
+				top: auto;
+				bottom: 400px;
+			}
+		}
+
+		@media only screen and (max-width: 1100px) {
+			.section_intro {
+				height: 1000px;
+			}
+
+			.ss {
+				transition: none;
+			}
+
+			.studia-ss,
+			.devtools-ss,
+			.help-ss {
+				will-change: auto;
+			}
+
+			.section_intro.load .studia-ss {
+				bottom: -90px;
+				left: -60px;
+				top: auto;
+				right: auto;
+			}
+
+			.section_intro.load .devtools-ss {
+				bottom: -200px;
+				right: -100px;
+				top: auto;
+				left: auto;
+			}
+
+			.section_intro.load .help-ss {
+				bottom: 100px;
+				left: -150px;
+				top: auto;
+				right: auto;
+			}
+
+			.intro_text_container {
+				top: 130px;
+				left: 50%;
+				transform: translate(-50%, 0);
+				width: 400px;
 			}
 
 			.intro_text {
-				font-size: 30px;
-				width: 300px;
-				top: 245px;
+				font-size: 45px;
+				width: 100%;
+				text-align: center;
 			}
+		}
 
-			.intro_main_title {
-				font-size: 40px;
-			}
-
-			.intro_main_image {
-				content: url("./images/mainpage-images/studia_mobile.jpg");
-			}
+		@media only screen and (max-width: 600px) {
+			/**/
 		}
 	</style>
 </head>
@@ -388,25 +529,37 @@
 		<a href="https://studia-kr.web.app/">홈</a>
 		<a href="https://studia-kr.web.app/about/">App Developers 소개</a>
 		<hr class="nav_devide">
-		<a href="https://studia-kr.web.app/calendar/"><i class="far fa-calendar-check"></i> 내 캘린더</a>
+		<a href="https://studia-kr.web.app/app/"><i class="far fa-calendar-check"></i> 내 캘린더</a>
 		<hr class="nav_devide">
 		<a href="https://studia-kr.web.app/help/">도움말</a>
 	</div>
 
 	<div class="body_wrap">
 		<div class="body">
-			<div class="intro_wrap">
-				<div class="intro_sticky">
-					<div id="intro" class="intro">
-						<span class="intro_logo">studia</span>
-						<h1 class="intro_text">망각 곡선을 극복하는<br>가장 간단한 방법.</h1>
-					</div>
+			<div class="section_intro">
+				<div id="devtools-ss" class="ss devtools-ss"></div>
+				<div id="studia-ss" class="ss studia-ss"></div>
+				<div id="help-ss" class="ss help-ss"></div>
+				<div class="intro_text_container">
+					<h1 class="intro_text">노트 필기의 대혁명.</h1>
+					<a href="" class="open_web"></a>
 				</div>
-				<div class="intro_hide">
-					<img class="intro_main_image" src="./images/mainpage-images/studia.jpg">
-					<h1 class="intro_main_title">노트 필기의 대혁명.</h1>
+			</div>
+			<div class="section_sticky_container section_web">
+				<div class="section_sticky_side section_sticky_web">
+					<p class="section_sticky_icon"><i class="fas fa-globe-americas"></i></p>
+					<h2 class="section_sticky_header">Web</h2>
+					<p class="section_sticky_desc">호환성을 극대화하다.</p>
 				</div>
-
+				<div class="section_scroll_area"></div>
+			</div>
+			<div class="section_sticky_container section_app">
+				<div class="section_scroll_area"></div>
+				<div class="section_sticky_side section_sticky_app">
+					<p class="section_sticky_icon"><i class="fas fa-th"></i></p>
+					<h2 class="section_sticky_header">App</h2>
+					<p class="section_sticky_desc">최상의 퍼포먼스.</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -417,6 +570,7 @@
 			<p class="footer_logo">studia</p>
 			<p class="footer_sosumi">Copyright &copy; 2021 App Developers.<br>All Rights Reserved.</p>
 		</div>
+
 	</footer>
 
 	<script>
@@ -434,9 +588,33 @@
 			sidenav.className = "";
 		})
 
+		// 'Sticky' Navbar
+		var prevScrollpos = window.pageYOffset;
+		window.onscroll = function () {
+			var currentScrollPos = window.pageYOffset;
+			if (prevScrollpos > currentScrollPos) {
+				navbar.style.top = "0";
+			} else {
+				navbar.style.top = "-50px";
+			}
+			prevScrollpos = currentScrollPos;
+		}
+
 		// Anim
 		window.onload = function () {
-			document.getElementById("intro").classList.add("load");
+			document.getElementsByClassName("section_intro")[0].classList.add("load")
+		}
+		// Remove will-change
+		const animationElem = [
+			document.getElementById("studia-ss"),
+			document.getElementById("devtools-ss"),
+			document.getElementById("help-ss")
+		];
+		for (var i = 0; i < animationElem.length; i++) {
+			animationElem[i].addEventListener("transitionend", function (event) {
+				event.currentTarget.style.willChange = 'auto'
+				event.currentTarget.style.transition = "none"
+			})
 		}
 	</script>
 </body>
