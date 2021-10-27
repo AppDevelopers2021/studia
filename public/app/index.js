@@ -13,6 +13,9 @@ const navbar = document.getElementById("navbar");
 const sidenav = document.getElementById("sidenav");
 const close_nav_button = document.getElementById("close_nav");
 const contextmenu = document.getElementById("contextmenu");
+const contextmenu_edit = document.getElementById("context_menu_edit");
+const contextmenu_copy = document.getElementById("context_menu_copy");
+const contextmenu_delete = document.getElementById("context_menu_delete");
 const blur_bg = document.getElementById("blur_bg");
 
 const login_modal = document.getElementsByClassName("login_popup")[0];
@@ -39,6 +42,7 @@ const date_forward_button = document.getElementById("date_forward");
 const date_backward_button = document.getElementById("date_back");
 
 var database = firebase.database();
+var selectedIdx;
 
 hamburger.addEventListener("click", function () {
     hamburger.classList.toggle("bar_open");
@@ -228,14 +232,6 @@ date_backward_button.addEventListener("click", () => {
     changeDate(false);
 });
 
-// Context menu event listener
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-    contextmenu.hidden = false;
-    contextmenu.style.top = event.pageY + 'px';
-    contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
-}, false);
-
 // Parse JSON input and display
 function parseJSON(json) {
     //console.log(json)
@@ -284,6 +280,7 @@ function parseJSON(json) {
                 var note_item = note_container.getElementsByClassName('note_item');
                 var note_profile = note_container.getElementsByClassName('note_profile');
                 var note_content = note_container.getElementsByClassName('note_content');
+                var note_more = note_container.getElementsByClassName('note_more');
                 note_container.innerHTML += '<div class="note_item"><div class="note_profile"></div><p class="note_content"></p><button class="note_more"><i class="fas fa-ellipsis-v"></i></button></div>';
                 note_profile[note_profile.length - 1].innerText = notes_to_insert[j].subject;
                 note_profile[note_profile.length - 1].setAttribute("data-subject", notes_to_insert[j].subject)
@@ -291,6 +288,29 @@ function parseJSON(json) {
                 note_item[note_content.length - 1].setAttribute("data-index", j)
             }
         }
+    }
+
+    // Add Event Listener
+    var note_more = document.getElementsByClassName("note_more");
+    var note_item = document.getElementsByClassName("note_item");
+    for (var i = 0; i < note_more.length; i++) {
+        note_more[i].addEventListener('click', function (event) {
+            contextmenu.hidden = false;
+            contextmenu.style.top = event.currentTarget.getBoundingClientRect().top + 'px';
+            contextmenu.style.left = (event.currentTarget.getBoundingClientRect().left - 130) + 'px';
+            contextmenu.style.right = "auto";
+            selectedIdx = event.currentTarget.parentElement.getAttribute("data-index");
+        });
+    }
+    for (var i = 0; i < note_item.length; i++) {
+        note_item[i].addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+            contextmenu.hidden = false;
+            contextmenu.style.top = event.pageY + 'px';
+            contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
+            contextmenu.style.left = "auto";
+            selectedIdx = event.currentTarget.getAttribute("data-index");
+        }, false);
     }
 }
 
@@ -430,4 +450,24 @@ add_reminder_submit.addEventListener("click", function () {
     }).catch((error) => {
         console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
     })
+})
+
+// Context Menu
+contextmenu_edit.addEventListener("click", function () {
+    // Edit
+});
+
+contextmenu_copy.addEventListener("click", function () {
+    navigator.clipboard.writeText(document.getElementsByClassName("notes_container")[0].getElementsByClassName("note_content")[selectedIdx].innerText);
+});
+
+contextmenu_delete.addEventListener("click", function () {
+    // Delete
+})
+
+document.addEventListener("click", function (event) {
+    if (!(event.target == contextmenu || event.target.className == "note_more" || event.target.className == "fas fa-ellipsis-v")) {
+        contextmenu.hidden = true;
+    }
+
 })

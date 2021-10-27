@@ -1065,21 +1065,8 @@ footer {
     color: white;
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --theme-color: #1871CA;
-        --footer-bg-color: #333;
-        --footer-text-color: #999;
-    }
-}
-
 /* When on Mobile */
 @media screen and (max-width: 400px) {
-    .note_more {
-        opacity: 1;
-    }
-
     .main_grid {
         grid-template-rows: fit-content(1000px) 200px 200px;
     }
@@ -1102,22 +1089,10 @@ footer {
     }
 }
 
-/* When on Mobile */
-@media screen and (max-width: 400px) {
+/* For Touchscreen Devices */
+@media (hover: none) {
     .note_more {
         opacity: 1;
-    }
-
-    .main_grid {
-        grid-template-rows: fit-content(1000px) 200px 200px;
-    }
-    .memo {
-        grid-column-end: 3;
-    }
-    .reminder {
-        grid-column-start: 1;
-        grid-row-start: 3;
-        grid-row-end: 4;
     }
 }
 
