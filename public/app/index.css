@@ -287,74 +287,92 @@ body {
     background-color: #18b02b;
     color: white;
 }
+
 .note_profile[data-subject='과학'] {
     background-color: #703670;
     color: white;
 }
+
 .note_profile[data-subject='국어'] {
     background-color: #e3d434;
     color: black;
 }
+
 .note_profile[data-subject='기술'] {
     background-color: #2e8c73;
     color: white;
 }
+
 .note_profile[data-subject='도덕'] {
     background-color: #3760f4;
     color: white;
 }
+
 .note_profile[data-subject='독서'] {
     background-color: #80b19f;
     color: white;
 }
+
 .note_profile[data-subject='미술'] {
     background-color: #ef78e8;
     color: white;
 }
+
 .note_profile[data-subject='보건'] {
     background-color: #c46d82;
     color: white;
 }
+
 .note_profile[data-subject='사회'] {
     background-color: #489890;
     color: white;
 }
+
 .note_profile[data-subject='수학'] {
     background-color: #bddd60;
     color: black;
 }
+
 .note_profile[data-subject='영어'] {
     background-color: #be5f0b;
     color: white;
 }
+
 .note_profile[data-subject='음악'] {
     background-color: #8223df;
     color: white;
 }
+
 .note_profile[data-subject='정보'] {
     background-color: #42e774;
     color: black;
 }
+
 .note_profile[data-subject='진로'] {
     background-color: #0bb676;
     color: white;
 }
+
 .note_profile[data-subject='창체'] {
     background-color: #ddd;
     color: black;
 }
+
 .note_profile[data-subject='체육'] {
     background-color: #82caf6;
     color: white;
 }
+
 .note_profile[data-subject='환경'] {
     background-color: #4feb74;
     color: black;
 }
+
 .note_profile[data-subject='자율'] {
     background-color: #ddd;
     color: black;
 }
+
 .note_profile[data-subject='기타'] {
     background-color: #ddd;
     color: black;
@@ -921,6 +939,90 @@ footer {
     color: white;
 }
 
+/* Popup for add note */
+.edit_note_popup {
+    width: 80%;
+    max-width: 800px;
+    height: 150px;
+    position: fixed;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--theme-color);
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    animation-fill-mode: forwards;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.edit_note_popup.open {
+    top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.edit_note_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
+.edit_note_popup h3 {
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.edit_note_popup_flex {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#edit_note_subject {
+    width: 75px;
+    border: 1px solid var(--theme-color);
+    border-radius: 3px;
+    outline: none;
+}
+
+#edit_note_text {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .5s;
+}
+
+#edit_note_text:focus {
+    border-color: var(--theme-color);
+}
+
+#edit_note_submit {
+    width: 75px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    transition: .3s;
+}
+
+#edit_note_submit:hover {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
 /* Popup for edit memo */
 .add_memo_popup {
     width: 80%;
@@ -1070,9 +1172,11 @@ footer {
     .main_grid {
         grid-template-rows: fit-content(1000px) 200px 200px;
     }
+
     .memo {
         grid-column-end: 3;
     }
+
     .reminder {
         grid-column-start: 1;
         grid-row-start: 3;

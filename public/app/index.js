@@ -28,6 +28,12 @@ const add_note_text = document.getElementById("add_note_text");
 const add_note_subject = document.getElementById("add_note_subject");
 const add_note_submit = document.getElementById("add_note_submit");
 
+const edit_note_button = document.getElementsByClassName("edit_note");
+const edit_note_modal = document.getElementsByClassName("edit_note_popup")[0];
+const edit_note_text = document.getElementById("edit_note_text");
+const edit_note_subject = document.getElementById("edit_note_subject");
+const edit_note_submit = document.getElementById("edit_note_submit");
+
 const add_memo_button = document.getElementsByClassName("add_memo");
 const add_memo_modal = document.getElementsByClassName("add_memo_popup")[0];
 const add_memo_textarea = document.getElementById("add_memo_text");
@@ -346,6 +352,7 @@ blur_bg.addEventListener("click", function (e) {
         add_note_modal.className = "add_note_popup closed";
         add_memo_modal.className = "add_memo_popup closed";
         add_reminder_modal.className = "add_reminder_popup closed";
+        edit_note_modal.className = "edit_note_popup closed";
     }
 
 })
@@ -422,6 +429,24 @@ add_note_submit.addEventListener("click", function () {
     })
 })
 
+// Edit note
+edit_note_submit.addEventListener("click", function () {
+    var uid = firebase.auth().currentUser.uid;
+    var date = date_picker.toString("YYYYMMDD");
+
+    var subject = edit_note_subject.value;
+    var content = edit_note_text.value;
+
+    database.ref('calendar/' + uid + '/' + date + '/note/' + selectedIdx).set({'subject': subject, 'content': content}).then(() => {
+        load();
+
+        blur_bg.className = "blur_filter";
+        edit_note_modal.className = "edit_note_popup closed";
+    }).catch((error) => {
+        console.error(`Error while editing note (setData) :: ${error.code} : ${error.message}`);
+    });
+});
+
 // Add memo
 add_memo_submit.addEventListener("click", function () {
     var date = date_picker.toString("YYYYMMDD");
@@ -430,8 +455,8 @@ add_memo_submit.addEventListener("click", function () {
     database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
         load();
 
-        blur_bg.className = "blur_filter"
-        add_memo_modal.className = "add_note_popup closed"
+        blur_bg.className = "blur_filter";
+        add_memo_modal.className = "add_note_popup closed";
     }).catch((error) => {
         console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
     })
@@ -454,7 +479,13 @@ add_reminder_submit.addEventListener("click", function () {
 
 // Context Menu
 contextmenu_edit.addEventListener("click", function () {
-    // Edit
+    // Open Edit Popup
+    blur_bg.className = "blur_filter blur";
+    edit_note_modal.className = "edit_note_popup open";
+
+    // Set default value
+    edit_note_text.value = document.getElementsByClassName("notes_container")[0].getElementsByClassName("note_content")[selectedIdx].innerText;
+    edit_note_subject.value = document.getElementsByClassName("notes_container")[0].getElementsByClassName("note_profile")[selectedIdx].innerText;
 });
 
 contextmenu_copy.addEventListener("click", function () {
@@ -462,7 +493,20 @@ contextmenu_copy.addEventListener("click", function () {
 });
 
 contextmenu_delete.addEventListener("click", function () {
-    // Delete
+    if(confirm("삭제하시겠습니까?")) {
+        // Retrive Data from DB
+        database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.toString("YYYYMMDD") + '/note').get().then((snapshot) => {
+            var originalData = snapshot.val();
+            originalData.splice(selectedIdx, 1);
+            database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.toString("YYYYMMDD") + '/note').set(originalData).then(() => {
+                load();
+            }).catch((error) => {
+                console.error(`Error while deleting note (setData) :: ${error.code} : ${error.message}`);
+            });
+        }).catch((error) => {
+            console.error(`Error while deleting note (fetchData) :: ${error.code} : ${error.message}`);
+        });
+    }
 })
 
 document.addEventListener("click", function (event) {
