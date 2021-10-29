@@ -92,7 +92,7 @@
 		}
 
 		.nav_hamburger {
-			width: 60px;
+			width: 80px;
 			height: 40px;
 			min-width: 40px;
 			overflow: hidden;
@@ -140,13 +140,19 @@
 			font-size: 25px;
 		}
 
-		.nav_ade {
-			width: 60px;
-			height: 40px;
-			background-image: url(https://studia.blue/images/logo/logo_long_white.png);
-			background-size: 50px;
-			background-repeat: no-repeat;
-			background-position: center;
+		.nav_app {
+			box-sizing: content-box;
+			width: 80px;
+			height: 35px;
+			border-radius: 10px;
+			border: 2px solid white;
+			color: white;
+			text-decoration: none;
+			text-align: center;
+			line-height: 35px;
+			font-size: 17px;
+			font-family: 'Noto Sans KR', sans-serif;
+			margin-right: 5px;
 		}
 
 		.temp {
@@ -291,6 +297,11 @@
 		}
 
 		@media screen and (max-width: 400px) {
+			.nav_app,
+			.nav_hamburger {
+				width: 60px;
+			}
+
 			.welcome_text h1 {
 				font-size: 40px;
 
@@ -342,7 +353,7 @@
 			</div>
 		</button>
 		<a class="nav_home" href="https://studia.blue/">studia</a>
-		<a class="nav_ade" href="https://studia.blue/about/"></a>
+		<a class="nav_app" href="https://studia.blue/app/">앱 열기</a>
 	</div>
 
 	<div id="sidenav">

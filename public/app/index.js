@@ -513,5 +513,4 @@ document.addEventListener("click", function (event) {
     if (!(event.target == contextmenu || event.target.className == "note_more" || event.target.className == "fas fa-ellipsis-v")) {
         contextmenu.hidden = true;
     }
-
-})
+});

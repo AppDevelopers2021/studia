@@ -62,7 +62,7 @@ body {
 }
 
 .nav_hamburger {
-    width: 60px;
+    width: 80px;
     height: 40px;
     min-width: 40px;
     overflow: hidden;
@@ -110,13 +110,19 @@ body {
     font-size: 25px;
 }
 
-.nav_ade {
-    width: 60px;
-    height: 40px;
-    background-image: url(https://studia.blue/images/logo/logo_long_white.png);
-    background-size: 50px;
-    background-repeat: no-repeat;
-    background-position: center;
+.nav_app {
+    box-sizing: content-box;
+    width: 80px;
+    height: 35px;
+    border-radius: 10px;
+    border: 2px solid var(--navbar-text-color);
+    color: var(--navbar-text-color);
+    text-decoration: none;
+    text-align: center;
+    line-height: 35px;
+    font-size: 17px;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-right: 5px;
 }
 
 .temp {
@@ -1169,6 +1175,10 @@ footer {
 
 /* When on Mobile */
 @media screen and (max-width: 400px) {
+    .nav_app, .nav_hamburger {
+        width: 60px;
+    }
+
     .main_grid {
         grid-template-rows: fit-content(1000px) 200px 200px;
     }
