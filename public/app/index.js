@@ -22,6 +22,9 @@ const login_modal = document.getElementsByClassName("login_popup")[0];
 const login_button = document.getElementById("login_button");
 const login_google = document.getElementById("login_with_google");
 
+const logout_button = document.getElementById("logout_button");
+const change_pw_button = document.getElementById("change_pw_button");
+
 const add_note_button = document.getElementsByClassName("add_note");
 const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
 const add_note_text = document.getElementById("add_note_text");
@@ -97,6 +100,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         // User already signed in
         // Load calendar data
         load();
+
+        // Show user email in my accounts
+        document.getElementById("account_email").innerText = user.email;
     } else {
         // User needs login
         // Show login modal
@@ -210,6 +216,16 @@ login_google.addEventListener("click", function () {
             console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);
         })
 })
+
+// Event listeners for logout
+logout_button.addEventListener("click", function () {
+    firebase.auth().signOut()
+});
+
+// Change password
+change_pw_button.addEventListener("click", function () {
+    location.href = "https://studia.blue/iforgot";
+});
 
 // Change date when swipe
 function changeDate(isSwipeDirectionRight) {
