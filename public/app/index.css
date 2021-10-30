@@ -130,6 +130,7 @@ body {
     opacity: 0;
     transition: .3s;
     transform: translate(0, -10px);
+    transition-delay: .3s;
 }
 
 .nav_user_popup::after {
@@ -145,6 +146,7 @@ body {
     visibility: visible;
     opacity: 1;
     transform: translate(0, 0);
+    transition-delay: 0s;
 }
 
 .nav_user_popup_title {
