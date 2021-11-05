@@ -341,6 +341,7 @@ body {
 
 .note_profile {
     width: 30px;
+    min-width: 30px;
     height: 30px;
     font-size: 12px;
     line-height: 30px;

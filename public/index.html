@@ -23,7 +23,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -325,9 +325,16 @@
 			position: relative;
 		}
 
+		.white-padding {
+			width: 100%;
+			height: 200px;
+			background-color: white;
+		}
+
 		.slide {
 			width: 100%;
 			background-color: white;
+			position: relative;
 		}
 
 		.slide h2 {
@@ -335,8 +342,88 @@
 			padding: 0;
 		}
 
+		.slide h2>span {
+			color: var(--theme-color);
+		}
+
 		.slide-one {
-			padding-top: 200px;
+			background-color: #eee;
+			height: 600px;
+		}
+
+		.slide-one h2 {
+			font-size: 50px;
+			font-family: 'Noto Sans KR', sans-serif;
+			color: black;
+			margin-left: 50px;
+		}
+
+		.slide-one-img {
+			width: 250px;
+			height: 600px;
+			background-image: url('./images/mainpage-images/slideimg/slideimg1.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			margin-left: 20px;
+		}
+
+		.slide-two {
+			background-color: white;
+			height: 400px;
+			overflow: hidden;
+		}
+
+		.slide-two h2 {
+			font-size: 50px;
+			font-family: 'Noto Sans KR', sans-serif;
+			color: black;
+
+			position: absolute;
+			top: 150px;
+			right: 400px;
+		}
+
+		.slide-two-img {
+			width: 350px;
+			height: 400px;
+			background-image: url('./images/mainpage-images/slideimg/slideimg2.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+
+			position: absolute;
+			bottom: -30px;
+			right: 20px;
+		}
+
+		.slide-three {
+			background-color: #eee;
+			height: 400px;
+			overflow: hidden;
+		}
+
+		.slide-three h2 {
+			font-size: 50px;
+			font-family: 'Noto Sans KR', sans-serif;
+			color: black;
+
+			position: absolute;
+			top: 130px;
+			left: 400px;
+		}
+
+		.slide-three-img {
+			width: 300px;
+			height: 400px;
+			background-image: url('./images/mainpage-images/slideimg/slideimg3.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+
+			position: absolute;
+			top: -30px;
+			left: 20px;
 		}
 
 		footer {
@@ -380,7 +467,9 @@
 		}
 
 		@media screen and (max-width: 768px) {
-			.nav_app, .nav_hamburger {
+
+			.nav_app,
+			.nav_hamburger {
 				width: 60px;
 			}
 
@@ -444,22 +533,19 @@
 			</div>
 			<div class="main">
 				<!-- Main Content -->
+				<div class="white-padding"></div>
 				<div class="section-main">
-					<div class="slide slide-one">
-						<h2>하루 한 번 정리로 <span>수업 내용을 복습하세요</span></h2>
+					<div class="slide slide-one vertical">
 						<div class="slide-one-img"></div>
+						<h2>하루 한 번 정리로<br>수업 내용을 <span>복습하세요</span></h2>
 					</div>
 					<div class="slide slide-two">
-						<h2>이전에 배운 내용을 찾아보세요</h2>
+						<h2>이전에 배운 내용을 <span>찾아보세요</span></h2>
 						<div class="slide-two-img"></div>
 					</div>
 					<div class="slide slide-three">
-						<h2>나만의 노트를 공유하세요</h2>
+						<h2>나만의 노트를 <span>공유하세요</span></h2>
 						<div class="slide-three-img"></div>
-					</div>
-					<div class="slide slide-four">
-						<h2>알림장도 필요없어요.</h2>
-						<div class="slide-four-img"></div>
 					</div>
 				</div>
 
@@ -492,6 +578,7 @@
 		const sidenav = document.getElementById("sidenav");
 		const close_nav_button = document.getElementById("close_nav");
 
+		// Hamburger Menu
 		hamburger.addEventListener("click", function () {
 			hamburger.classList.toggle("bar_open");
 			sidenav.classList.toggle("side_open");
@@ -501,7 +588,7 @@
 			sidenav.className = "";
 		})
 
-		// Anim
+		// Animation
 		window.onload = function () {
 			document.getElementById("intro").classList.add("load");
 		}
