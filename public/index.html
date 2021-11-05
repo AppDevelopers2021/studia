@@ -40,11 +40,13 @@
 	<style>
 		:root {
 			--theme-color: #2291FF;
+			--bg-color: #FFFFFF;
+			--text-color: #000000;
+			--slide-bg-color: #EEEEEE;
 			--navbar-text-color: #FFFFFF;
 			--sidenav-bg-color: #111111;
 			--footer-bg-color: #EEEEEE;
 			--footer-text-color: #555555;
-			--plain-text-color: #000000;
 			--error-text-color: #FF3120;
 		}
 
@@ -118,7 +120,7 @@
 			width: 20px;
 			height: 3px;
 			border-radius: 1px;
-			background-color: white;
+			background-color: var(--navbar-text-color);
 			margin: 4px 0;
 			transition: 0.4s;
 		}
@@ -145,7 +147,7 @@
 
 		.nav_home {
 			font-family: 'Courgette', cursive;
-			color: white;
+			color: var(--navbar-text-color);
 			text-decoration: none;
 			font-size: 25px;
 		}
@@ -223,7 +225,7 @@
 		}
 
 		.body_wrap {
-			background-color: white;
+			background-color: var(--bg-color);
 			width: 100%;
 			min-height: 100%;
 			margin-bottom: -200px;
@@ -231,13 +233,13 @@
 
 		.body {
 			padding-bottom: 200px;
-			background-color: white;
+			background-color: var(--bg-color);
 		}
 
 		.intro {
 			width: 100%;
-			height: 100vh;
-			background-color: white;
+			height: 110vh;
+			background-color: var(--bg-color);
 
 			position: relative;
 		}
@@ -250,7 +252,7 @@
 			width: 200px;
 			text-align: center;
 			margin: 0 auto;
-			color: var(--theme-color);
+			color: #2291FF;
 			font-family: 'Courgette', cursive;
 			font-size: 50px;
 
@@ -267,7 +269,7 @@
 			right: 0;
 			width: 400px;
 			margin: 0 auto !important;
-			color: black;
+			color: var(--text-color);
 			font-family: 'Noto Sans KR', sans-serif;
 			font-size: 40px;
 			text-align: center;
@@ -294,7 +296,7 @@
 			top: 0;
 			left: 0;
 			width: 100vw;
-			height: 100vh;
+			height: 110vh;
 		}
 
 		.intro_main_image {
@@ -306,34 +308,34 @@
 		.intro_main_title {
 			text-align: center;
 			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 90px;
+			font-size: 10vw;
 			margin: 0;
 			position: relative;
 		}
 
 		.intro_hide {
 			width: 100%;
-			background-color: white;
+			background-color: var(--bg-color);
 			position: relative;
-			margin-top: 100vh;
+			margin-top: 110vh;
 		}
 
 		.main {
 			width: 100%;
 			height: 10000px;
-			background-color: white;
+			background-color: var(--bg-color);
 			position: relative;
 		}
 
 		.white-padding {
 			width: 100%;
 			height: 200px;
-			background-color: white;
+			background-color: var(--bg-color);
 		}
 
 		.slide {
 			width: 100%;
-			background-color: white;
+			background-color: var(--bg-color);
 			position: relative;
 		}
 
@@ -344,17 +346,18 @@
 
 		.slide h2>span {
 			color: var(--theme-color);
+			display: inline-block;
 		}
 
 		.slide-one {
-			background-color: #eee;
+			background-color: var(--slide-bg-color);
 			height: 600px;
 		}
 
 		.slide-one h2 {
 			font-size: 50px;
 			font-family: 'Noto Sans KR', sans-serif;
-			color: black;
+			color: var(--text-color);
 			margin-left: 50px;
 		}
 
@@ -369,7 +372,7 @@
 		}
 
 		.slide-two {
-			background-color: white;
+			background-color: var(--bg-color);
 			height: 400px;
 			overflow: hidden;
 		}
@@ -377,11 +380,12 @@
 		.slide-two h2 {
 			font-size: 50px;
 			font-family: 'Noto Sans KR', sans-serif;
-			color: black;
+			color: var(--text-color);
 
 			position: absolute;
 			top: 150px;
 			right: 400px;
+			margin-left: 20px;
 		}
 
 		.slide-two-img {
@@ -398,7 +402,7 @@
 		}
 
 		.slide-three {
-			background-color: #eee;
+			background-color: var(--slide-bg-color);
 			height: 400px;
 			overflow: hidden;
 		}
@@ -406,7 +410,7 @@
 		.slide-three h2 {
 			font-size: 50px;
 			font-family: 'Noto Sans KR', sans-serif;
-			color: black;
+			color: var(--text-color);
 
 			position: absolute;
 			top: 130px;
@@ -453,6 +457,9 @@
 				--theme-color: #1871CA;
 				--footer-bg-color: #333;
 				--footer-text-color: #999;
+				--bg-color: #111;
+				--text-color: #FFFFFF;
+				--slide-bg-color: #222;
 			}
 
 			.body_wrap {
@@ -483,12 +490,71 @@
 				top: 245px;
 			}
 
-			.intro_main_title {
-				font-size: 40px;
-			}
+		
 
 			.intro_main_image {
-				content: url("./images/mainpage-images/studia_mobile.jpg");
+				content: url("./images/mainpage-images/studia_mobile.png");
+			}
+
+			.slide h2 {
+				font-size: 30px !important;
+			}
+
+			.slide-one {
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 800px;
+			}
+
+			.slide-one-img {
+				height: 500px;
+				margin-left: 0;
+			}
+
+			.slide-one h2 {
+				font-size: 30px;
+				margin-left: 0;
+				text-align: center;
+			}
+
+			.slide-two {
+				height: 530px;
+			}
+
+			.slide-two-img {
+				width: 100%;
+				height: 410px;
+				bottom: -20px;
+				left: 0;
+			}
+
+			.slide-two h2 {
+				font-size: 30px;
+				width: 100%;
+				text-align: center;
+				top: 50px;
+				right: 0;
+			}
+
+			.slide-three {
+				height: 570px;
+			}
+
+			.slide-three-img {
+				width: 100%;
+				height: 480px;
+				top: -20px;
+				left: 0;
+			}
+
+			.slide-three h2 {
+				font-size: 30px;
+				width: 100%;
+				text-align: center;
+				top: auto;
+				bottom: 40px;
+				left: 0;
 			}
 		}
 	</style>
