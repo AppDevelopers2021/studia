@@ -13,17 +13,29 @@ const navbar = document.getElementById("navbar");
 const sidenav = document.getElementById("sidenav");
 const close_nav_button = document.getElementById("close_nav");
 const contextmenu = document.getElementById("contextmenu");
+const contextmenu_edit = document.getElementById("context_menu_edit");
+const contextmenu_copy = document.getElementById("context_menu_copy");
+const contextmenu_delete = document.getElementById("context_menu_delete");
 const blur_bg = document.getElementById("blur_bg");
 
 const login_modal = document.getElementsByClassName("login_popup")[0];
 const login_button = document.getElementById("login_button");
 const login_google = document.getElementById("login_with_google");
 
+const logout_button = document.getElementById("logout_button");
+const change_pw_button = document.getElementById("change_pw_button");
+
 const add_note_button = document.getElementsByClassName("add_note");
 const add_note_modal = document.getElementsByClassName("add_note_popup")[0];
 const add_note_text = document.getElementById("add_note_text");
 const add_note_subject = document.getElementById("add_note_subject");
 const add_note_submit = document.getElementById("add_note_submit");
+
+const edit_note_button = document.getElementsByClassName("edit_note");
+const edit_note_modal = document.getElementsByClassName("edit_note_popup")[0];
+const edit_note_text = document.getElementById("edit_note_text");
+const edit_note_subject = document.getElementById("edit_note_subject");
+const edit_note_submit = document.getElementById("edit_note_submit");
 
 const add_memo_button = document.getElementsByClassName("add_memo");
 const add_memo_modal = document.getElementsByClassName("add_memo_popup")[0];
@@ -39,6 +51,7 @@ const date_forward_button = document.getElementById("date_forward");
 const date_backward_button = document.getElementById("date_back");
 
 var database = firebase.database();
+var selectedIdx;
 
 hamburger.addEventListener("click", function () {
     hamburger.classList.toggle("bar_open");
@@ -87,6 +100,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         // User already signed in
         // Load calendar data
         load();
+
+        // Show user email in my accounts
+        document.getElementById("account_email").innerText = user.email;
     } else {
         // User needs login
         // Show login modal
@@ -201,6 +217,16 @@ login_google.addEventListener("click", function () {
         })
 })
 
+// Event listeners for logout
+logout_button.addEventListener("click", function () {
+    firebase.auth().signOut()
+});
+
+// Change password
+change_pw_button.addEventListener("click", function () {
+    location.href = "https://studia.blue/iforgot";
+});
+
 // Change date when swipe
 function changeDate(isSwipeDirectionRight) {
     var temp_date = new Date(date_picker.toString('YYYY-MM-DD'));
@@ -227,14 +253,6 @@ date_backward_button.addEventListener("click", () => {
     swiper.slidePrev();
     changeDate(false);
 });
-
-// Context menu event listener
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-    contextmenu.hidden = false;
-    contextmenu.style.top = event.pageY + 'px';
-    contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
-}, false);
 
 // Parse JSON input and display
 function parseJSON(json) {
@@ -284,6 +302,7 @@ function parseJSON(json) {
                 var note_item = note_container.getElementsByClassName('note_item');
                 var note_profile = note_container.getElementsByClassName('note_profile');
                 var note_content = note_container.getElementsByClassName('note_content');
+                var note_more = note_container.getElementsByClassName('note_more');
                 note_container.innerHTML += '<div class="note_item"><div class="note_profile"></div><p class="note_content"></p><button class="note_more"><i class="fas fa-ellipsis-v"></i></button></div>';
                 note_profile[note_profile.length - 1].innerText = notes_to_insert[j].subject;
                 note_profile[note_profile.length - 1].setAttribute("data-subject", notes_to_insert[j].subject)
@@ -291,6 +310,29 @@ function parseJSON(json) {
                 note_item[note_content.length - 1].setAttribute("data-index", j)
             }
         }
+    }
+
+    // Add Event Listener
+    var note_more = document.getElementsByClassName("note_more");
+    var note_item = document.getElementsByClassName("note_item");
+    for (var i = 0; i < note_more.length; i++) {
+        note_more[i].addEventListener('click', function (event) {
+            contextmenu.hidden = false;
+            contextmenu.style.top = event.currentTarget.getBoundingClientRect().top + 'px';
+            contextmenu.style.left = (event.currentTarget.getBoundingClientRect().left - 130) + 'px';
+            contextmenu.style.right = "auto";
+            selectedIdx = event.currentTarget.parentElement.getAttribute("data-index");
+        });
+    }
+    for (var i = 0; i < note_item.length; i++) {
+        note_item[i].addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+            contextmenu.hidden = false;
+            contextmenu.style.top = event.pageY + 'px';
+            contextmenu.style.right = (window.innerWidth - event.pageX - 130) + 'px';
+            contextmenu.style.left = "auto";
+            selectedIdx = event.currentTarget.getAttribute("data-index");
+        }, false);
     }
 }
 
@@ -326,6 +368,7 @@ blur_bg.addEventListener("click", function (e) {
         add_note_modal.className = "add_note_popup closed";
         add_memo_modal.className = "add_memo_popup closed";
         add_reminder_modal.className = "add_reminder_popup closed";
+        edit_note_modal.className = "edit_note_popup closed";
     }
 
 })
@@ -402,6 +445,24 @@ add_note_submit.addEventListener("click", function () {
     })
 })
 
+// Edit note
+edit_note_submit.addEventListener("click", function () {
+    var uid = firebase.auth().currentUser.uid;
+    var date = date_picker.toString("YYYYMMDD");
+
+    var subject = edit_note_subject.value;
+    var content = edit_note_text.value;
+
+    database.ref('calendar/' + uid + '/' + date + '/note/' + selectedIdx).set({'subject': subject, 'content': content}).then(() => {
+        load();
+
+        blur_bg.className = "blur_filter";
+        edit_note_modal.className = "edit_note_popup closed";
+    }).catch((error) => {
+        console.error(`Error while editing note (setData) :: ${error.code} : ${error.message}`);
+    });
+});
+
 // Add memo
 add_memo_submit.addEventListener("click", function () {
     var date = date_picker.toString("YYYYMMDD");
@@ -410,8 +471,8 @@ add_memo_submit.addEventListener("click", function () {
     database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
         load();
 
-        blur_bg.className = "blur_filter"
-        add_memo_modal.className = "add_note_popup closed"
+        blur_bg.className = "blur_filter";
+        add_memo_modal.className = "add_note_popup closed";
     }).catch((error) => {
         console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
     })
@@ -431,3 +492,41 @@ add_reminder_submit.addEventListener("click", function () {
         console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
     })
 })
+
+// Context Menu
+contextmenu_edit.addEventListener("click", function () {
+    // Open Edit Popup
+    blur_bg.className = "blur_filter blur";
+    edit_note_modal.className = "edit_note_popup open";
+
+    // Set default value
+    edit_note_text.value = document.getElementsByClassName("notes_container")[0].getElementsByClassName("note_content")[selectedIdx].innerText;
+    edit_note_subject.value = document.getElementsByClassName("notes_container")[0].getElementsByClassName("note_profile")[selectedIdx].innerText;
+});
+
+contextmenu_copy.addEventListener("click", function () {
+    navigator.clipboard.writeText(document.getElementsByClassName("notes_container")[0].getElementsByClassName("note_content")[selectedIdx].innerText);
+});
+
+contextmenu_delete.addEventListener("click", function () {
+    if(confirm("삭제하시겠습니까?")) {
+        // Retrive Data from DB
+        database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.toString("YYYYMMDD") + '/note').get().then((snapshot) => {
+            var originalData = snapshot.val();
+            originalData.splice(selectedIdx, 1);
+            database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.toString("YYYYMMDD") + '/note').set(originalData).then(() => {
+                load();
+            }).catch((error) => {
+                console.error(`Error while deleting note (setData) :: ${error.code} : ${error.message}`);
+            });
+        }).catch((error) => {
+            console.error(`Error while deleting note (fetchData) :: ${error.code} : ${error.message}`);
+        });
+    }
+})
+
+document.addEventListener("click", function (event) {
+    if (!(event.target == contextmenu || event.target.className == "note_more" || event.target.className == "fas fa-ellipsis-v")) {
+        contextmenu.hidden = true;
+    }
+});

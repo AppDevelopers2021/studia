@@ -53,6 +53,8 @@ signup_button.addEventListener('click', function () {
                     .then(() => {
                         // Verification Email Sent.
                         loader.classList.remove("loading");
+
+                        location.href = "https://studia.blue/welcome/email"
                     }).catch((error) => {
                         // Error while sending email
                         loader.classList.remove("loading");
@@ -100,6 +102,8 @@ signup_google.addEventListener("click", function () {
         .then(() => {
             // Signed up successfully
             loader.classList.remove("loading");
+
+            location.href = "https://studia.blue/welcome/google"
         }).catch((error) => {
             loader.classList.remove("loading");
             console.error(`Error while Google Auth :: ${error.code} : ${error.message}`);

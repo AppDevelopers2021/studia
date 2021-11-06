@@ -6,24 +6,24 @@
 	<meta charset="UTF-8">
 
 	<noscript>
-		<meta http-equiv="refresh" content="0; url=https://studia-kr.web.app/nojs/">
+		<meta http-equiv="refresh" content="0; url=https://studia.blue/nojs/">
 	</noscript>
 
 	<!--Favicon Styles-->
-	<link rel="apple-touch-icon" sizes="180x180" href="https://studia-kr.web.app/images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="https://studia-kr.web.app/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="https://studia-kr.web.app/images/favicon-16x16.png">
-	<link rel="manifest" href="https://studia-kr.web.app/images/site.webmanifest">
-	<link rel="mask-icon" href="https://studia-kr.web.app/images/safari-pinned-tab.svg" color="#2192ff">
-	<link rel="shortcut icon" href="https://studia-kr.web.app/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://studia.blue/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://studia.blue/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://studia.blue/images/favicon-16x16.png">
+	<link rel="manifest" href="https://studia.blue/images/site.webmanifest">
+	<link rel="mask-icon" href="https://studia.blue/images/safari-pinned-tab.svg" color="#2192ff">
+	<link rel="shortcut icon" href="https://studia.blue/images/favicon.ico">
 	<meta name="msapplication-TileColor" content="#2192ff">
-	<meta name="msapplication-config" content="https://studia-kr.web.app/images/browserconfig.xml">
+	<meta name="msapplication-config" content="https://studia.blue/images/browserconfig.xml">
 	<meta name="theme-color" content="#2192ff">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,11 +33,23 @@
 
 	<meta property="og:title" content="스튜디아 - 노트 정리도 스마트하게!">
 	<meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
-	<meta property="og:image" content="https://studia-kr.web.app/images/profile.jpg">
+	<meta property="og:image" content="https://studia.blue/images/profile.jpg">
 
 	<title>스튜디아</title>
 
 	<style>
+		:root {
+			--theme-color: #2291FF;
+			--bg-color: #FFFFFF;
+			--text-color: #000000;
+			--slide-bg-color: #EEEEEE;
+			--navbar-text-color: #FFFFFF;
+			--sidenav-bg-color: #111111;
+			--footer-bg-color: #EEEEEE;
+			--footer-text-color: #555555;
+			--error-text-color: #FF3120;
+		}
+
 		* {
 			box-sizing: border-box;
 		}
@@ -54,7 +66,7 @@
 			width: 100%;
 			margin: 0;
 			padding: 0;
-			background-color: #2291FF;
+			background-color: white;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
@@ -79,12 +91,12 @@
 		#navbar {
 			width: 100%;
 			height: 50px;
-			background-color: #2291FF;
+			background-color: var(--theme-color);
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
-			z-index: 4;
+			z-index: 3;
 
 			position: fixed;
 			top: 0;
@@ -92,7 +104,7 @@
 		}
 
 		.nav_hamburger {
-			width: 60px;
+			width: 80px;
 			height: 40px;
 			min-width: 40px;
 			overflow: hidden;
@@ -108,7 +120,7 @@
 			width: 20px;
 			height: 3px;
 			border-radius: 1px;
-			background-color: white;
+			background-color: var(--navbar-text-color);
 			margin: 4px 0;
 			transition: 0.4s;
 		}
@@ -135,18 +147,24 @@
 
 		.nav_home {
 			font-family: 'Courgette', cursive;
-			color: white;
+			color: var(--navbar-text-color);
 			text-decoration: none;
 			font-size: 25px;
 		}
 
-		.nav_ade {
-			width: 60px;
-			height: 40px;
-			background-image: url(https://studia-kr.web.app/images/logo/logo_long_white.png);
-			background-size: 50px;
-			background-repeat: no-repeat;
-			background-position: center;
+		.nav_app {
+			box-sizing: content-box;
+			width: 80px;
+			height: 35px;
+			border-radius: 10px;
+			border: 2px solid var(--navbar-text-color);
+			color: var(--navbar-text-color);
+			text-decoration: none;
+			text-align: center;
+			line-height: 35px;
+			font-size: 17px;
+			font-family: 'Noto Sans KR', sans-serif;
+			margin-right: 5px;
 		}
 
 		.temp {
@@ -161,7 +179,7 @@
 			height: 100vh;
 			background-color: #111;
 			padding-top: 70px;
-			z-index: 4;
+			z-index: 2;
 			transition: .5s ease;
 			overflow: hidden;
 		}
@@ -207,169 +225,209 @@
 		}
 
 		.body_wrap {
-			background-color: white;
+			background-color: var(--bg-color);
 			width: 100%;
 			min-height: 100%;
 			margin-bottom: -200px;
-			padding: 0;
 		}
 
 		.body {
-			padding: 0;
 			padding-bottom: 200px;
+			background-color: var(--bg-color);
 		}
 
-		.section_intro {
+		.intro {
 			width: 100%;
-			height: 100vh;
+			height: 110vh;
+			background-color: var(--bg-color);
+
 			position: relative;
-			overflow: hidden;
-			background-color: #FFF4BD;
 		}
 
-		.intro_text_container {
+		.intro_logo {
 			position: absolute;
-			top: 20vh;
-			left: 55vw;
-			opacity: 0;
-		}
+			top: 200px;
+			left: 0;
+			right: 0;
+			width: 200px;
+			text-align: center;
+			margin: 0 auto;
+			color: #2291FF;
+			font-family: 'Courgette', cursive;
+			font-size: 50px;
 
-		.section_intro.load .intro_text_container {
-			opacity: 1;
-			transition: 1s;
-			transition-delay: 4s;
+			transition: ease-in-out 1s;
+			transition-delay: 1s;
+
+			transform: translate(0, 40px) scale(1.5);
 		}
 
 		.intro_text {
-			margin: 0;
+			position: absolute;
+			top: 260px;
+			left: 0;
+			right: 0;
+			width: 400px;
+			margin: 0 auto !important;
+			color: var(--text-color);
 			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 4vw;
-			color: black;
+			font-size: 40px;
+			text-align: center;
+			margin: 0 0;
+
+			transition: ease 1s;
+			transition-delay: 1.5s;
+
+			opacity: 0;
+			transform: translate(0, 30px);
 		}
 
-		.ss {
-			transition-timing-function: cubic-bezier(.25, 1.51, .32, 1.02);
-			transition-duration: 2s;
+		.intro.load .intro_logo {
+			transform: none;
 		}
 
-		.studia-ss {
-			background-image: url(https://studia-kr.web.app/images/mainpage-images/screenshots/main.png);
+		.intro.load .intro_text {
+			transform: none;
+			opacity: 1;
+		}
+
+		.intro_sticky {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 110vh;
+		}
+
+		.intro_main_image {
+			width: 100%;
+			position: relative;
+			z-index: 1;
+		}
+
+		.intro_main_title {
+			text-align: center;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 10vw;
+			margin: 0;
+			position: relative;
+		}
+
+		.intro_hide {
+			width: 100%;
+			background-color: var(--bg-color);
+			position: relative;
+			margin-top: 110vh;
+		}
+
+		.main {
+			width: 100%;
+			height: 10000px;
+			background-color: var(--bg-color);
+			position: relative;
+		}
+
+		.white-padding {
+			width: 100%;
+			height: 200px;
+			background-color: var(--bg-color);
+		}
+
+		.slide {
+			width: 100%;
+			background-color: var(--bg-color);
+			position: relative;
+		}
+
+		.slide h2 {
+			margin: 0;
+			padding: 0;
+		}
+
+		.slide h2>span {
+			color: var(--theme-color);
+			display: inline-block;
+		}
+
+		.slide-one {
+			background-color: var(--slide-bg-color);
+			height: 600px;
+		}
+
+		.slide-one h2 {
+			font-size: 50px;
+			font-family: 'Noto Sans KR', sans-serif;
+			color: var(--text-color);
+			margin-left: 50px;
+		}
+
+		.slide-one-img {
+			width: 250px;
+			height: 600px;
+			background-image: url('./images/mainpage-images/slideimg/slideimg1.png');
+			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
-			background-size: contain;
+			margin-left: 20px;
+		}
 
-			width: 800px;
-			height: 600px;
+		.slide-two {
+			background-color: var(--bg-color);
+			height: 400px;
+			overflow: hidden;
+		}
+
+		.slide-two h2 {
+			font-size: 50px;
+			font-family: 'Noto Sans KR', sans-serif;
+			color: var(--text-color);
 
 			position: absolute;
-			bottom: -800px;
-			left: -900px;
-			z-index: 2;
-
-			transition-delay: 1s;
-			will-change: bottom, left;
+			top: 150px;
+			right: 400px;
+			margin-left: 20px;
 		}
 
-		.section_intro.load .studia-ss {
-			bottom: -90px;
-			left: -60px;
-		}
-
-		.devtools-ss {
-			background-image: url(https://studia-kr.web.app/images/mainpage-images/screenshots/devtools.png);
+		.slide-two-img {
+			width: 350px;
+			height: 400px;
+			background-image: url('./images/mainpage-images/slideimg/slideimg2.png');
+			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
-			background-size: contain;
-
-			width: 550px;
-			height: 600px;
 
 			position: absolute;
-			bottom: -600px;
-			left: 200px;
-			z-index: 3;
-
-			transition-delay: .5s;
-			will-change: bottom, left;
+			bottom: -30px;
+			right: 20px;
 		}
 
-		.section_intro.load .devtools-ss {
-			bottom: -200px;
+		.slide-three {
+			background-color: var(--slide-bg-color);
+			height: 400px;
+			overflow: hidden;
+		}
+
+		.slide-three h2 {
+			font-size: 50px;
+			font-family: 'Noto Sans KR', sans-serif;
+			color: var(--text-color);
+
+			position: absolute;
+			top: 130px;
 			left: 400px;
 		}
 
-		.help-ss {
-			background-image: url(https://studia-kr.web.app/images/mainpage-images/screenshots/help.png);
+		.slide-three-img {
+			width: 300px;
+			height: 400px;
+			background-image: url('./images/mainpage-images/slideimg/slideimg3.png');
+			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
-			background-size: contain;
-
-			width: 800px;
-			height: 600px;
 
 			position: absolute;
-			top: -100px;
-			left: -800px;
-			z-index: 1;
-
-			transition-delay: .8s;
-			will-change: top, left;
-		}
-
-		.section_intro.load .help-ss {
-			top: max(90px, calc(100vh - 800px));
-			left: -150px;
-		}
-
-		.section_sticky_container {
-			width: 100%;
-			height: 1500px;
-
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			justify-content: center;
-		}
-
-		.section_sticky_side {
-			width: 50%;
-			height: 100vh;
-			position: sticky;
-			top: 0;
-
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.section_sticky_icon {
-			font-size: 120px;
-			margin: 0;
-		}
-
-		.section_sticky_header {
-			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 50px;
-			margin: 0;
-		}
-
-		.section_sticky_desc {
-			font-family: 'Nanum Gothic', sans-serif;
-			font-size: 15px;
-			margin: 0;
-		}
-
-		.section_scroll_area {
-			width: 50%;
-		}
-
-		.section_sticky_web {
-			background-color: #F3D2D0;
-		}
-
-		.section_sticky_app {
-			background-color: #97D6D4;
+			top: -30px;
+			left: 20px;
 		}
 
 		footer {
@@ -378,7 +436,8 @@
 			background-color: #eee;
 			padding-left: 30px;
 			margin-top: -200px;
-			border-bottom: 10px solid #2291FF;
+			border-bottom: 10px solid var(--theme-color);
+			position: relative;
 		}
 
 		.footer_logo {
@@ -394,22 +453,18 @@
 		}
 
 		@media (prefers-color-scheme: dark) {
-			body {
-				background-color: #1871CA;
+			:root {
+				--theme-color: #1871CA;
+				--footer-bg-color: #333;
+				--footer-text-color: #999;
+				--bg-color: #111;
+				--text-color: #FFFFFF;
+				--slide-bg-color: #222;
 			}
 
 			.body_wrap {
 				background-color: black;
 				color: white;
-			}
-
-			#navbar {
-				background-color: #1871CA;
-			}
-
-			footer {
-				background-color: #333;
-				border-color: #1871CA;
 			}
 
 			.footer_logo,
@@ -418,95 +473,89 @@
 			}
 		}
 
-		@media only screen and (min-width: 1800px) {
-			.studia-ss {
-				width: 1200px;
-				height: 1000px;
-				bottom: -1000px;
-				left: -1000px;
+		@media screen and (max-width: 768px) {
+
+			.nav_app,
+			.nav_hamburger {
+				width: 60px;
 			}
 
-			.section_intro.load .studia-ss {
-				left: -100px;
-				bottom: -200px;
-			}
-
-			.devtools-ss {
-				width: 800px;
-				height: 1000px;
-				left: 300px;
-				bottom: -1200px;
-			}
-
-			.section_intro.load .devtools-ss {
-				left: 500px;
-				bottom: -500px;
-			}
-
-			.help-ss {
-				width: 800px;
-				height: 700px;
-				bottom: 600px;
-			}
-
-			.section_intro.load .help-ss {
-				top: auto;
-				bottom: 400px;
-			}
-		}
-
-		@media only screen and (max-width: 1100px) {
-			.section_intro {
-				height: 1000px;
-			}
-
-			.ss {
-				transition: none;
-			}
-
-			.studia-ss,
-			.devtools-ss,
-			.help-ss {
-				will-change: auto;
-			}
-
-			.section_intro.load .studia-ss {
-				bottom: -90px;
-				left: -60px;
-				top: auto;
-				right: auto;
-			}
-
-			.section_intro.load .devtools-ss {
-				bottom: -200px;
-				right: -100px;
-				top: auto;
-				left: auto;
-			}
-
-			.section_intro.load .help-ss {
-				bottom: 100px;
-				left: -150px;
-				top: auto;
-				right: auto;
-			}
-
-			.intro_text_container {
-				top: 130px;
-				left: 50%;
-				transform: translate(-50%, 0);
-				width: 400px;
+			.intro_logo {
+				font-size: 40px;
 			}
 
 			.intro_text {
-				font-size: 45px;
-				width: 100%;
+				font-size: 30px;
+				width: 300px;
+				top: 245px;
+			}
+
+		
+
+			.intro_main_image {
+				content: url("./images/mainpage-images/studia_mobile.png");
+			}
+
+			.slide h2 {
+				font-size: 30px !important;
+			}
+
+			.slide-one {
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 800px;
+			}
+
+			.slide-one-img {
+				height: 500px;
+				margin-left: 0;
+			}
+
+			.slide-one h2 {
+				font-size: 30px;
+				margin-left: 0;
 				text-align: center;
 			}
-		}
 
-		@media only screen and (max-width: 600px) {
-			/**/
+			.slide-two {
+				height: 530px;
+			}
+
+			.slide-two-img {
+				width: 100%;
+				height: 410px;
+				bottom: -20px;
+				left: 0;
+			}
+
+			.slide-two h2 {
+				font-size: 30px;
+				width: 100%;
+				text-align: center;
+				top: 50px;
+				right: 0;
+			}
+
+			.slide-three {
+				height: 570px;
+			}
+
+			.slide-three-img {
+				width: 100%;
+				height: 480px;
+				top: -20px;
+				left: 0;
+			}
+
+			.slide-three h2 {
+				font-size: 30px;
+				width: 100%;
+				text-align: center;
+				top: auto;
+				bottom: 40px;
+				left: 0;
+			}
 		}
 	</style>
 </head>
@@ -520,45 +569,62 @@
 				<div class="bar3"></div>
 			</div>
 		</button>
-		<a class="nav_home" href="https://studia-kr.web.app/">studia</a>
-		<a class="nav_ade" href="https://studia-kr.web.app/about/"></a>
+		<a class="nav_home" href="https://studia.blue/">studia</a>
+		<a class="nav_app" href="https://studia.blue/app/">앱 열기</a>
 	</div>
 
 	<div id="sidenav">
 		<button id="close_nav">&times;</button>
-		<a href="https://studia-kr.web.app/">홈</a>
-		<a href="https://studia-kr.web.app/about/">App Developers 소개</a>
+		<a href="https://studia.blue/">홈</a>
+		<a href="https://studia.blue/about/">App Developers 소개</a>
 		<hr class="nav_devide">
-		<a href="https://studia-kr.web.app/calendar/"><i class="far fa-calendar-check"></i> 내 캘린더</a>
+		<a href="https://studia.blue/app/">내 캘린더</a>
 		<hr class="nav_devide">
-		<a href="https://studia-kr.web.app/help/">도움말</a>
+		<a href="https://studia.blue/help/">도움말</a>
 	</div>
 
 	<div class="body_wrap">
 		<div class="body">
-			<div class="section_intro">
-				<div id="devtools-ss" class="ss devtools-ss"></div>
-				<div id="studia-ss" class="ss studia-ss"></div>
-				<div id="help-ss" class="ss help-ss"></div>
-				<div class="intro_text_container">
-					<h1 class="intro_text">노트 필기의 대혁명.</h1>
-					<a href="" class="open_web"></a>
+			<div class="intro_wrap">
+				<div class="intro_sticky">
+					<div id="intro" class="intro">
+						<span class="intro_logo">studia</span>
+						<h1 class="intro_text">망각 곡선을 극복하는<br>가장 간단한 방법.</h1>
+					</div>
+				</div>
+				<div class="intro_hide">
+					<img class="intro_main_image" src="./images/mainpage-images/studia.png">
+					<h1 class="intro_main_title">노트 필기의 대혁명.</h1>
 				</div>
 			</div>
-			<div class="section_sticky_container section_web">
-				<div class="section_sticky_side section_sticky_web">
-					<p class="section_sticky_icon"><i class="fas fa-globe-americas"></i></p>
-					<h2 class="section_sticky_header">Web</h2>
-					<p class="section_sticky_desc">호환성을 극대화하다.</p>
+			<div class="main">
+				<!-- Main Content -->
+				<div class="white-padding"></div>
+				<div class="section-main">
+					<div class="slide slide-one vertical">
+						<div class="slide-one-img"></div>
+						<h2>하루 한 번 정리로<br>수업 내용을 <span>복습하세요</span></h2>
+					</div>
+					<div class="slide slide-two">
+						<h2>이전에 배운 내용을 <span>찾아보세요</span></h2>
+						<div class="slide-two-img"></div>
+					</div>
+					<div class="slide slide-three">
+						<h2>나만의 노트를 <span>공유하세요</span></h2>
+						<div class="slide-three-img"></div>
+					</div>
 				</div>
-				<div class="section_scroll_area"></div>
-			</div>
-			<div class="section_sticky_container section_app">
-				<div class="section_scroll_area"></div>
-				<div class="section_sticky_side section_sticky_app">
-					<p class="section_sticky_icon"><i class="fas fa-th"></i></p>
-					<h2 class="section_sticky_header">App</h2>
-					<p class="section_sticky_desc">최상의 퍼포먼스.</p>
+
+				<div class="section-ade">
+					<div class="ade-head">
+						<h3>App Developers</h3>
+						<h2>우리는 사용자를 생각합니다.</h2>
+						<div class="ade-grid">
+							<div class="ade-fast"></div>
+							<div class="ade-acces"></div>
+							<div class="ade-lock"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -570,7 +636,6 @@
 			<p class="footer_logo">studia</p>
 			<p class="footer_sosumi">Copyright &copy; 2021 App Developers.<br>All Rights Reserved.</p>
 		</div>
-
 	</footer>
 
 	<script>
@@ -579,6 +644,7 @@
 		const sidenav = document.getElementById("sidenav");
 		const close_nav_button = document.getElementById("close_nav");
 
+		// Hamburger Menu
 		hamburger.addEventListener("click", function () {
 			hamburger.classList.toggle("bar_open");
 			sidenav.classList.toggle("side_open");
@@ -588,33 +654,9 @@
 			sidenav.className = "";
 		})
 
-		// 'Sticky' Navbar
-		var prevScrollpos = window.pageYOffset;
-		window.onscroll = function () {
-			var currentScrollPos = window.pageYOffset;
-			if (prevScrollpos > currentScrollPos) {
-				navbar.style.top = "0";
-			} else {
-				navbar.style.top = "-50px";
-			}
-			prevScrollpos = currentScrollPos;
-		}
-
-		// Anim
+		// Animation
 		window.onload = function () {
-			document.getElementsByClassName("section_intro")[0].classList.add("load")
-		}
-		// Remove will-change
-		const animationElem = [
-			document.getElementById("studia-ss"),
-			document.getElementById("devtools-ss"),
-			document.getElementById("help-ss")
-		];
-		for (var i = 0; i < animationElem.length; i++) {
-			animationElem[i].addEventListener("transitionend", function (event) {
-				event.currentTarget.style.willChange = 'auto'
-				event.currentTarget.style.transition = "none"
-			})
+			document.getElementById("intro").classList.add("load");
 		}
 	</script>
 </body>

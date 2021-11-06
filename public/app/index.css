@@ -110,13 +110,79 @@ body {
     font-size: 25px;
 }
 
-.nav_ade {
-    width: 60px;
-    height: 40px;
-    background-image: url(https://studia-kr.web.app/images/logo/logo_long_white.png);
-    background-size: 50px;
-    background-repeat: no-repeat;
-    background-position: center;
+.nav_user {
+    font-size: 30px;
+    color: var(--navbar-text-color);
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.nav_user_popup {
+    width: 300px;
+    height: 135px;
+    position: absolute;
+    top: 60px;
+    right: 5px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid var(--theme-color);
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    transform: translate(0, -10px);
+    transition-delay: .3s;
+}
+
+.nav_user_popup::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 5%;
+    border: 10px solid;
+    border-color: transparent transparent var(--theme-color) transparent;
+}
+
+.nav_user_wrap:hover .nav_user_popup {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, 0);
+    transition-delay: 0s;
+}
+
+.nav_user_popup_title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 25px;
+    color: black;
+    margin: 5px;
+}
+
+.nav_user_popup_button_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px 5px 5px 5px;
+    gap: 5px;
+}
+
+.nav_user_popup_button {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+    color: black;
+    width: 50%;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#account_email {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    margin: 0 5px;
+    color: #333;
+    background-color: white;
 }
 
 .temp {
@@ -275,14 +341,108 @@ body {
 
 .note_profile {
     width: 30px;
+    min-width: 30px;
     height: 30px;
-    background-color: purple;
-    color: white;
     font-size: 12px;
     line-height: 30px;
     text-align: center;
     margin-right: 10px;
     border-radius: 10px;
+}
+
+.note_profile[data-subject='가정'] {
+    background-color: #18b02b;
+    color: white;
+}
+
+.note_profile[data-subject='과학'] {
+    background-color: #703670;
+    color: white;
+}
+
+.note_profile[data-subject='국어'] {
+    background-color: #e3d434;
+    color: black;
+}
+
+.note_profile[data-subject='기술'] {
+    background-color: #2e8c73;
+    color: white;
+}
+
+.note_profile[data-subject='도덕'] {
+    background-color: #3760f4;
+    color: white;
+}
+
+.note_profile[data-subject='독서'] {
+    background-color: #80b19f;
+    color: white;
+}
+
+.note_profile[data-subject='미술'] {
+    background-color: #ef78e8;
+    color: white;
+}
+
+.note_profile[data-subject='보건'] {
+    background-color: #c46d82;
+    color: white;
+}
+
+.note_profile[data-subject='사회'] {
+    background-color: #489890;
+    color: white;
+}
+
+.note_profile[data-subject='수학'] {
+    background-color: #bddd60;
+    color: black;
+}
+
+.note_profile[data-subject='영어'] {
+    background-color: #be5f0b;
+    color: white;
+}
+
+.note_profile[data-subject='음악'] {
+    background-color: #8223df;
+    color: white;
+}
+
+.note_profile[data-subject='정보'] {
+    background-color: #42e774;
+    color: black;
+}
+
+.note_profile[data-subject='진로'] {
+    background-color: #0bb676;
+    color: white;
+}
+
+.note_profile[data-subject='창체'] {
+    background-color: #ddd;
+    color: black;
+}
+
+.note_profile[data-subject='체육'] {
+    background-color: #82caf6;
+    color: white;
+}
+
+.note_profile[data-subject='환경'] {
+    background-color: #4feb74;
+    color: black;
+}
+
+.note_profile[data-subject='자율'] {
+    background-color: #ddd;
+    color: black;
+}
+
+.note_profile[data-subject='기타'] {
+    background-color: #ddd;
+    color: black;
 }
 
 .note_content {
@@ -714,14 +874,18 @@ footer {
 .login_link {
     width: 100px;
     height: 30px;
+    line-height: 28px;
     background-color: white;
     border: 1px solid white;
     border-radius: 5px;
     font-size: 15px;
     color: #555;
+    text-decoration: none;
+    text-align: center;
     transition: .5s;
     cursor: pointer;
     padding: 0;
+    cursor: pointer;
 }
 
 .login_link_signup {
@@ -742,7 +906,7 @@ footer {
     width: 100%;
     height: 30px;
     background-color: white;
-    background-image: url(https://studia-kr.web.app/app/img/google_login.png);
+    background-image: url(https://studia.blue/app/img/google_login.png);
     background-repeat: no-repeat;
     background-size: 15px;
     background-position: 5px center;
@@ -808,6 +972,12 @@ footer {
     border: 1px solid var(--theme-color);
     border-radius: 3px;
     outline: none;
+
+    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 95% 50%;
+	-moz-appearance: none; 
+	-webkit-appearance: none; 
+	appearance: none;
+    padding: 5px;
 }
 
 #add_note_text {
@@ -837,6 +1007,96 @@ footer {
 }
 
 #add_note_submit:hover {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
+/* Popup for add note */
+.edit_note_popup {
+    width: 80%;
+    max-width: 800px;
+    height: 150px;
+    position: fixed;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--theme-color);
+    border-radius: 10px;
+    z-index: 11;
+    padding: 10px;
+    animation-fill-mode: forwards;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.edit_note_popup.open {
+    top: 50%;
+    display: block;
+    animation: .4s popup ease-out;
+    animation-fill-mode: forwards;
+}
+
+.edit_note_popup.closed {
+    animation: .4s popdown ease-in;
+    animation-fill-mode: forwards;
+}
+
+.edit_note_popup h3 {
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.edit_note_popup_flex {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#edit_note_subject {
+    width: 75px;
+    border: 1px solid var(--theme-color);
+    border-radius: 3px;
+    outline: none;
+
+    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 95% 50%;
+	-moz-appearance: none; 
+	-webkit-appearance: none; 
+	appearance: none;
+    padding: 5px;
+}
+
+#edit_note_text {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .5s;
+}
+
+#edit_note_text:focus {
+    border-color: var(--theme-color);
+}
+
+#edit_note_submit {
+    width: 75px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid var(--theme-color);
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    transition: .3s;
+}
+
+#edit_note_submit:hover {
     background-color: var(--theme-color);
     border-color: var(--theme-color);
     color: white;
@@ -986,27 +1246,20 @@ footer {
     color: white;
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --theme-color: #1871CA;
-        --footer-bg-color: #333;
-        --footer-text-color: #999;
-    }
-}
-
 /* When on Mobile */
-@media screen and (max-width: 400px) {
-    .note_more {
-        opacity: 1;
+@media screen and (max-width: 768px) {
+    .nav_app, .nav_hamburger {
+        width: 60px;
     }
 
     .main_grid {
         grid-template-rows: fit-content(1000px) 200px 200px;
     }
+
     .memo {
         grid-column-end: 3;
     }
+
     .reminder {
         grid-column-start: 1;
         grid-row-start: 3;
@@ -1023,22 +1276,10 @@ footer {
     }
 }
 
-/* When on Mobile */
-@media screen and (max-width: 400px) {
+/* For Touchscreen Devices */
+@media (hover: none) {
     .note_more {
         opacity: 1;
-    }
-
-    .main_grid {
-        grid-template-rows: fit-content(1000px) 200px 200px;
-    }
-    .memo {
-        grid-column-end: 3;
-    }
-    .reminder {
-        grid-column-start: 1;
-        grid-row-start: 3;
-        grid-row-end: 4;
     }
 }
 
