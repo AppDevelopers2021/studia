@@ -491,7 +491,7 @@
 				top: 245px;
 			}
 
-		
+
 
 			.intro_main_image {
 				content: url("./images/mainpage-images/studia_mobile.png");
@@ -640,6 +640,21 @@
 	</footer>
 
 	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBeJDdOCiCPl8dY45RDTZ_Dm6BXGOdsxAc",
+			authDomain: "studia-kr.firebaseapp.com",
+			databaseURL: "https://studia-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "studia-kr",
+			storageBucket: "studia-kr.appspot.com",
+			messagingSenderId: "654717768488",
+			appId: "1:654717768488:web:9145bccc0e7b33fe33361d",
+			measurementId: "G-VNTECBX1XJ"
+		};
+
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
 		const hamburger = document.getElementsByClassName("nav_hamburger")[0];
 		const navbar = document.getElementById("navbar");
 		const sidenav = document.getElementById("sidenav");
