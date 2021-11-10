@@ -1,4 +1,2 @@
-https://studia.blue/index.html
-https://studia.blue/app/index.html
-https://studia.blue/signup/index.html
-https://studia.blue/iforgot/index.html
+https://studia.blue
+https://studia.blue/about
