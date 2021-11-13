@@ -359,32 +359,21 @@
 			sidenav.className = "";
 		})
 
+		document.getElementById("breakout").width = "960";
+		document.getElementById("breakout").height = "640";
+
 		if (window.matchMedia("(max-width: 400px)").matches) {
 			// Mobile
-			document.getElementById("breakout").width = "240";
-			document.getElementById("breakout").height = "180";
+			document.getElementById("breakout").style.width = "240px";
+			document.getElementById("breakout").style.height = "160px";
 
-			var paddleHeight = 5;
-			var paddleWidth = 37.5;
-			var brickWidth = 37.5;
-			var brickHeight = 10;
-			var brickPadding = 5;
-			var brickOffsetTop = 15;
-			var brickOffsetLeft = 15;
-			var ballRadius = 5;
+			var scale=4;
 		} else {
 			// Desktop
-			document.getElementById("breakout").width = "480";
-			document.getElementById("breakout").height = "320";
+			document.getElementById("breakout").style.width = "480px";
+			document.getElementById("breakout").style.height = "320px";
 
-			var paddleHeight = 10;
-			var paddleWidth = 75;
-			var brickWidth = 75;
-			var brickHeight = 20;
-			var brickPadding = 10;
-			var brickOffsetTop = 30;
-			var brickOffsetLeft = 30;
-			var ballRadius = 10;
+			var scale=2;
 		}
 
 		// Breakout Game
@@ -392,13 +381,23 @@
 		var ctx = canvas.getContext("2d");
 		var x = canvas.width / 2;
 		var y = canvas.height - 30;
-		var dx = 2;
-		var dy = -2;
 		var paddleX = (canvas.width - paddleWidth) / 2;
 		var rightPressed = false;
 		var leftPressed = false;
 		var brickRowCount = 5;
 		var brickColumnCount = 3;
+
+
+		var paddleHeight = 20;
+		var paddleWidth = 150;
+		var brickWidth = 150;
+		var brickHeight = 40;
+		var brickPadding = 20;
+		var brickOffsetTop = 60;
+		var brickOffsetLeft = 60;
+		var ballRadius = 20;
+		var dx = 4;
+		var dy = -4;
 
 		var score = 0;
 		var lives = 1;
@@ -412,12 +411,12 @@
 		}
 
 		document.addEventListener("mousemove", mouseMoveHandler, false);
-		document.addEventListener("click", mouseMoveHandler, false);
+		canvas.addEventListener("click", mouseMoveHandler, false);
 
 		function mouseMoveHandler(e) {
 			var relativeX = e.clientX - canvas.offsetLeft;
 			if (relativeX > 0 && relativeX < canvas.width) {
-				paddleX = relativeX - paddleWidth / 2;
+				paddleX = relativeX * scale - paddleWidth / 2;
 			}
 		}
 		function collisionDetection() {
@@ -430,8 +429,8 @@
 							b.status = 0;
 							score++;
 							if (score == brickRowCount * brickColumnCount) {
-								alert("YOU WIN, CONGRATS!");
-								document.location.reload();
+								alert("YOU WIN");
+								location.reload();
 							}
 						}
 					}
@@ -479,20 +478,20 @@
 			collisionDetection();
 
 			if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-				dx = -dx;
+				dx = -dx + (Math.random() - 0.5) * 0.2;
 			}
 			if (y + dy < ballRadius) {
-				dy = -dy;
+				dy = -dy + (Math.random() - 0.5) * 0.2;
 			}
 			else if (y + dy > canvas.height - ballRadius) {
 				if (x > paddleX && x < paddleX + paddleWidth) {
-					dy = -dy;
+					dy = -dy + (Math.random() - 0.5) * 0.2;
 				}
 				else {
 					lives--;
 					if (!lives) {
 						alert("GAME OVER");
-						document.location.reload();
+						location.reload();
 					}
 					else {
 						x = canvas.width / 2;
