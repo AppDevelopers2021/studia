@@ -731,6 +731,9 @@ footer {
     outline: none;
     padding: 5px;
     transition: border-color .5s;
+    appearance: none;
+    background-color: var(--bg-color);
+    -webkit-appearance: none;
 }
 
 .input_text.login_error {
@@ -1000,6 +1003,8 @@ footer {
     border-radius: 3px;
     outline: none;
     transition: border-color .5s;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 #add_note_text:focus {
@@ -1162,6 +1167,8 @@ footer {
     outline: none;
     transition: border-color .5s;
     font-family: 'Noto Sans KR', sans-serif;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 #add_memo_text:focus {
@@ -1234,6 +1241,8 @@ footer {
     outline: none;
     transition: border-color .5s;
     font-family: 'Noto Sans KR', sans-serif;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 #add_reminder_text:focus {

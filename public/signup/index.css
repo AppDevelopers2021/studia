@@ -210,6 +210,8 @@ body {
     outline: none;
     padding: 5px;
     transition: .5s;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .input_text.signup_error {
