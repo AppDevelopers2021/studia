@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="ko">
 
 <head>
 	<meta charset="UTF-8">
@@ -364,7 +364,7 @@
 		.slide-one-img {
 			width: 250px;
 			height: 600px;
-			background-image: url('./images/mainpage-images/slideimg/slideimg1.png');
+			background-image: url('./images/mainpage-images/slideimg/slideimg1.webp');
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -391,7 +391,7 @@
 		.slide-two-img {
 			width: 350px;
 			height: 400px;
-			background-image: url('./images/mainpage-images/slideimg/slideimg2.png');
+			background-image: url('./images/mainpage-images/slideimg/slideimg2.webp');
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -420,7 +420,7 @@
 		.slide-three-img {
 			width: 300px;
 			height: 400px;
-			background-image: url('./images/mainpage-images/slideimg/slideimg3.png');
+			background-image: url('./images/mainpage-images/slideimg/slideimg3.webp');
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -505,7 +505,7 @@
 
 		.download-dropdown-arrow {
 			height: 100%;
-			width: 30px;
+			width: 40px;
 			background-color: var(--theme-color);
 			color: white;
 			font-size: 16px;
@@ -614,7 +614,7 @@
 
 
 			.intro_main_image {
-				content: url("./images/mainpage-images/studia_mobile.png");
+				content: url("./images/mainpage-images/studia_mobile.webp");
 			}
 
 			.slide h2 {
@@ -695,7 +695,7 @@
 
 <body>
 	<div id="navbar">
-		<button class="nav_hamburger center">
+		<button class="nav_hamburger center" aria-label="사이드 패널 열기">
 			<div>
 				<div class="bar1"></div>
 				<div class="bar2"></div>
@@ -726,7 +726,7 @@
 					</div>
 				</div>
 				<div class="intro_hide">
-					<img class="intro_main_image" src="./images/mainpage-images/studia.png">
+					<img class="intro_main_image" src="./images/mainpage-images/studia.webp" alt="STUDIA 앱의 모습">
 					<h1 class="intro_main_title">노트 필기의 대혁명.</h1>
 				</div>
 			</div>
@@ -770,19 +770,23 @@
 				</div>
 
 				<div class="section-download">
-					<img class="section-download-img" src="./images/mainpage-images/products.png">
+					<img class="section-download-img" src="images/mainpage-images/products.webp" alt="STUDIA 앱을 실행 중인 iPhone과 iPad" />
 					<h2>지금 바로 <span>시작하세요!</span></h2>
 					<div class="download-button">
 						<div class="download-split-button">
-							<a href="https://studia.blue/downloads/" class="download-button-default center" id="download-button-default">앱 다운로드</a>
+							<a href="https://studia.blue/downloads/" class="download-button-default center"
+								id="download-button-default">앱 다운로드</a>
 							<div class="download-dropdown">
-								<button class="download-dropdown-arrow center">
+								<button class="download-dropdown-arrow center" aria-label="다운로드 옵션">
 									<i class="fas fa-caret-down"></i>
 								</button>
 								<div class="download-dropdown-content">
-									<a href="https://studia.blue/downloads/#web" class="download-button-browser" href="https://studia.blue/app">브라우저로 계속</a>
-									<a href="https://studia.blue/downloads/#ios" class="download-button-ios" href="https://apps.apple.com">iOS 다운로드</a>
-									<a href="https://studia.blue/downloads/#android" class="download-button-android" href="https://play.google.com">Android 다운로드</a>
+									<a href="https://studia.blue/downloads/#web" class="download-button-browser"
+										href="https://studia.blue/app">브라우저로 계속</a>
+									<a href="https://studia.blue/downloads/#ios" class="download-button-ios"
+										href="https://apps.apple.com">iOS 다운로드</a>
+									<a href="https://studia.blue/downloads/#android" class="download-button-android"
+										href="https://play.google.com">Android 다운로드</a>
 								</div>
 							</div>
 						</div>
