@@ -168,7 +168,6 @@ body {
     justify-content: space-around;
     align-items: center;
     margin: 15px 5px 5px 5px;
-    gap: 5px;
 }
 
 .nav_user_popup_button {
@@ -181,6 +180,10 @@ body {
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;
+}
+
+#logout_button {
+    margin-right: 5px;
 }
 
 #account_email {
@@ -327,7 +330,7 @@ body {
     border: 3px dashed var(--theme-color);
     border-radius: 15px;
     min-height: 250px;
-    padding: 10px;
+    padding: 10px 10px 60px 10px;
     position: relative;
     overflow: hidden;
 }
@@ -1095,6 +1098,9 @@ footer {
     border-radius: 3px;
     outline: none;
     transition: border-color .5s;
+    appearance: none;
+    background-color: var(--bg-color);
+    -webkit-appearance: none;
 }
 
 #edit_note_text:focus {
