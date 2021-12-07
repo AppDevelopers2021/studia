@@ -1,15 +1,3 @@
-:root {
-    --theme-color: #2291FF;
-    --bg-color: #FFFFFF;
-    --text-color: #000000;
-    --slide-bg-color: #EEEEEE;
-    --navbar-text-color: #FFFFFF;
-    --sidenav-bg-color: #111111;
-    --footer-bg-color: #EEEEEE;
-    --footer-text-color: #555555;
-    --error-text-color: #FF3120;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -19,16 +7,14 @@ html {
     width: 100%;
     margin: 0;
     padding: 0;
-
-    scroll-behavior: auto;
 }
 
 body {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: var(--theme-color);
+    background-color: #2291FF;
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -53,7 +39,7 @@ body {
 #navbar {
     width: 100%;
     height: 50px;
-    background-color: var(--theme-color);
+    background-color: #2291FF;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -82,7 +68,7 @@ body {
     width: 20px;
     height: 3px;
     border-radius: 1px;
-    background-color: var(--navbar-text-color);
+    background-color: white;
     margin: 4px 0;
     transition: 0.4s;
 }
@@ -109,7 +95,7 @@ body {
 
 .nav_home {
     font-family: 'Courgette', cursive;
-    color: var(--navbar-text-color);
+    color: white;
     text-decoration: none;
     font-size: 25px;
 }
@@ -119,18 +105,14 @@ body {
     width: 80px;
     height: 35px;
     border-radius: 10px;
-    border: 2px solid var(--navbar-text-color);
-    color: var(--navbar-text-color);
+    border: 2px solid white;
+    color: white;
     text-decoration: none;
     text-align: center;
     line-height: 35px;
     font-size: 17px;
     font-family: 'Noto Sans KR', sans-serif;
     margin-right: 5px;
-}
-
-.temp {
-    height: 10000px;
 }
 
 #sidenav {
@@ -187,140 +169,173 @@ body {
 }
 
 .body_wrap {
-    background-color: var(--bg-color);
-    width: 100%;
-    min-height: 100%;
+    background-color: white;
+    width: 100vw;
+    min-height: 100vh;
     margin-bottom: -200px;
+    top: 0;
+    left: 0;
 }
 
 .body {
     padding-bottom: 200px;
-    background-color: var(--slide-bg-color);
-    padding-top: 50px;
+    margin-top: 50px;
 }
 
-.intro {
+.animarea {
     width: 100%;
-    height: 400px;
-    background-color: var(--slide-bg-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    padding-left: 40px;
-    background-image: url("../images/mainpage-images/slideimg/slideimg2.webp");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right center
+    height: 10000px;
+    display: relative;
 }
 
-.intro-logo {
-    font-family: 'courgette', cursive;
-    color: var(--theme-color);
-    margin: 0;
-    font-size: 30px;
-}
-
-.intro h1 {
-    margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 50px;
-}
-
-.beta {
+#trigger {
+    position: absolute;
     width: 100%;
-    height: auto;
-    background-color: var(--bg-color);
-    padding: 30px 20px;
+    height: 10px;
+    visibility: hidden;
+    top: 700px;
 }
 
-.beta h2 {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 30px;
-    margin: 0;
+.animarea_inner {
+    position: sticky;
+    top: 130px;
+    width: 540px;
+    height: 200px;
+    margin: auto;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(6, 90px);
+    grid-template-rows: repeat(2, 100px);
+    gap: 5px;
 }
 
-fieldset {
-    border: 2px solid var(--text-color);
-    width: 100%;
+.animitem > div {
+    width: 130px;
+    height: 7px;
+    border-radius: 3px;
+    background-color: #eee;
 }
 
-a {
-    text-decoration: underline;
-    color: var(--text-color);
+.cross1 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.logo {
-    font-family: 'Courgette', cursive;
+.cross2 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.buttons {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 20px;
+.cross3 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.email {
-    height: 50px;
-    background-color: var(--theme-color);
-    color: var(--navbar-text-color);
-    text-decoration: none;
-    line-height: 30px;
-    padding: 10px;
-    border-radius: 5px;
-    margin-right: 10px;
+.cross4 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.kakao {
-    height: 50px;
-    background-color: #f9e000;
-    color: var(--text-color);
-    text-decoration: none;
-    line-height: 30px;
-    border-radius: 5px;
-    padding: 10px;
+.cross5 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
+}
+
+.cross6 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
+}
+
+.cross8 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
+}
+
+.cross7 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
+}
+
+.cross10 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
+}
+
+.cross9 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
+}
+
+.cross12 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
+}
+
+.cross11 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
 footer {
     width: 100%;
     height: 200px;
-    background-color: var(--footer-bg-color);
+    background-color: #eee;
     padding-left: 30px;
     margin-top: -200px;
-    border-bottom: 10px solid var(--theme-color);
-    position: relative;
+    border-bottom: 10px solid #2291FF;
 }
 
 .footer_logo {
     font-family: 'Courgette', cursive;
     font-size: 40px;
-    color: var(--footer-text-color);
+    color: #555;
     margin: 0;
     padding: 0;
 }
 
 .footer_sosumi {
-    color: var(--footer-text-color);
+    color: #555;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --theme-color: #1871CA;
-        --footer-bg-color: #333;
-        --footer-text-color: #999;
-        --bg-color: #111;
-        --text-color: #FFFFFF;
-        --slide-bg-color: #222;
+    body {
+        background-color: #1871CA;
     }
 
     .body_wrap {
         background-color: black;
         color: white;
     }
+
+    #navbar {
+        background-color: #1871CA;
+    }
+
+    footer {
+        background-color: #333;
+        border-color: #1871CA;
+    }
+
+    .footer_logo,
+    .footer_sosumi {
+        color: #999;
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 400px) {
+
     .nav_app,
     .nav_hamburger {
         width: 60px;
