@@ -9,6 +9,9 @@
 		<meta http-equiv="refresh" content="0; url=https://studia.blue/nojs/">
 	</noscript>
 
+	<!-- Redirect To App -->
+	<meta http-equiv="refresh" content="3;url=http://studia.blue/app" />
+
 	<!--Favicon Styles-->
 	<link rel="apple-touch-icon" sizes="180x180" href="https://studia.blue/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="https://studia.blue/images/favicon-32x32.png">
@@ -252,20 +255,24 @@
 			text-align: center;
 		}
 
-		.welcome_text h1,
-		h2 {
+		.welcome_text h1, .welcome_text h2, .welcome_text p {
 			font-family: 'Noto Sans KR', sans-serif;
 			margin: 0 0 10px 0;
 		}
 
 		.welcome_text h1 {
 			font-size: 50px;
-
+			margin: 0;
 		}
 
 		.welcome_text h2 {
 			font-size: 25px;
-			margin-bottom: 50px;
+			margin: 0;
+		}
+
+		.welcome_text p {
+			font-size: 15px;
+			margin: 10px 0 50px 0;
 		}
 
 		.paper_plane_svg {
@@ -346,12 +353,7 @@
 
 	<div id="sidenav">
 		<button id="close_nav">&times;</button>
-		<a href="https://studia.blue/">홈</a>
-		<a href="https://studia.blue/about/">App Developers 소개</a>
-		<hr class="nav_devide">
-		<a href="https://studia.blue/app/">내 캘린더</a>
-		<hr class="nav_devide">
-		<a href="https://studia.blue/help/">도움말</a>
+		<script id="replace_sidebar" src="https://studia.blue/sidebar.js"></script>
 	</div>
 
 	<div class="body_wrap">
@@ -376,6 +378,7 @@
 				<div class="welcome_text">
 					<h1>가입 완료!</h1>
 					<h2>구글 계정으로 스튜디아를 더욱 편리하게 사용하세요</h2>
+					<p>앱으로 바로 연결됩니다...</p>
 				</div>
 			</div>
 		</div>

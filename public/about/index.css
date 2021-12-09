@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -45,7 +45,10 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 3;
-    position: relative;
+
+    position: fixed;
+    top: 0;
+    transition: top 0.3s;
 }
 
 .nav_hamburger {
@@ -112,10 +115,6 @@ body {
     margin-right: 5px;
 }
 
-.temp {
-    height: 10000px;
-}
-
 #sidenav {
     position: fixed;
     width: 0;
@@ -171,161 +170,122 @@ body {
 
 .body_wrap {
     background-color: white;
-    width: 100%;
-    min-height: 100%;
+    width: 100vw;
+    min-height: 100vh;
     margin-bottom: -200px;
+    top: 0;
+    left: 0;
 }
 
 .body {
-    padding: 20px;
     padding-bottom: 200px;
+    margin-top: 50px;
 }
 
-.signup_popup {
-    width: 400px;
-    height: 410px;
-    max-width: 95%;
+.animarea {
+    width: 100%;
+    height: 10000px;
+    display: relative;
+}
+
+#trigger {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    visibility: hidden;
+    top: 700px;
+}
+
+.animarea_inner {
+    position: sticky;
+    top: 130px;
+    width: 540px;
+    height: 200px;
+    margin: auto;
     background-color: white;
-    border: 2px solid #2291FF;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: 'Noto Sans KR', sans-serif;
-    margin: 50px 0;
+    display: grid;
+    grid-template-columns: repeat(6, 90px);
+    grid-template-rows: repeat(2, 100px);
+    gap: 5px;
 }
 
-.signup_popup h3 {
-    margin: 10px 0;
-    width: 100%;
-    font-size: 25px;
-    text-align: center;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.signup_popup .input_text {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
+.animitem > div {
+    width: 130px;
+    height: 7px;
     border-radius: 3px;
-    outline: none;
-    padding: 5px;
-    transition: .5s;
-    appearance: none;
-    -webkit-appearance: none;
+    background-color: #eee;
 }
 
-.input_text.signup_error {
-    border-color: #FF3120;
-    animation: .4s shake linear;
+.cross1 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.signup_popup .input_text:focus {
-    border-color: #2291FF;
+.cross2 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.signup_tooltip {
-    opacity: 0;
-    transform: translate(-5px, 0);
-    transition: .3s;
-    width: 93px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    font-size: 13px;
-    z-index: 1;
-    top: -10px;
-    left: 140px;
+.cross3 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.signup_tooltip::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent black transparent transparent;
+.cross4 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.checkbox_wrap:hover .signup_tooltip {
-    opacity: 1;
-    transform: translate(0, 0);
-    transition-delay: .4s;
+.cross5 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.signup_button {
-    width: 100%;
-    height: 30px;
-    background-color: white;
-    border: 1px solid #2291FF;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    outline: none;
-    transition: .5s;
+.cross6 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.signup_button:hover {
-    background-color: #2291FF;
-    color: white;
+.cross8 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.signup_loader {
-    margin-top: 5px;
-    width: 100%;
-    height: 5px;
-    position: relative;
-    border-radius: 2px;
-    margin-top: 5px;
-    overflow: hidden;
+.cross7 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.signup_loader_bar {
-    width: 100%;
-    height: 5px;
-    border-radius: 2px;
-    position: absolute;
-    background-color: #2291FF;
-    opacity: 0;
-    transition: .3s;
+.cross10 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.signup_loader_bar.loading {
-    animation: 3s loading ease-in-out infinite;
-    opacity: 1;
+.cross9 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
-.signup_with_google {
-    margin-top: 15px;
-    width: 100%;
-    height: 30px;
-    background-color: white;
-    background-image: url(https://studia.blue/signup/img/google_signup.png);
-    background-repeat: no-repeat;
-    background-size: 15px;
-    background-position: 5px center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    outline: none;
-    transition: .3s;
+.cross12 > div {
+    transform: rotate(47deg);
+    transform-origin: left center;
+    float: left;
 }
 
-.signup_with_google:hover {
-    border-color: #2291FF;
-}
-
-.signup_log {
-    font-family: "NotoSans", sans-serif;
-    display: block;
-    color: #FF3120;
-    margin: 0;
-    height: 24px;
+.cross11 > div {
+    transform: rotate(-47deg);
+    transform-origin: right center;
+    float: right;
 }
 
 footer {
@@ -374,39 +334,8 @@ footer {
     }
 }
 
-/* Shake Animation for Invalid Text Input */
-@keyframes shake {
-    0% {
-        transform: translate(0,0);
-    }
-    25% {
-        transform: translate(15px,0);
-    }
-    50% {
-        transform: translate(-15px,0);
-    }
-    75% {
-        transform: translate(15px,0);
-    }
-    100% {
-        transform: translate(0,0);
-    }
-}
+@media screen and (max-width: 400px) {
 
-/* Loading Animation */
-@keyframes loading {
-    0% {
-        left: -95%;
-    }
-    50% {
-        left: 95%;
-    }
-    100% {
-        left: -95%;
-    }
-}
-
-@media screen and (max-width: 768px) {
     .nav_app,
     .nav_hamburger {
         width: 60px;
