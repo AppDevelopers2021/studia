@@ -378,6 +378,10 @@ for (var i = 0; i < add_note_button.length; i++) {
     add_note_button[i].addEventListener("click", function () {
         blur_bg.className = "blur_filter blur";
         add_note_modal.className = "add_note_popup open";
+
+        // Set value
+        add_note_text.value = "";
+        add_note_subject.value = "국어";
     })
 }
 
