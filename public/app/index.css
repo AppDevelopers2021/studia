@@ -1322,7 +1322,7 @@ footer {
 @keyframes popup {
     0% {
         display: none;
-        top: 150%;
+        top: 200%;
     }
 
     1% {
@@ -1346,7 +1346,7 @@ footer {
     }
 
     to {
-        top: 150%;
+        top: 200%;
         display: none;
     }
 }
