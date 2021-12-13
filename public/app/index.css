@@ -317,7 +317,7 @@ body {
 .main_grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: fit-content(1000px) 200px;
+    grid-template-rows: fit-content() fit-content();
     gap: 10px;
     padding: 15px;
 }
@@ -518,6 +518,7 @@ body {
     grid-row-start: 2;
     grid-row-end: 3;
 
+    min-height: 200px;
     background-color: var(--memo-bg-color);
     border-radius: 20px;
     padding: 13px 10px;
@@ -537,6 +538,9 @@ body {
     font-size: 15px;
     margin: 10px 0 0 0;
     color: var(--text-color);
+
+    word-break: break-all;
+    white-space: normal;
 }
 
 .add_memo {
@@ -564,6 +568,7 @@ body {
     grid-row-start: 2;
     grid-row-end: 3;
 
+    min-height: 200px;
     background-color: var(--memo-bg-color);
     border-radius: 20px;
     padding: 13px 10px;
