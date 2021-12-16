@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+	<!-- Swiper Library -->
+	<link rel="stylesheet" href="https://studia.blue/libs/swiper.css" />
+	<script src="https://studia.blue/libs/swiper.js"></script>
+
+	<link rel="stylesheet" href="index.css">
+	<script defer src="index.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<!-- Stop Google From Indexing -->
+	<meta name="robots" content="noindex">
+
+	<title>내 캘린더</title>
+</head>
+
+<body>
+	<div id="navbar">
+		<button class="nav_hamburger center" aria-label="사이드 패널 열기">
+			<div>
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+		<a class="nav_home" href="https://studia.blue/" aria-label="홈으로">studia</a>
+		<div class="nav_user_wrap">
+			<i class="nav_user fas fa-user-circle"></i>
+			<div class="nav_user_popup">
+				<h2 class="nav_user_popup_title">나의 계정</h2>
+				<p id="account_email"></p>
+
+				<div class="nav_user_popup_button_wrap">
+					<button class="nav_user_popup_button" id="logout_button">로그아웃</button>
+					<button class="nav_user_popup_button" id="change_pw_button">비밀번호 변경</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="sidenav">
+		<button id="close_nav" aria-label="사이드 패널 닫기">&times;</button>
+		<script id="replace_sidebar" src="https://studia.blue/sidebar.js"></script>
+	</div>
+
+	<div class="body_wrap">
+		<div class="main_content">
+			<div class="date">
+				<div class="date_flex">
+					<button id="date_back" class="date_button" aria-label="이전 날짜로 이동"><i class="arrow_back"></i></button>
+					<input type="date" id="date_picker" class="date_picker" aria-label="날짜 선택" required="required">
+					<button id="date_forward" class="date_button" aria-label="다음 날짜로 이동"><i class="arrow_forward"></i></button>
+				</div>
+			</div>
+
+			<div class="swiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="main_grid">
+							<div class="notes">
+								<div class="notes_container"></div>
+
+								<button class="add_note center" aria-label="새 노트 작성"><i class="fas fa-plus"></i></button>
+							</div>
+							<div class="memo">
+								<h2>메모</h2>
+								<pre class="memo_content"></pre>
+
+								<button class="add_memo center" aria-label="메모 수정"><i class="fas fa-pen"></i></button>
+							</div>
+							<div class="reminder">
+								<h2>과제 및 준비물</h2>
+								<ul class="reminder_content"></ul>
+
+								<button class="add_reminder center" aria-label="과제 및 준비물 수정"><i class="fas fa-pen"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="vertical">
+		<div>
+			<p class="footer_logo">studia</p>
+			<p class="footer_sosumi">Copyright &copy; 2021 App Developers.<br>All Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<div id="contextmenu" class="context_menu" hidden>
+		<p id="context_menu_edit"><i class="fas fa-pen"></i> 노트 수정</p>
+		<p id="context_menu_copy"><i class="fas fa-clone"></i> 내용 복사</p>
+		<p id="context_menu_delete"><i class="fas fa-trash"></i> 노트 삭제</p>
+	</div>
+
+	<div id="blur_bg" class="blur_filter"></div>
+
+	<div class="login_popup">
+		<h3>로그인</h3>
+
+		<label for="login_id" class="login_id_label">이메일 주소:</label>
+		<input type="text" id="login_id" class="input_text">
+		<label for="login_pw" class="login_pw_label">비밀번호:</label>
+		<input type="password" id="login_pw" class="input_text">
+
+		<label class="checkbox_wrap">로그인 유지
+			<input type="checkbox" checked id="login_keep" class="checkbox">
+			<span class="checkmark"></span>
+			<span class="login_tooltip">개인 PC에서만 사용해 주세요.</span>
+		</label>
+		<button class="login_button" id="login_button">로그인</button>
+		<div class="login_links">
+			<a class="login_link login_link_signup" href="https://studia.blue/signup">계정 만들기</a>
+			<a class="login_link login_link_iforgot" href="https://studia.blue/iforgot">비밀번호 찾기</a>
+		</div>
+		<div class="login_loader">
+			<div class="login_loader_bar" id="login_loader"></div>
+		</div>
+
+		<button class="login_with_google" id="login_with_google">Google 계정으로 로그인</button>
+	</div>
+
+	<div class="add_note_popup">
+		<h3>노트 추가</h3>
+
+		<div class="add_note_popup_flex">
+			<select id="add_note_subject" aria-label="노트 과목 선택">
+				<option value="가정">가정</option>
+				<option value="과학">과학</option>
+				<option value="국어" selected>국어</option>
+				<option value="기술">기술</option>
+				<option value="도덕">도덕</option>
+				<option value="독서">독서</option>
+				<option value="미술">미술</option>
+				<option value="보건">보건</option>
+				<option value="사회">사회</option>
+				<option value="수학">수학</option>
+				<option value="영어">영어</option>
+				<option value="음악">음악</option>
+				<option value="정보">정보</option>
+				<option value="진로">진로</option>
+				<option value="창체">창체</option>
+				<option value="체육">체육</option>
+				<option value="환경">환경</option>
+				<option value="자율">자율</option>
+				<option value="기타">기타</option>
+			</select>
+			<input type="text" id="add_note_text" aria-label="노트 내용 작성" />
+		</div>
+
+		<button id="add_note_submit">완료</button>
+	</div>
+
+	<div class="edit_note_popup">
+		<h3>노트 수정</h3>
+
+		<div class="edit_note_popup_flex">
+			<select id="edit_note_subject" aria-label="노트 과목 선택">
+				<option value="가정">가정</option>
+				<option value="과학">과학</option>
+				<option value="국어">국어</option>
+				<option value="기술">기술</option>
+				<option value="도덕">도덕</option>
+				<option value="독서">독서</option>
+				<option value="미술">미술</option>
+				<option value="보건">보건</option>
+				<option value="사회">사회</option>
+				<option value="수학">수학</option>
+				<option value="영어">영어</option>
+				<option value="음악">음악</option>
+				<option value="정보">정보</option>
+				<option value="진로">진로</option>
+				<option value="창체">창체</option>
+				<option value="체육">체육</option>
+				<option value="환경">환경</option>
+				<option value="자율">자율</option>
+				<option value="기타">기타</option>
+			</select>
+			<input type="text" id="edit_note_text" aria-label="노트 내용 작성" />
+		</div>
+
+		<button id="edit_note_submit">완료</button>
+	</div>
+
+	<div class="add_memo_popup">
+		<h3>메모 수정</h3>
+		
+		<textarea id="add_memo_text" aria-label="메모 작성"></textarea>
+
+		<button id="add_memo_submit">완료</button>
+	</div>
+
+	<div class="add_reminder_popup">
+		<h3>과제 및 준비물</h3>
+		
+		<textarea id="add_reminder_text" aria-label="과제 및 준비물 작성"></textarea>
+
+		<button id="add_reminder_submit">완료</button>
+	</div>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBeJDdOCiCPl8dY45RDTZ_Dm6BXGOdsxAc",
+			authDomain: "studia-kr.firebaseapp.com",
+			databaseURL: "https://studia-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "studia-kr",
+			storageBucket: "studia-kr.appspot.com",
+			messagingSenderId: "654717768488",
+			appId: "1:654717768488:web:9145bccc0e7b33fe33361d",
+			measurementId: "G-VNTECBX1XJ"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+	</script>
+</body>
+
+</html>
