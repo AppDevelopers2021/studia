@@ -1,3 +1,14 @@
+:root {
+    --theme-color: #2291FF;
+    --navbar-text-color: #FFFFFF;
+    --sidenav-bg-color: #111111;
+    --footer-bg-color: #EEEEEE;
+    --footer-text-color: #555555;
+    --error-text-color: #FF3120;
+    --bg-color: #FFFFFF;
+    --text-color: #000000;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,7 +25,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -39,7 +50,7 @@ body {
 #navbar {
     width: 100%;
     height: 50px;
-    background-color: #2291FF;
+    background-color: var(--theme-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -68,7 +79,7 @@ body {
     width: 20px;
     height: 3px;
     border-radius: 1px;
-    background-color: white;
+    background-color: var(--navbar-text-color);
     margin: 4px 0;
     transition: 0.4s;
 }
@@ -95,7 +106,7 @@ body {
 
 .nav_home {
     font-family: 'Courgette', cursive;
-    color: white;
+    color: var(--navbar-text-color);
     text-decoration: none;
     font-size: 25px;
 }
@@ -105,8 +116,8 @@ body {
     width: 80px;
     height: 35px;
     border-radius: 10px;
-    border: 2px solid white;
-    color: white;
+    border: 2px solid var(--navbar-text-color);
+    color: var(--navbar-text-color);
     text-decoration: none;
     text-align: center;
     line-height: 35px;
@@ -141,7 +152,7 @@ body {
     padding-left: 10px;
     line-height: 50px;
     text-decoration: none;
-    color: white;
+    color: var(--navbar-text-color);
     border-radius: 0 25px 25px 0;
     transition: .1s;
 }
@@ -164,7 +175,7 @@ body {
     left: 12px;
     border: none;
     background: none;
-    color: white;
+    color: var(--navbar-text-color);
     cursor: pointer;
 }
 
@@ -179,113 +190,33 @@ body {
 
 .body {
     padding-bottom: 200px;
-    margin-top: 50px;
 }
 
-.animarea {
+.intro {
     width: 100%;
-    height: 10000px;
-    display: relative;
+    height: 100vh;
+    padding-left: 20px;
 }
 
-#trigger {
-    position: absolute;
-    width: 100%;
-    height: 10px;
-    visibility: hidden;
-    top: 700px;
+.intro .logo {
+    font-family: 'Courgette', cursive;
+    color: var(--theme-color);
+    font-size: 35px;
+    margin: 0 0 -15px 0;
 }
 
-.animarea_inner {
-    position: sticky;
-    top: 130px;
-    width: 540px;
-    height: 200px;
-    margin: auto;
-    background-color: white;
-    display: grid;
-    grid-template-columns: repeat(6, 90px);
-    grid-template-rows: repeat(2, 100px);
-    gap: 5px;
+.intro .title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 50px;
+    color: black;
+    margin: 0;
 }
 
-.animitem > div {
-    width: 130px;
-    height: 7px;
-    border-radius: 3px;
-    background-color: #eee;
-}
-
-.cross1 > div {
-    transform: rotate(47deg);
-    transform-origin: left center;
-    float: left;
-}
-
-.cross2 > div {
-    transform: rotate(-47deg);
-    transform-origin: right center;
-    float: right;
-}
-
-.cross3 > div {
-    transform: rotate(47deg);
-    transform-origin: left center;
-    float: left;
-}
-
-.cross4 > div {
-    transform: rotate(-47deg);
-    transform-origin: right center;
-    float: right;
-}
-
-.cross5 > div {
-    transform: rotate(47deg);
-    transform-origin: left center;
-    float: left;
-}
-
-.cross6 > div {
-    transform: rotate(-47deg);
-    transform-origin: right center;
-    float: right;
-}
-
-.cross8 > div {
-    transform: rotate(47deg);
-    transform-origin: left center;
-    float: left;
-}
-
-.cross7 > div {
-    transform: rotate(-47deg);
-    transform-origin: right center;
-    float: right;
-}
-
-.cross10 > div {
-    transform: rotate(47deg);
-    transform-origin: left center;
-    float: left;
-}
-
-.cross9 > div {
-    transform: rotate(-47deg);
-    transform-origin: right center;
-    float: right;
-}
-
-.cross12 > div {
-    transform: rotate(47deg);
-    transform-origin: left center;
-    float: left;
-}
-
-.cross11 > div {
-    transform: rotate(-47deg);
-    transform-origin: right center;
-    float: right;
+.intro .scroll {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    color: #888;
+    margin: 0;
 }
 
 footer {
@@ -294,19 +225,19 @@ footer {
     background-color: #eee;
     padding-left: 30px;
     margin-top: -200px;
-    border-bottom: 10px solid #2291FF;
+    border-bottom: 10px solid var(--theme-color);
 }
 
 .footer_logo {
     font-family: 'Courgette', cursive;
     font-size: 40px;
-    color: #555;
+    color: var(--footer-text-color);
     margin: 0;
     padding: 0;
 }
 
 .footer_sosumi {
-    color: #555;
+    color: var(--footer-text-color);
 }
 
 @media (prefers-color-scheme: dark) {

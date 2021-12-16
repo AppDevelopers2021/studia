@@ -7,11 +7,6 @@
 // Warn message in console
 console.log("%cstudia\n%cThe Best Way to Organize Your Notes.", "font-family:'Courgette', cursive;color:#2291FF;font-size:40px;", "font-family:Arial;font-size:13px;color:#333;")
 console.log("%c주의: 여기에 코드를 입력하면 해커가 Self-XSS라는 공격을 이용해 계정 비밀번호를 유출시킬 수 있습니다. 알지 못하는 코드를 입력하지 마세요.", "font-family:Arial;color:red;font-size:15px;")
-
-const hamburger = document.getElementsByClassName("nav_hamburger")[0];
-const navbar = document.getElementById("navbar");
-const sidenav = document.getElementById("sidenav");
-const close_nav_button = document.getElementById("close_nav");
 const contextmenu = document.getElementById("contextmenu");
 const contextmenu_edit = document.getElementById("context_menu_edit");
 const contextmenu_copy = document.getElementById("context_menu_copy");
@@ -52,15 +47,6 @@ const date_backward_button = document.getElementById("date_back");
 
 var database = firebase.database();
 var selectedIdx;
-
-hamburger.addEventListener("click", function () {
-    hamburger.classList.toggle("bar_open");
-    sidenav.classList.toggle("side_open");
-})
-close_nav_button.addEventListener("click", function () {
-    hamburger.className = "nav_hamburger center";
-    sidenav.className = "";
-})
 
 // iOS Date Picker
 var date_picker = document.getElementById("date_picker");

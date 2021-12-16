@@ -30,7 +30,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: var(--theme-color);
+    background-color: var(--bg-color);
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -51,216 +51,11 @@ body {
     justify-content: center;
 }
 
-/* Navigation Bar CSS */
-#navbar {
-    width: 100%;
-    height: 50px;
-    background-color: var(--theme-color);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 3;
-
-    position: fixed;
-    top: 0;
-    transition: top 0.3s;
-}
-
-.nav_hamburger {
-    width: 60px;
-    height: 40px;
-    min-width: 40px;
-    overflow: hidden;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-
-.bar1,
-.bar2,
-.bar3 {
-    width: 20px;
-    height: 3px;
-    border-radius: 1px;
-    background-color: var(--navbar-text-color);
-    margin: 4px 0;
-    transition: 0.4s;
-}
-
-.bar1 {
-    transform-origin: right center;
-}
-
-.bar3 {
-    transform-origin: right center;
-}
-
-.bar_open .bar1 {
-    transform: translate(-3px, 0) rotate(-45deg);
-}
-
-.bar_open .bar2 {
-    opacity: 0;
-}
-
-.bar_open .bar3 {
-    transform: translate(-3px, 0) rotate(45deg);
-}
-
-.nav_home {
-    font-family: 'Courgette', cursive;
-    color: var(--navbar-text-color);
-    text-decoration: none;
-    font-size: 25px;
-}
-
-.nav_user {
-    font-size: 30px;
-    color: var(--navbar-text-color);
-    margin-right: 15px;
-    cursor: pointer;
-}
-
-.nav_user_popup {
-    width: 300px;
-    height: 135px;
-    position: absolute;
-    top: 60px;
-    right: 5px;
-    background-color: white;
-    border-radius: 10px;
-    border: 2px solid var(--theme-color);
-    visibility: hidden;
-    opacity: 0;
-    transition: .3s;
-    transform: translate(0, -10px);
-    transition-delay: .3s;
-}
-
-.nav_user_popup::after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    right: 5%;
-    border: 10px solid;
-    border-color: transparent transparent var(--theme-color) transparent;
-}
-
-.nav_user_wrap:hover .nav_user_popup {
-    visibility: visible;
-    opacity: 1;
-    transform: translate(0, 0);
-    transition-delay: 0s;
-}
-
-.nav_user_popup_title {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 25px;
-    color: black;
-    margin: 5px;
-}
-
-.nav_user_popup_button_wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin: 15px 5px 5px 5px;
-}
-
-.nav_user_popup_button {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 17px;
-    color: black;
-    width: 50%;
-    background-color: white;
-    border: 1px solid var(--theme-color);
-    border-radius: 5px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-#logout_button {
-    margin-right: 5px;
-}
-
-#account_email {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
-    margin: 0 5px;
-    color: #333;
-    background-color: white;
-}
-
-.temp {
-    height: 10000px;
-}
-
-#sidenav {
-    position: fixed;
-    width: 0;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    background-color: var(--sidenav-bg-color);
-    padding-top: 70px;
-    z-index: 2;
-    transition: .5s ease;
-    overflow: hidden;
-}
-
-#sidenav.side_open {
-    width: 250px;
-}
-
-#sidenav a {
-    display: block;
-    width: 240px;
-    height: 50px;
-    font-size: 17px;
-    margin-right: 10px;
-    padding-left: 10px;
-    line-height: 50px;
-    text-decoration: none;
-    color: white;
-    border-radius: 0 25px 25px 0;
-    transition: .1s;
-}
-
-#sidenav a:hover {
-    background-color: #333;
-}
-
-.nav_devide {
-    border: none;
-    width: 250px;
-    height: 15px;
-    margin: 0;
-}
-
-#close_nav {
-    font-size: 35px;
-    position: absolute;
-    top: 10px;
-    left: 12px;
-    border: none;
-    background: none;
-    color: white;
-    cursor: pointer;
-}
-
 .body_wrap {
     background-color: var(--bg-color);
     width: 100%;
     min-height: 100%;
     margin-bottom: -200px;
-    padding-top: 50px;
-}
-
-.main_content {
-    padding-bottom: 200px;
 }
 
 .date_button {
@@ -326,9 +121,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .main_grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: fit-content() fit-content();
+    grid-template-rows: fit-content() 200px 200px;
     gap: 10px;
     padding: 15px;
+}
+.reminder {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
 }
 
 .notes {
@@ -490,12 +290,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     transition: .3s ease;
     transition-property: background-color opacity;
-    opacity: 0;
-    color: var(--text-color);
-}
-
-.note_item:hover .note_more {
     opacity: 1;
+    color: var(--text-color);
 }
 
 .note_more:hover {
@@ -523,7 +319,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .memo {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
 
@@ -1289,27 +1085,6 @@ footer {
     color: white;
 }
 
-/* When on Mobile */
-@media screen and (max-width: 768px) {
-    .nav_app, .nav_hamburger {
-        width: 60px;
-    }
-
-    .main_grid {
-        grid-template-rows: fit-content(1000px) 200px 200px;
-    }
-
-    .memo {
-        grid-column-end: 3;
-    }
-
-    .reminder {
-        grid-column-start: 1;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-}
-
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
     :root {
@@ -1322,13 +1097,6 @@ footer {
         --memo-bg-color: #525252;
         --add-memo-color: #888;
         --note-more-hover-color: #666;
-    }
-}
-
-/* For Touchscreen Devices */
-@media (hover: none) {
-    .note_more {
-        opacity: 1;
     }
 }
 
@@ -1411,12 +1179,5 @@ footer {
 
     to {
         opacity: 1;
-    }
-}
-
-/* Fallback for backdrop-filter */
-@supports (not ((backdrop-filter:blur(5px)) or (-webkit-backdrop-filter:blur(5px)))) {
-    .blur_filter.blur {
-        background-color: rgba(0, 0, 0, 0.5);
     }
 }
