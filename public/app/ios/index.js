@@ -48,9 +48,29 @@ const date_backward_button = document.getElementById("date_back");
 var database = firebase.database();
 var selectedIdx;
 
+// Date to YYMMDD
+Date.prototype.yymmdd = function () {
+    var mm = this.getMonth() + 1;
+    var dd = this.getDate();
+
+    return [this.getFullYear().toString().substr(-2),
+        (mm > 9 ? '' : '0') + mm,
+        (dd > 9 ? '' : '0') + dd
+    ].join('');
+};
+Date.prototype.yyyydashmmdashdd = function () {
+    var mm = this.getMonth() + 1;
+    var dd = this.getDate();
+
+    return [this.getFullYear(),
+        (mm > 9 ? '' : '0') + mm,
+        (dd > 9 ? '' : '0') + dd
+    ].join('-');
+};
+
 // iOS Date Picker
 var date_picker = document.getElementById("date_picker");
-date_picker.value = new Date().toLocaleDateString('en-CA');
+date_picker.value = new Date().yyyydashmmdashdd();
 date_picker.addEventListener("change", () => {
     load();
 });
@@ -80,9 +100,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         // User already signed in
         // Load calendar data
         load();
-
-        // Show user email in my accounts
-        document.getElementById("account_email").innerText = user.email;
     } else {
         // User needs login
         // Show login modal
@@ -204,11 +221,11 @@ function changeDate(isSwipeDirectionRight) {
     if (isSwipeDirectionRight) {
         // Mode to tomorrow
         temp_date.setDate(temp_date.getDate() + 1);
-        date_picker.value = temp_date.toLocaleDateString('en-CA');
+        date_picker.value = temp_date.yyyydashmmdashdd();
     } else {
         // Move to yesterday
         temp_date.setDate(temp_date.getDate() - 1);
-        date_picker.value = temp_date.toLocaleDateString('en-CA');
+        date_picker.value = temp_date.yyyydashmmdashdd();
     }
 
     load();
@@ -311,7 +328,7 @@ function parseJSON(json) {
 // Retrieve data from DB
 function load() {
     if (firebase.auth().currentUser) {
-        var date = date_picker.value.replace("-", "");
+        var date = date_picker.value.replace(/-/g, "");
         var uid = firebase.auth().currentUser.uid;
 
         database.ref('calendar/' + uid + '/' + date).get().then((snapshot) => {
@@ -382,7 +399,7 @@ for (var i = 0; i < add_reminder_button.length; i++) {
 // Add note
 add_note_submit.addEventListener("click", function () {
     // Get original data
-    var date = date_picker.value.replace("-", "");
+    var date = date_picker.value.replace(/-/g, "");
     var uid = firebase.auth().currentUser.uid;
 
     database.ref('calendar/' + uid + '/' + date + '/note').get().then((snapshot) => {
@@ -424,12 +441,15 @@ add_note_submit.addEventListener("click", function () {
 // Edit note
 edit_note_submit.addEventListener("click", function () {
     var uid = firebase.auth().currentUser.uid;
-    var date = date_picker.value.replace("-", "");
+    var date = date_picker.value.replace(/-/g, "");
 
     var subject = edit_note_subject.value;
     var content = edit_note_text.value;
 
-    database.ref('calendar/' + uid + '/' + date + '/note/' + selectedIdx).set({'subject': subject, 'content': content}).then(() => {
+    database.ref('calendar/' + uid + '/' + date + '/note/' + selectedIdx).set({
+        'subject': subject,
+        'content': content
+    }).then(() => {
         load();
 
         blur_bg.className = "blur_filter";
@@ -441,7 +461,7 @@ edit_note_submit.addEventListener("click", function () {
 
 // Add memo
 add_memo_submit.addEventListener("click", function () {
-    var date = date_picker.value.replace("-", "");
+    var date = date_picker.value.replace(/-/g, "");
     var uid = firebase.auth().currentUser.uid;
 
     database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
@@ -456,7 +476,7 @@ add_memo_submit.addEventListener("click", function () {
 
 // Add reminder
 add_reminder_submit.addEventListener("click", function () {
-    var date = date_picker.value.replace("-", "");
+    var date = date_picker.value.replace(/-/g, "");
     var uid = firebase.auth().currentUser.uid;
 
     database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
@@ -485,12 +505,12 @@ contextmenu_copy.addEventListener("click", function () {
 });
 
 contextmenu_delete.addEventListener("click", function () {
-    if(confirm("삭제하시겠습니까?")) {
+    if (confirm("삭제하시겠습니까?")) {
         // Retrive Data from DB
-        database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.value.replace("-", "") + '/note').get().then((snapshot) => {
+        database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.value.replace(/-/g, "") + '/note').get().then((snapshot) => {
             var originalData = snapshot.val();
             originalData.splice(selectedIdx, 1);
-            database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.value.replace("-", "") + '/note').set(originalData).then(() => {
+            database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.value.replace(/-/g, "") + '/note').set(originalData).then(() => {
                 load();
             }).catch((error) => {
                 console.error(`Error while deleting note (setData) :: ${error.code} : ${error.message}`);
