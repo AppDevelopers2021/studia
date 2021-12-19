@@ -197,16 +197,6 @@ login_google.addEventListener("click", function () {
         })
 })
 
-// Event listeners for logout
-logout_button.addEventListener("click", function () {
-    firebase.auth().signOut()
-});
-
-// Change password
-change_pw_button.addEventListener("click", function () {
-    location.href = "https://studia.blue/iforgot";
-});
-
 // Change date when swipe
 function changeDate(isSwipeDirectionRight) {
     var temp_date = new Date(date_picker.value);

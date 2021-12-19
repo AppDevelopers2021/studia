@@ -368,10 +368,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .reminder {
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
 
     min-height: 200px;
     background-color: var(--memo-bg-color);
