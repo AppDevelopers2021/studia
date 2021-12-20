@@ -55,7 +55,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    z-index: 3;
+    z-index: 1000;
 
     position: fixed;
     top: 0;
@@ -134,7 +134,7 @@ body {
     height: 100vh;
     background-color: #111;
     padding-top: 70px;
-    z-index: 2;
+    z-index: 999;
     transition: .5s ease;
     overflow: hidden;
 }
@@ -208,7 +208,7 @@ body {
 .intro .title {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 50px;
-    color: black;
+    color: var(--text-color);
     margin: 0;
 }
 
@@ -217,6 +217,75 @@ body {
     font-size: 20px;
     color: #888;
     margin: 0;
+}
+
+.three-grid {
+    width: 100%;
+    height: 550vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50vh 100vh 100vh 100vh 200vh;
+}
+
+.grid-web {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: #FFA351FF;
+    background-image: url(./img/web.svg);
+}
+
+.grid-ios {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    background-color: #FFBE7BFF;
+    background-image: url(./img/ios.svg);
+}
+
+.grid-android {
+    grid-column: 3 / 4;
+    grid-row: 4 / 5;
+    background-color: #EED971FF;
+    background-image: url(./img/android.svg);
+}
+
+.grid-item {
+    padding: 60px 10px 0 10px;
+    position: sticky;
+    top: 0px;
+    background-size: 25vw;
+    background-repeat: no-repeat;
+    background-position: center bottom 50px;
+}
+
+.grid-item h2 {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 40px;
+}
+
+.cover {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+    max-width: 33.4vw;
+    overflow: visible;
+    position: sticky;
+    top: 0;
+}
+
+.real-cover {
+    width: 0vw;
+    height: 100%;
+    background-color: #FFA351FF;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.trigger {
+    grid-column: 1 / 4;
+    grid-row: 5 / 6;
+    background: transparent;
+    position: relative;
 }
 
 footer {
