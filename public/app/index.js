@@ -457,14 +457,22 @@ edit_note_submit.addEventListener("click", function () {
     var subject = edit_note_subject.value;
     var content = edit_note_text.value;
 
-    database.ref('calendar/' + uid + '/' + date + '/note/' + selectedIdx).set({'subject': subject, 'content': content}).then(() => {
-        load();
+    if (content.length > 0) {
+        database.ref('calendar/' + uid + '/' + date + '/note/' + selectedIdx).set({
+            'subject': subject,
+            'content': content
+        }).then(() => {
+            load();
 
+            blur_bg.className = "blur_filter";
+            edit_note_modal.className = "edit_note_popup closed";
+        }).catch((error) => {
+            console.error(`Error while editing note (setData) :: ${error.code} : ${error.message}`);
+        });
+    } else {
         blur_bg.className = "blur_filter";
         edit_note_modal.className = "edit_note_popup closed";
-    }).catch((error) => {
-        console.error(`Error while editing note (setData) :: ${error.code} : ${error.message}`);
-    });
+    }
 });
 
 // Add memo
@@ -472,14 +480,20 @@ add_memo_submit.addEventListener("click", function () {
     var date = date_picker.toString("YYYYMMDD");
     var uid = firebase.auth().currentUser.uid;
 
-    database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
-        load();
+    if (add_memo_textarea.value.length > 0) {
 
+        database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
+            load();
+
+            blur_bg.className = "blur_filter";
+            add_memo_modal.className = "add_note_popup closed";
+        }).catch((error) => {
+            console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
+        })
+    } else {
         blur_bg.className = "blur_filter";
         add_memo_modal.className = "add_note_popup closed";
-    }).catch((error) => {
-        console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
-    })
+    }
 })
 
 // Add reminder
@@ -487,14 +501,21 @@ add_reminder_submit.addEventListener("click", function () {
     var date = date_picker.toString("YYYYMMDD");
     var uid = firebase.auth().currentUser.uid;
 
-    database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
-        load();
+    if (add_reminder_textarea.value.length > 0) {
+        database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
+            load();
 
+            blur_bg.className = "blur_filter"
+            add_reminder_modal.className = "add_note_popup closed"
+        }).catch((error) => {
+            console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
+        })
+    } else {
         blur_bg.className = "blur_filter"
         add_reminder_modal.className = "add_note_popup closed"
-    }).catch((error) => {
-        console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
-    })
+    }
+
+
 })
 
 // Context Menu
@@ -513,7 +534,7 @@ contextmenu_copy.addEventListener("click", function () {
 });
 
 contextmenu_delete.addEventListener("click", function () {
-    if(confirm("삭제하시겠습니까?")) {
+    if (confirm("삭제하시겠습니까?")) {
         // Retrive Data from DB
         database.ref('calendar/' + firebase.auth().currentUser.uid + '/' + date_picker.toString("YYYYMMDD") + '/note').get().then((snapshot) => {
             var originalData = snapshot.val();

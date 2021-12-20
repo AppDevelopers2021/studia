@@ -464,14 +464,20 @@ add_memo_submit.addEventListener("click", function () {
     var date = date_picker.value.replace(/-/g, "");
     var uid = firebase.auth().currentUser.uid;
 
-    database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
-        load();
-
+    if(add_memo_textarea.value.length > 0) {
+        database.ref('calendar/' + uid + '/' + date + '/memo').set(add_memo_textarea.value).then(() => {
+            load();
+    
+            blur_bg.className = "blur_filter";
+            add_memo_modal.className = "add_note_popup closed";
+        }).catch((error) => {
+            console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
+        })
+    } else {
         blur_bg.className = "blur_filter";
         add_memo_modal.className = "add_note_popup closed";
-    }).catch((error) => {
-        console.error(`Error while adding memo (addData) :: ${error.code} : ${error.message}`);
-    })
+    }
+    
 })
 
 // Add reminder
@@ -479,14 +485,19 @@ add_reminder_submit.addEventListener("click", function () {
     var date = date_picker.value.replace(/-/g, "");
     var uid = firebase.auth().currentUser.uid;
 
-    database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
-        load();
-
-        blur_bg.className = "blur_filter"
-        add_reminder_modal.className = "add_note_popup closed"
-    }).catch((error) => {
-        console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
-    })
+    if(add_reminder_textarea.value.length > 0) {
+        database.ref('calendar/' + uid + '/' + date + '/reminder').set(add_reminder_textarea.value.split('\n')).then(() => {
+            load();
+    
+            blur_bg.className = "blur_filter"
+            add_reminder_modal.className = "add_note_popup closed"
+        }).catch((error) => {
+            console.error(`Error while adding reminder (addData) :: ${error.code} : ${error.message}`);
+        })
+    } else {
+        blur_bg.className = "blur_filter";
+        add_reminder_modal.className = "add_note_popup closed";
+    }
 })
 
 // Context Menu
