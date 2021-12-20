@@ -183,7 +183,7 @@ body {
 
 .signup_popup {
     width: 400px;
-    height: 410px;
+    height: fit-content;
     max-width: 95%;
     background-color: white;
     border: 2px solid #2291FF;
@@ -257,6 +257,20 @@ body {
     transition-delay: .4s;
 }
 
+.legal {
+    margin: 0;
+    font-size: 12px;
+}
+
+.legal a {
+    color: #2291FF;
+    text-decoration: none;
+}
+
+.legal a:hover {
+    text-decoration: underline;
+}
+
 .signup_button {
     width: 100%;
     height: 30px;
@@ -266,6 +280,7 @@ body {
     cursor: pointer;
     font-size: 15px;
     outline: none;
+    margin-top: 10px;
     transition: .5s;
 }
 
@@ -356,7 +371,6 @@ footer {
 
     .body_wrap {
         background-color: black;
-        color: white;
     }
 
     #navbar {
