@@ -1104,7 +1104,6 @@ footer {
     outline: none;
     transition: border-color .5s;
     appearance: none;
-    background-color: var(--bg-color);
     -webkit-appearance: none;
 }
 
