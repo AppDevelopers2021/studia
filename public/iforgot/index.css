@@ -203,6 +203,11 @@ body {
     font-size: 25px;
     text-align: center;
     font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+}
+
+.iforgot_id_label {
+    color: black;
 }
 
 .iforgot_popup .input_text {

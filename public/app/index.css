@@ -740,7 +740,7 @@ footer {
     padding: 5px;
     transition: border-color .5s;
     appearance: none;
-    background-color: var(--bg-color);
+    background-color: white;
     -webkit-appearance: none;
 }
 

@@ -275,7 +275,7 @@ a {
 .kakao {
     height: 50px;
     background-color: #f9e000;
-    color: var(--text-color);
+    color: black;
     text-decoration: none;
     line-height: 30px;
     border-radius: 5px;
