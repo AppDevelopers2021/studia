@@ -584,7 +584,8 @@
 		.footer_sosumi {
 			color: var(--footer-text-color);
 		}
-/*
+
+		/*
 		@keyframes pop {
 			0% {
 				transform: scale(0.1);
@@ -805,9 +806,12 @@
 									<i class="fas fa-caret-down"></i>
 								</button>
 								<div class="download-dropdown-content">
-									<a href="https://studia.blue/downloads/#web" class="download-button-browser">브라우저로 계속</a>
-									<a href="https://studia.blue/downloads/#ios" class="download-button-ios">iOS 다운로드</a>
-									<a href="https://studia.blue/downloads/#android" class="download-button-android">Android 다운로드</a>
+									<a href="https://studia.blue/downloads/#web" class="download-button-browser">브라우저로
+										계속</a>
+									<a href="https://studia.blue/downloads/#ios" class="download-button-ios">iOS
+										다운로드</a>
+									<a href="https://studia.blue/downloads/#android"
+										class="download-button-android">Android 다운로드</a>
 								</div>
 							</div>
 						</div>
@@ -866,6 +870,17 @@
 		// Intro Animation
 		window.onload = function () {
 			document.getElementById("intro").classList.add("load");
+		}
+
+		var url = new URL(location.href);
+		// If '?noie=true' parameter is not present
+		if (url.searchParams.get('noie') !== 'true') {
+			// Detect Internet Explorer
+			if (/MSIE|Trident/.test(window.navigator.userAgent)) {
+				// The browser is IE
+				// Redirect
+				location.replace("https://studia.blue/noie");
+			}
 		}
 	</script>
 </body>
