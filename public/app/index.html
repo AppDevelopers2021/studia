@@ -245,6 +245,7 @@
 	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-performance.js"></script>
 
 	<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -264,6 +265,7 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+		firebase.performance();
 
 		// PWA: Add Service Worker
 		if('serviceWorker' in navigator) {
