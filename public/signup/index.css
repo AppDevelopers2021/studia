@@ -282,6 +282,7 @@ body {
     outline: none;
     margin-top: 10px;
     transition: .5s;
+    color: black;
 }
 
 .signup_button:hover {
@@ -329,6 +330,7 @@ body {
     font-size: 15px;
     outline: none;
     transition: .3s;
+    color: black;
 }
 
 .signup_with_google:hover {
