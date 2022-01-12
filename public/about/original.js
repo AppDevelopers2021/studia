@@ -11,3 +11,17 @@ close_nav_button.addEventListener("click", function () {
     hamburger.className = "nav_hamburger center";
     sidenav.className = "";
 })
+
+// ScrollMagic
+var controller = new ScrollMagic.Controller();
+
+var tween1 = TweenMax.to("#cover", 0.5, {
+    width: "100vw"
+})
+
+var scene1 = new ScrollMagic.Scene({
+    triggerElement: ".trigger",
+    duration: "900px"
+})
+.setTween(tween1)
+.addTo(controller);

@@ -258,7 +258,6 @@ date_backward_button.addEventListener("click", () => {
 function parseJSON(json) {
     //console.log(json)
     var memo_content = document.getElementsByClassName("memo_content");
-    i
     var reminder_content = document.getElementsByClassName("reminder_content");
     var note_container_list = document.getElementsByClassName("notes_container");
 
