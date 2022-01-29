@@ -21,10 +21,17 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+
+	<meta name="viewport" conent="width=device-width, initial-scale=1.0">
 
 	<meta name="description" content="원촌중 학생들이 직접 만든 노트 애플리케이션, 스튜디아! 노트를 작성하며 수업한 내용을 복습해 보세요.">
 	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
@@ -57,9 +64,13 @@
 			--slide-bg-color: #EEEEEE;
 			--navbar-text-color: #FFFFFF;
 			--sidenav-bg-color: #111111;
-			--footer-bg-color: #EEEEEE;
+			--gray-text-color: #6E6E73;
+			--screenshot-shadow-color: #808080;
+			--footer-bg-color: #F5F5F7;
 			--footer-text-color: #555555;
 			--error-text-color: #FF3120;
+
+			--noto-sans: "Noto Sans KR", sans-serif;
 		}
 
 		* {
@@ -79,7 +90,7 @@
 			margin: 0;
 			padding: 0;
 			background-color: var(--bg-color);
-			font-family: 'Nanum Gothic', sans-serif;
+			font-family: 'Noto Sans KR', sans-serif;
 		}
 
 		/* Align Items With FLEX */
@@ -108,7 +119,7 @@
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
-			z-index: 3;
+			z-index: 4;
 
 			position: fixed;
 			top: 0;
@@ -179,10 +190,6 @@
 			margin-right: 5px;
 		}
 
-		.temp {
-			height: 10000px;
-		}
-
 		#sidenav {
 			position: fixed;
 			width: 0;
@@ -191,7 +198,7 @@
 			height: 100vh;
 			background-color: #111;
 			padding-top: 70px;
-			z-index: 2;
+			z-index: 3;
 			transition: .5s ease;
 			overflow: hidden;
 		}
@@ -248,319 +255,571 @@
 			background-color: var(--bg-color);
 		}
 
+		.temp {
+			height: 1000px;
+			background-color: #eee;
+		}
+
 		.intro {
-			width: 100%;
-			height: 110vh;
-			background-color: var(--bg-color);
-
-			position: relative;
+			height: 1000px;
+			background: linear-gradient(200deg, #2193b0, #6dd5ed);
+			overflow: visible;
 		}
 
-		.intro_logo {
-			position: absolute;
-			top: 200px;
-			left: 0;
-			right: 0;
-			width: 200px;
-			text-align: center;
-			margin: 0 auto;
-			color: #2291FF;
-			font-family: 'Courgette', cursive;
-			font-size: 50px;
-
-			transition: ease-in-out 1s;
-			transition-delay: 1s;
-
-			transform: translate(0, 40px) scale(1.5);
+		.intro_msg {
+			height: 3600px;
+			padding: 300px 0;
 		}
 
-		.intro_text {
-			position: absolute;
-			top: 260px;
-			left: 0;
-			right: 0;
-			width: 400px;
-			margin: 0 auto !important;
-			color: var(--text-color);
-			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 40px;
-			text-align: center;
-			margin: 0 0;
-
-			transition: ease 1s;
-			transition-delay: 1.5s;
-
+		.animate {
+			position: sticky;
+			top: 45vh;
 			opacity: 0;
-			transform: translate(0, 30px);
-		}
-
-		.intro.load .intro_logo {
-			transform: none;
-		}
-
-		.intro.load .intro_text {
-			transform: none;
-			opacity: 1;
-		}
-
-		.intro_sticky {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			height: 110vh;
-		}
-
-		.intro_main_image {
-			background-color: var(--bg-color);
+			font-family: var(--noto-sans);
+			font-weight: 700;
+			font-size: 4vw;
 			width: 100%;
-			position: relative;
-			z-index: 1;
-		}
-
-		.intro_main_title {
+			height: 90px;
 			text-align: center;
-			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 10vw;
-			margin: 0;
+		}
+
+		.trigger {
+			width: 100%;
+			height: 10px;
+			margin-bottom: 900px;
+		}
+
+		.intro_screenshot_container_absolute {
+			width: 100%;
+			height: 100px;
+			position: absolute;
+			top: 70px;
+			left: 0;
+			overflow: visible;
+			z-index: 2;
+		}
+
+		.intro_screenshot_container {
 			position: relative;
 		}
 
-		.intro_hide {
-			width: 100%;
-			background-color: var(--bg-color);
-			position: relative;
-			margin-top: 110vh;
-		}
-
-		.main {
-			width: 100%;
-			background-color: var(--bg-color);
-			position: relative;
-		}
-
-		.white-padding {
-			width: 100%;
-			height: 200px;
-			background-color: var(--bg-color);
-		}
-
-		.slide {
-			width: 100%;
-			background-color: var(--bg-color);
-			position: relative;
-		}
-
-		.slide h2 {
-			margin: 0;
-			padding: 0;
-		}
-
-		.slide h2>span {
-			color: var(--theme-color);
-			display: inline-block;
-		}
-
-		.slide-one {
-			background-color: var(--slide-bg-color);
-			height: 600px;
-		}
-
-		.slide-one h2 {
-			font-size: 50px;
-			font-family: 'Noto Sans KR', sans-serif;
-			color: var(--text-color);
-			margin-left: 50px;
-		}
-
-		.slide-one-img {
-			width: 250px;
-			height: 600px;
-			background-image: url('./images/mainpage-images/slideimg/slideimg1.webp');
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: center;
-			margin-left: 20px;
-		}
-
-		.slide-two {
-			background-color: var(--bg-color);
-			height: 400px;
+		.intro_screenshot {
+			transform: rotateY(-20deg) rotateX(20deg);
+			position: absolute;
 			overflow: hidden;
 		}
 
-		.slide-two h2 {
-			font-size: 50px;
-			font-family: 'Noto Sans KR', sans-serif;
-			color: var(--text-color);
+		.intro_screenshot_img {
+			display: block;
+		}
 
+		.intro_screenshot_notification {
+			background: rgba(255, 255, 255, 0.6);
+			backdrop-filter: blur(10px);
+			border-radius: 15px;
+
+			top: 0;
+			left: 15vw;
+		}
+
+		.intro_screenshot_notes {
+			background: rgba(255, 255, 255, 0.6);
+			backdrop-filter: blur(10px);
+			border-radius: 15px;
+
+			top: 4vw;
+			left: 10vw;
+			box-shadow: 5px 5px 25px var(--screenshot-shadow-color);
+		}
+
+		.intro_screenshot_save {
+			top: 25vw;
+			left: 15vw;
+			box-shadow: 5px 5px 25px var(--screenshot-shadow-color);
+			border-radius: 10px;
+		}
+
+		.intro_screenshot_memo {
+			background: rgba(255, 255, 255, 0.5);
+			backdrop-filter: blur(10px);
+			border-radius: 10px;
+			top: 30vw;
+			left: 50vw;
+			box-shadow: 5px 5px 20px var(--screenshot-shadow-color);
+		}
+
+		.intro_screenshot_img_notification {
+			width: 20vw;
+		}
+
+		.intro_screenshot_img_notes {
+			width: 80vw;
+		}
+
+		.intro_screenshot_img_save {
+			width: 30vw;
+		}
+
+		.intro_screenshot_img_memo {
+			width: 40vw;
+		}
+
+		.wave_one {
+			background: linear-gradient(#93d2e2, #c8e1e9);
+			clip-path: url(#clip_one);
 			position: absolute;
-			top: 150px;
-			right: 400px;
-			margin-left: 20px;
-		}
-
-		.slide-two-img {
-			width: 350px;
-			height: 400px;
-			background-image: url('./images/mainpage-images/slideimg/slideimg2.webp');
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: center;
-
-			position: absolute;
-			bottom: -30px;
-			right: 20px;
-		}
-
-		.slide-three {
-			background-color: var(--slide-bg-color);
-			height: 400px;
-			overflow: hidden;
-		}
-
-		.slide-three h2 {
-			font-size: 50px;
-			font-family: 'Noto Sans KR', sans-serif;
-			color: var(--text-color);
-
-			position: absolute;
-			top: 130px;
-			left: 400px;
-		}
-
-		.slide-three-img {
-			width: 300px;
-			height: 400px;
-			background-image: url('./images/mainpage-images/slideimg/slideimg3.webp');
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: center;
-
-			position: absolute;
-			top: -30px;
-			left: 20px;
-		}
-
-		.section-firebase {
 			width: 100%;
 			height: 500px;
-			background-color: var(--theme-color);
-			background-image: url(./images/mainpage-images/firebase.png);
-			background-size: 700px;
-			background-repeat: no-repeat;
-			background-position: right center;
-			padding: 40px 20px;
+			top: 30vw;
 		}
 
-		.section-firebase-title {
-			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 50px;
-			color: white;
-			margin: 0;
-		}
-
-		.section-firebase-title span {
-			display: block;
-			color: #c3e1ff;
-		}
-
-		.section-firebase-title div {
-			display: inline-block;
-		}
-
-		.section-download {
+		.wave_two {
+			background: var(--bg-color);
+			clip-path: url(#clip_two);
+			position: absolute;
 			width: 100%;
-			height: 800px;
-			background-color: var(--bg-color);
+			height: 700px;
+			top: 45vw;
+		}
+
+		.app {
+			padding-top: 10vh;
+			max-width: 1200px;
+			margin: 0 auto;
+			display: block;
+		}
+
+		.app_title {
+			width: 100%;
+			padding: 0 0 20px 5vh;
+		}
+
+		.app_title_h1 {
+			margin: 0;
+			font-family: var(--noto-sans);
+			font-weight: 700;
+			font-size: 5vw;
+		}
+
+		.app_title_sub {
+			margin: 0;
+			display: block;
+		}
+
+		.app_title_easy {
+			color: #2291FF;
+		}
+
+		.app_title_fast {
+			color: #2291FF;
+		}
+
+		.mockup_device {
+			width: 43vh;
+			max-width: 1200px;
+			height: 85vh;
+			color: black;
+			background-color: black;
+			border: 7px solid #1f1f1f;
+			border-radius: 6vh;
+			padding: 10vh 1.3vh 0 1.3vh;
+			position: sticky;
+			top: 10vh;
+			margin-left: 5vh;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			justify-content: center;
 		}
 
-		.section-download-img {
-			width: 600px;
-			max-width: 95%;
-		}
-
-		.section-download h2 {
-			font-family: 'Noto Sans KR', sans-serif;
-			font-size: 50px;
-			margin: 0 0 20px 0;
-			text-align: center;
-			color: var(--text-color);
-		}
-
-		.section-download h2>span {
-			display: inline-block;
-		}
-
-		.download-split-button {
-			height: 50px;
-			display: flex;
-			flex-direction: row;
-		}
-
-		.download-button-default {
-			height: 100%;
-			background-color: var(--theme-color);
-			color: white;
-			font-size: 16px;
-			padding: 0 20px;
-			border: none;
-			border-right: 1px solid var(--bg-color);
-			outline: none;
-			cursor: pointer;
-			text-decoration: none;
-		}
-
-		.download-dropdown-arrow {
-			height: 100%;
-			width: 40px;
-			background-color: var(--theme-color);
-			color: white;
-			font-size: 16px;
-			border: none;
-			outline: none;
-			cursor: pointer;
-		}
-
-		.download-dropdown-content {
-			opacity: 0;
-			background-color: #f1f1f1;
-			border: 2px solid var(--theme-color);
-			border-radius: 0 10px 10px 10px;
-			min-width: 160px;
-			z-index: 1;
-			position: absolute;
-			transform: scale(0.7);
-			transform-origin: top left;
-			transition: .5s;
-			transition-delay: 0.3s;
+		.mockup_screen {
+			background-color: black;
+			width: 100%;
+			height: 65vh;
+			position: relative;
 			overflow: hidden;
 		}
 
-		.download-dropdown-content a {
+		.mockup_page {
 			width: 100%;
+			height: 100%;
+			background-color: white;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.mockup_page.back {
+			transform: scale(0.95) translate(0, 5px);
+			border-radius: 10px 10px 0 0;
+			filter: contrast(50%);
+		}
+
+		.mockup_navbar {
+			background-color: #2291FF;
+			width: 100%;
+			height: 10vh;
+			padding: 3vh 0 0 10px;
+		}
+
+		.mockup_navbar_title {
+			margin: 0;
+			font-family: var(--noto-sans);
+			color: white;
+			font-size: 4vh;
+		}
+
+		.mockup_note_container {
+			border: 2px dashed #2291FF;
+			border-radius: 15px;
+			padding: 5px 5px 0 5px;
+			margin: 10px;
+			height: calc(18vh + 25px);
+		}
+
+		.mockup_date {
+			font-family: "Nanum Gothic";
+			font-weight: 500;
 			color: black;
+			font-size: 2.5vh;
+			margin: 10px 0 0 10px;
+		}
+
+		.mockup_note {
+			background-color: #eee;
+			width: 100%;
+			height: 6vh;
+			margin-bottom: 5px;
 			border: none;
-			text-decoration: none;
-			outline: none;
-			padding: 12px 16px;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 5px;
+			padding: 5px;
+			opacity: 0;
+			transform: translate(30px, 0);
+		}
+
+		.mockup_note_hidden {
+			background-color: #eee;
+			width: 100%;
+			min-height: 6vh;
+			margin-bottom: 5px;
+			border: none;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 5px;
+			padding: 5px;
+			opacity: 0;
+		}
+
+		.mockup_note_subject {
+			width: 4.6vh;
+			height: 4.6vh;
+			border-radius: 10px;
+			font-family: "Nanum Gothic";
+			font-size: 1.7vh;
+		}
+
+		.mockup_note_subject_one {
+			background-color: greenyellow;
+			color: black;
+		}
+
+		.mockup_note_subject_two {
+			background-color: skyblue;
+			color: black;
+		}
+
+		.mockup_note_subject_three {
+			background-color: orange;
+			color: black;
+		}
+
+		.mockup_note_subject_four {
+			background-color: purple;
+			color: white;
+		}
+
+		.mockup_note_content {
+			margin: 0;
+			font-family: "Nanum Gothic";
+			font-size: 2vh;
+		}
+
+		.mockup_grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			grid-gap: 10px;
+			margin: 10px;
+			opacity: 0;
+		}
+
+		.mockup_memo {
+			background-color: #f7f7f7;
+			border-radius: 10px;
+			margin: 0;
+			padding: 10px;
+
+			grid-column: 1 / 3;
+			grid-row: 1 / 2;
+		}
+
+		.mockup_memo_title {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 0;
+			font-size: 17px;
+			font-weight: 700;
+		}
+
+		.mockup_memo_content {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 5px 0 0 0;
+			font-size: 15px;
+			font-weight: 400;
+		}
+
+		.mockup_reminder {
+			background-color: #f7f7f7;
+			border-radius: 10px;
+			margin: 0;
+			padding: 10px;
+
+			grid-column: 1 / 3;
+			grid-row: 2 / 3;
+		}
+
+		.mockup_reminder_title {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 0;
+			font-size: 17px;
+			font-weight: 700;
+		}
+
+		.mockup_reminder_content {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 5px 0 0 0;
+			font-size: 15px;
+			font-weight: 400;
+			padding: 0 0 0 20px;
+		}
+
+		.mockup_modal {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #f2f2f8;
+			left: 0;
+			top: calc(100% + 35px);
+			border-radius: 10px 10px 0 0;
+			overflow: hidden;
+		}
+
+		.mockup_modal_navbar {
+			width: 100%;
+			height: 5vh;
+			background-color: #2291FF;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0px 10px;
+		}
+
+		.mockup_modal_navbar_button {
+			margin: 0;
+			color: white;
+			font-family: var(--noto-sans);
+			font-weight: 400;
+		}
+
+		.mockup_modal_navbar_title {
+			margin: 0;
+			color: white;
+			font-family: var(--noto-sans);
+			font-weight: 500;
+		}
+
+		.mockup_modal_form {
+			padding: 20px 15px;
+		}
+
+		.mockup_modal_subject {
+			width: 100%;
+			height: 35px;
+			border-radius: 10px;
+			padding-left: 10px;
+			background-color: white;
+			font-family: var(--noto-sans);
+			font-size: 15px;
+			opacity: 0;
+		}
+
+		.mockup_modal_content {
+			width: 100%;
+			height: 60px;
+			margin-top: 10px;
+			border-radius: 10px;
+			padding-top: 10px;
+			padding-left: 10px;
+			background-color: white;
+			font-family: var(--noto-sans);
+			font-size: 15px;
+			opacity: 0;
+		}
+
+		.app_explain {
+			margin-left: 52vh;
+			padding-bottom: 200px;
+		}
+
+		#note {
+			height: 3000px;
+		}
+
+		.note_animate {
+			font-family: var(--noto-sans);
+			font-weight: 700;
+			font-size: 3vw;
+			height: 90px;
+			position: sticky;
+			top: 45vh;
+			opacity: 0;
+		}
+
+		.note_trigger {
+			width: 100%;
+			height: 10px;
+			margin-bottom: 900px;
+		}
+
+		#note_how {
+			padding-bottom: 150vh;
+			font-family: var(--noto-sans);
+			font-size: 25px;
+		}
+
+		#note_how h2 {
+			margin: 100vh 0 150vh 0;
+		}
+
+		.note_sticky {
+			margin-top: 0;
+			margin-bottom: 150vh;
+			position: sticky;
+			font-family: var(--noto-sans);
+			font-size: 35px;
+			font-weight: 700;
+			background-color: var(--bg-color);
+		}
+
+		.note_sticky_one {
+			top: 100px;
+		}
+
+		.note_sticky_two {
+			top: 150px;
+		}
+
+		.note_sticky_three {
+			top: 200px;
+		}
+
+		.note_sticky_four {
+			top: 250px;
+		}
+
+		#ipad {
+			height: 1000px;
+		}
+
+		.ipad_ok {
+			height: 300px;
+		}
+
+		.ipad_ok h2 {
+			width: 100%;
+			font-size: 50px;
+			margin: 0;
+			text-align: center;
+		}
+
+		.more_stuff {
+			width: 100%;
+			background-color: var(--footer-bg-color);
+		}
+
+		.more_stuff_maxw {
+			width: 100%;
+			max-width: 1200px;
 			display: block;
-			cursor: pointer;
-			transition: background-color .3s;
+			margin: 0 auto;
+			padding: 30px;
 		}
 
-		.download-dropdown-content a:hover {
-			background-color: #ddd;
+		.more_stuff_maxw h2 {
+			margin: 0 0 30px 0;
+			font-family: var(--noto-sans);
+			font-size: 30px;
 		}
 
-		.download-dropdown:hover .download-dropdown-content {
-			opacity: 1;
-			transform: none;
-			transition-delay: 0s;
+		.more_stuff_grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 50px 100px;
+		}
+
+		.more_stuff_explain_keyword {
+			margin: 5px 0 0 0;
+			font-family: var(--noto-sans);
+			font-size: 17px;
+			font-weight: 500;
+		}
+
+		.more_stuff_explain {
+			margin: 0 0 15px 0;
+			font-family: var(--noto-sans);
+			font-size: 17px;
+			font-weight: 400;
+			color: var(--gray-text-color);
+		}
+
+		.more_stuff_grid_item_image {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: black;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.more_stuff_grid_pwa {
+			background-image: url(/images/img/why-us-icns/pwa.png);
+		}
+
+		.more_stuff_grid_google {
+			background-image: url(/images/img/why-us-icns/google.png);
+		}
+
+		.more_stuff_grid_wa {
+			background-image: url(/images/img/why-us-icns/wa.png);
+		}
+
+		.more_stuff_grid_darkmode {
+			background-image: url(/images/img/why-us-icns/darkmode.png);
+		}
+
+		.more_stuff_grid_offline {
+			background-image: url(/images/img/why-us-icns/offline.png);
+		}
+
+		.more_stuff_grid_lock {
+			background-image: url(/images/img/why-us-icns/lock.png);
 		}
 
 		footer {
@@ -585,14 +844,6 @@
 			color: var(--footer-text-color);
 		}
 
-		/*
-		@keyframes pop {
-			0% {
-				transform: scale(0.1);
-				transform-origin: left center;
-			}
-		}*/
-
 		@media (prefers-color-scheme: dark) {
 			:root {
 				--theme-color: #1871CA;
@@ -601,122 +852,13 @@
 				--bg-color: #111;
 				--text-color: #FFFFFF;
 				--slide-bg-color: #222;
+				--gray-text-color: #9e9ea5;
+				--screenshot-shadow-color: #333;
 			}
 
 			.body_wrap {
 				background-color: black;
 				color: white;
-			}
-		}
-
-		@media screen and (max-width: 1000px) {
-			.section-firebase {
-				height: 700px;
-				background-size: 600px;
-				background-repeat: no-repeat;
-				background-position: bottom center;
-				padding: 40px 20px;
-			}
-
-			.section-firebase-title span {
-				font-size: 40px;
-			}
-		}
-
-		@media screen and (max-width: 768px) {
-
-			.nav_app,
-			.nav_hamburger {
-				width: 60px;
-			}
-
-			.intro_logo {
-				font-size: 40px;
-			}
-
-			.intro_text {
-				font-size: 30px;
-				width: 300px;
-				top: 245px;
-			}
-
-
-
-			.intro_main_image {
-				content: url("./images/mainpage-images/studia_mobile.webp");
-			}
-
-			.slide h2 {
-				font-size: 30px !important;
-			}
-
-			.slide-one {
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				height: 800px;
-			}
-
-			.slide-one-img {
-				height: 500px;
-				margin-left: 0;
-			}
-
-			.slide-one h2 {
-				font-size: 30px;
-				margin-left: 0;
-				text-align: center;
-			}
-
-			.slide-two {
-				height: 530px;
-			}
-
-			.slide-two-img {
-				width: 100%;
-				height: 410px;
-				bottom: -20px;
-				left: 0;
-			}
-
-			.slide-two h2 {
-				font-size: 30px;
-				width: 100%;
-				text-align: center;
-				top: 50px;
-				right: 0;
-			}
-
-			.slide-three {
-				height: 570px;
-			}
-
-			.slide-three-img {
-				width: 100%;
-				height: 480px;
-				top: -20px;
-				left: 0;
-			}
-
-			.slide-three h2 {
-				font-size: 30px;
-				width: 100%;
-				text-align: center;
-				top: auto;
-				bottom: 40px;
-				left: 0;
-			}
-
-			.section-firebase {
-				height: 800px;
-			}
-
-			.section-download {
-				height: 600px;
-			}
-
-			.section-download h2 {
-				font-size: 45px;
 			}
 		}
 	</style>
@@ -742,78 +884,173 @@
 
 	<div class="body_wrap">
 		<div class="body">
-			<div class="intro_wrap">
-				<div class="intro_sticky">
-					<div id="intro" class="intro">
-						<span class="intro_logo">studia</span>
-						<h1 class="intro_text">망각 곡선을 극복하는<br>가장 간단한 방법.</h1>
-					</div>
-				</div>
-				<div class="intro_hide">
-					<img class="intro_main_image" src="./images/mainpage-images/studia.webp" alt="STUDIA 앱의 모습">
-					<h1 class="intro_main_title">노트 필기의 대혁명.</h1>
-				</div>
-			</div>
-			<div class="main">
-				<!-- Main Content -->
-				<div class="white-padding"></div>
-				<div class="section-main">
-					<div class="slide slide-one vertical">
-						<div class="slide-one-img"></div>
-						<h2>하루 한 번 정리로<br>수업 내용을 <span>복습하세요</span></h2>
-					</div>
-					<div class="slide slide-two">
-						<h2>이전에 배운 내용을 <span>찾아보세요</span></h2>
-						<div class="slide-two-img"></div>
-					</div>
-					<div class="slide slide-three">
-						<h2>나만의 노트를 <span>공유하세요</span></h2>
-						<div class="slide-three-img"></div>
-					</div>
-				</div>
-
-				<div class="section-ade" hidden>
-					<div class="ade-head">
-						<h3>App Developers</h3>
-						<h2>우리는 사용자를 생각합니다.</h2>
-						<div class="ade-grid">
-							<div class="ade-fast"></div>
-							<div class="ade-acces"></div>
-							<div class="ade-lock"></div>
+			<div class="intro">
+				<div class="intro_screenshot_container_absolute">
+					<div class="intro_screenshot_container">
+						<div class="intro_screenshot intro_screenshot_notification">
+							<img class="intro_screenshot_img intro_screenshot_img_notification"
+								src="/images/img/notification.png" alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_notes">
+							<img class="intro_screenshot_img intro_screenshot_img_notes" src="/images/img/notes.png"
+								alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_save">
+							<img class="intro_screenshot_img intro_screenshot_img_save" src="/images/img/save.png"
+								alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_memo">
+							<img class="intro_screenshot_img intro_screenshot_img_memo" src="/images/img/memo.png"
+								alt="" />
 						</div>
 					</div>
 				</div>
-
-				<div class="section-firebase" id="firebase">
-					<h2 class="section-firebase-title">
-						<span>웹 앱</span>
-						<span>iOS 앱</span>
-						<span>Android 앱</span>
-						Firebase로 <div>하나되다.</div>
-					</h2>
+				<div class="wave_one"><svg style="position: absolute;">
+						<clipPath id="clip_one">
+							<path
+								d="M0,128L60,149.3C120,171,240,213,360,202.7C480,192,600,128,720,96C840,64,960,64,1080,74.7C1200,85,1320,107,1380,117.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+							</path>
+						</clipPath>
+					</svg></div>
+				<div class="wave_two"><svg style="position: absolute;">
+						<clipPath id="clip_two">
+							<path
+								d="M1175.65 35.7644C962.846 -46.1285 865.751 35.6288 643.768 54.6084C421.786 73.588 391.68 33.0436 226.292 14.4975C60.9034 -4.0486 11.1228 90.8729 -67.9998 110.654C-67.9998 198.586 -67.9998 516 -67.9998 516L1508.19 516L1508.19 8.45359C1508.19 8.45359 1388.84 117.807 1175.65 35.7644Z">
+							</path>
+						</clipPath>
+					</svg></div>
+			</div>
+			<div class="intro_msg">
+				<h2 class="animate animate_1">매일 한줄 노트로 배운 내용 복습하기</h2>
+				<div class="trigger trigger_1"></div>
+				<h2 class="animate animate_2">메모, 과제 및 준비물로 중요한 일 기억하기</h2>
+				<div class="trigger trigger_2"></div>
+				<h2 class="animate animate_3">기기 간 실시간 연동으로 어디서든 액세스</h2>
+				<div class="trigger trigger_3"></div>
+			</div>
+			<div class="app">
+				<div class="app_title">
+					<h1 class="app_title_h1">복습?
+						<p class="app_title_sub">스튜디아로 <span class="app_title_easy">쉽고</span> <span
+								class="app_title_fast">빠르게</span>.</p>
+					</h1>
 				</div>
-
-				<div class="section-download">
-					<img class="section-download-img" src="images/mainpage-images/products.webp"
-						alt="STUDIA 앱을 실행 중인 iPhone과 iPad" />
-					<h2>지금 바로 <span>시작하세요!</span></h2>
-					<div class="download-button">
-						<div class="download-split-button">
-							<a href="https://studia.blue/downloads/" class="download-button-default center"
-								id="download-button-default">앱 다운로드</a>
-							<div class="download-dropdown">
-								<button class="download-dropdown-arrow center" aria-label="다운로드 옵션">
-									<i class="fas fa-caret-down"></i>
-								</button>
-								<div class="download-dropdown-content">
-									<a href="https://studia.blue/downloads/#web" class="download-button-browser">브라우저로
-										계속</a>
-									<a href="https://studia.blue/downloads/#ios" class="download-button-ios">iOS
-										다운로드</a>
-									<a href="https://studia.blue/downloads/#android"
-										class="download-button-android">Android 다운로드</a>
+				<div class="mockup_device">
+					<div class="mockup_screen">
+						<div class="mockup_page">
+							<div class="mockup_navbar">
+								<p class="mockup_navbar_title">내 캘린더</p>
+							</div>
+							<div class="mockup_date_container">
+								<p class="mockup_date">&lt; 2022/01/01 &gt;</p>
+							</div>
+							<div class="mockup_note_container">
+								<div class="mockup_note mockup_note_one">
+									<div class="mockup_note_subject mockup_note_subject_one center">국어</div>
+									<p class="mockup_note_content mockup_note_content_one">형태소의 개념</p>
+								</div>
+								<div class="mockup_note mockup_note_two">
+									<div class="mockup_note_subject mockup_note_subject_two center">사회</div>
+									<p class="mockup_note_content mockup_note_content_one">자연재해 대응 방안</p>
+								</div>
+								<div class="mockup_note mockup_note_three">
+									<div class="mockup_note_subject mockup_note_subject_three center">영어</div>
+									<p class="mockup_note_content mockup_note_content_one">to부정사의 부사적 용법</p>
+								</div>
+								<div class="mockup_note_hidden">
+									<div class="mockup_note_subject mockup_note_subject_four center">수학</div>
+									<p class="mockup_note_content mockup_note_content_one">음함수의 미분법</p>
 								</div>
 							</div>
+							<div class="mockup_grid">
+								<div class="mockup_memo">
+									<p class="mockup_memo_title">메모</p>
+									<p class="mockup_memo_content">사물함에 마스크 여분 갖다놓기</p>
+								</div>
+								<div class="mockup_reminder">
+									<p class="mockup_reminder_title">과제 및 준비물</p>
+									<ul class="mockup_reminder_content">
+										<li>컴싸</li>
+										<li>4B연필, 지우개</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="mockup_modal">
+							<div class="mockup_modal_navbar">
+								<p class="mockup_modal_navbar_button">취소</p>
+								<p class="mockup_modal_navbar_title">노트 추가</p>
+								<p class="mockup_modal_navbar_button">완료</p>
+							</div>
+							<div class="mockup_modal_form">
+								<div class="mockup_modal_subject vertical">수학</div>
+								<div class="mockup_modal_content">음함수의 미분법</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="app_explain">
+					<div id="note">
+						<h2 class="note_animate animate_4">한 줄 노트로<br>수업 내용을 정리하세요</h2>
+						<div class="note_trigger trigger_4"></div>
+						<h2 class="note_animate animate_5">날짜별로 노트를<br>찾아보고, 관리하세요</h2>
+						<div class="note_trigger trigger_5"></div>
+						<h2 class="note_animate animate_6">알림장 기능도 있어요</h2>
+						<div class="note_trigger trigger_6"></div>
+					</div>
+					<div id="note_how">
+						<h2>어떻게 하냐고요?</h2>
+						<div id="trigger_one"></div>
+						<p class="note_sticky note_sticky_one">노트 추가</p>
+						<div id="trigger_two"></div>
+						<p class="note_sticky note_sticky_two">과목 선택</p>
+						<div id="trigger_three"></div>
+						<p class="note_sticky note_sticky_three">내용 작성</p>
+						<div id="trigger_four"></div>
+						<p class="note_sticky note_sticky_four">끝.</p>
+					</div>
+					<div id="ipad">
+					</div>
+				</div>
+			</div>
+			<div class="ipad_ok">
+				<h2>태블릿? 문제없어요.</h2>
+			</div>
+			<div class="grid">
+			</div>
+			<div class="more_stuff">
+				<div class="more_stuff_maxw">
+					<h2>Even More Great Stuff.</h2>
+					<div class="more_stuff_grid">
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_pwa"></div>
+							<p class="more_stuff_explain_keyword">Progressive Web App</p>
+							<p class="more_stuff_explain">PWA 앱은 브라우저 캐싱을 통해 기기에 웹 앱을 설치하고 로딩 속도 및 성능을 향상시킬 수 있습니다.</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_google"></div>
+							<p class="more_stuff_explain_keyword">소셜 로그인</p>
+							<p class="more_stuff_explain">번거로운 가입 절차 없이 구글 계정으로 간편하게 가입 및 로그인하세요</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_wa"></div>
+							<p class="more_stuff_explain_keyword">접근성</p>
+							<p class="more_stuff_explain">시각장애인, 스크린 리더 등도 페이지의 내용을 문제 없이 읽을 수 있도록 접근성 기술을 사용하였습니다.</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_darkmode"></div>
+							<p class="more_stuff_explain_keyword">다크 모드</p>
+							<p class="more_stuff_explain">다크 모드를 사용하여 눈의 피로도를 줄이고 배터리와 디스플레이도 보존하세요. 기기의 설정값이 그대로 반영됩니다.</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_offline"></div>
+							<p class="more_stuff_explain_keyword">오프라인 접근</p>
+							<p class="more_stuff_explain">인터넷 연결이 불안정하거나 잠시 끊어진 경우에도 노트 작성이 가능합니다. 나중에 다시 네트워크에 연결되면 작업이 저장됩니다.</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_lock"></div>
+							<p class="more_stuff_explain_keyword">DB 암호화</p>
+							<p class="more_stuff_explain">Firebase Realtime Database의 보안 규칙을 설정하여 본인이 아닌 경우에는 노트 접근을 차단하도록 했습니다.</p>
 						</div>
 					</div>
 				</div>
@@ -867,11 +1104,6 @@
 			sidenav.className = "";
 		})
 
-		// Intro Animation
-		window.onload = function () {
-			document.getElementById("intro").classList.add("load");
-		}
-
 		var url = new URL(location.href);
 		// If '?noie=true' parameter is not present
 		if (url.searchParams.get('noie') !== 'true') {
@@ -882,6 +1114,220 @@
 				location.replace("https://studia.blue/noie");
 			}
 		}
+
+		// ScrollMagic
+		var controller = new ScrollMagic.Controller();
+
+		var animateElem = [".animate_1", ".animate_2", ".animate_3"];
+		var triggerElem = [".trigger_1", ".trigger_2", ".trigger_3"];
+		var noteAnimateElem = [".animate_4", ".animate_5", ".animate_6"];
+		var noteTriggerElem = [".trigger_4", ".trigger_5", ".trigger_6"];
+
+		for (var i = 0; i < animateElem.length; i++) {
+			var currentAnimateElem = animateElem[i];
+			var currentTriggerElem = triggerElem[i];
+
+			var timeline = new TimelineMax();
+
+			var tween_move = TweenMax.fromTo(
+				currentAnimateElem,
+				1, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: 50
+				}, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: -50
+				}
+			);
+
+			var tween_opacity = new TimelineMax();
+			tween_opacity
+				.to(currentAnimateElem, 0.3, {
+					ease: Linear.easeNone,
+					opacity: 1
+				})
+				.to(
+					currentAnimateElem,
+					0.3, {
+						ease: Linear.easeNone,
+						opacity: 0
+					},
+					"+=0.4"
+				);
+
+			timeline.add(tween_move, 0).add(tween_opacity, 0);
+
+			var scene_main = new ScrollMagic.Scene({
+					triggerElement: currentTriggerElem,
+					duration: "900px"
+				})
+				.setTween(timeline)
+				.addTo(controller);
+		}
+
+		for (var i = 0; i < noteAnimateElem.length; i++) {
+			var currentAnimateElem = noteAnimateElem[i];
+			var currentTriggerElem = noteTriggerElem[i];
+
+			var timeline = new TimelineMax();
+
+			var tween_move = TweenMax.fromTo(
+				currentAnimateElem,
+				1, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: 50
+				}, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: -50
+				}
+			);
+
+			var tween_opacity = new TimelineMax();
+			tween_opacity
+				.to(currentAnimateElem, 0.3, {
+					ease: Linear.easeNone,
+					opacity: 1
+				})
+				.to(
+					currentAnimateElem,
+					0.3, {
+						ease: Linear.easeNone,
+						opacity: 0
+					},
+					"+=0.4"
+				);
+
+			timeline.add(tween_move, 0).add(tween_opacity, 0);
+
+			var scene_main = new ScrollMagic.Scene({
+					triggerElement: currentTriggerElem,
+					duration: "900px"
+				})
+				.setTween(timeline)
+				.addTo(controller);
+		}
+
+		var timeline_note_appear = new TimelineMax();
+		timeline_note_appear
+			.to('.mockup_note_one', 0.3, {
+				opacity: 1,
+				x: 0
+			})
+			.to('.mockup_note_two', 0.3, {
+				opacity: 1,
+				x: 0
+			})
+			.to('.mockup_note_three', 0.3, {
+				opacity: 1,
+				x: 0
+			})
+		var scene_note_appear = new ScrollMagic.Scene({
+				triggerElement: '.trigger_4'
+			})
+			.setTween(timeline_note_appear)
+			.addTo(controller);
+
+		var tween_note_reminder = TweenMax.to('.mockup_grid', 0.5, {
+			opacity: 1
+		})
+		var scene_note_reminder = new ScrollMagic.Scene({
+				triggerElement: '.trigger_6'
+			})
+			.setTween(tween_note_reminder)
+			.addTo(controller)
+
+		var tween_note_modal = new TimelineMax();
+		tween_note_modal
+			.add('start')
+			.to('.mockup_page', 0.5, {
+				scale: 0.95,
+				y: 10,
+				borderRadius: "10px 10px 0 0",
+				opacity: 0.9
+			}, "start")
+			.to('.mockup_modal', 0.5, {
+				y: "-100%"
+			}, "start")
+		var scene_note_modal = new ScrollMagic.Scene({
+				triggerElement: '#trigger_one',
+				offset: -300,
+				duration: "50%"
+			})
+			.setTween(tween_note_modal)
+			.addTo(controller)
+
+		var tween_add_subject = TweenMax.to('.mockup_modal_subject', 0.5, {
+			opacity: 1
+		})
+		var scene_add_subject = new ScrollMagic.Scene({
+				triggerElement: '#trigger_two'
+			})
+			.setTween(tween_add_subject)
+			.addTo(controller)
+
+		var tween_add_content = TweenMax.to('.mockup_modal_content', 0.5, {
+			opacity: 1
+		})
+		var scene_add_subject = new ScrollMagic.Scene({
+				triggerElement: '#trigger_three'
+			})
+			.setTween(tween_add_content)
+			.addTo(controller)
+
+		var tween_note_modal_close = new TimelineMax();
+		tween_note_modal_close
+			.add('start')
+			.to('.mockup_page', 0.5, {
+				scale: 1,
+				y: 0,
+				borderRadius: 0,
+				opacity: 1
+			}, "start")
+			.to('.mockup_modal', 0.5, {
+				y: "100%"
+			}, "start")
+			.to('.mockup_note_container', 0.5, {
+				height: "calc(24vh + 30px)"
+			}, "start")
+			.to('.mockup_note_hidden', 0.5, {
+				opacity: 1
+			}, "start")
+		var scene_note_modal_close = new ScrollMagic.Scene({
+				triggerElement: '#trigger_four',
+				offset: -300,
+				duration: "100%"
+			})
+			.setTween(tween_note_modal_close)
+			.addTo(controller)
+
+		var tween_ipad = new TimelineMax();
+		tween_ipad
+			.add('start')
+			.to('.mockup_device', 0.5, {
+				width: "90vw",
+				margin: "0",
+				padding: "2vh 10vh",
+				borderRadius: "25px"
+			}, "start")
+			.to('.mockup_screen', 0.5, {
+				height: "81vh"
+			}, "start")
+			.to('.mockup_memo', 0.5, {
+				gridColumn: "1 / 2",
+				gridRow: "1 / 3",
+				height: "20vh"
+			}, "start")
+			.to('.mockup_reminder', 0.5, {
+				gridColumn: "2 / 3",
+				gridRow: "1 / 3",
+				height: "20vh"
+			}, "start")
+		var scene_ipad = new ScrollMagic.Scene({
+				triggerElement: '#ipad',
+				duration: "100%"
+			})
+			.setTween(tween_ipad)
+			.addTo(controller)
 	</script>
 </body>
 
