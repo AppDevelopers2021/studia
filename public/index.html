@@ -23,7 +23,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@400;500;700&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
@@ -67,7 +67,7 @@
 			--gray-text-color: #6E6E73;
 			--screenshot-shadow-color: #808080;
 			--footer-bg-color: #F5F5F7;
-			--footer-text-color: #555555;
+			--footer-text-color: #6e6e73;
 			--error-text-color: #FF3120;
 
 			--noto-sans: "Noto Sans KR", sans-serif;
@@ -89,7 +89,7 @@
 			width: 100%;
 			margin: 0;
 			padding: 0;
-			background-color: var(--bg-color);
+			background-color: var(--theme-color);
 			font-family: 'Noto Sans KR', sans-serif;
 		}
 
@@ -119,6 +119,7 @@
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
+			transform: translateZ(1000px);
 			z-index: 4;
 
 			position: fixed;
@@ -261,7 +262,7 @@
 		}
 
 		.intro {
-			height: 1000px;
+			height: 800px;
 			background: linear-gradient(200deg, #2193b0, #6dd5ed);
 			overflow: visible;
 		}
@@ -281,6 +282,10 @@
 			width: 100%;
 			height: 90px;
 			text-align: center;
+		}
+
+		.animate span {
+			display: inline-block;
 		}
 
 		.trigger {
@@ -684,7 +689,7 @@
 		.note_animate {
 			font-family: var(--noto-sans);
 			font-weight: 700;
-			font-size: 3vw;
+			font-size: 40px;
 			height: 90px;
 			position: sticky;
 			top: 45vh;
@@ -764,7 +769,7 @@
 		.more_stuff_maxw h2 {
 			margin: 0 0 30px 0;
 			font-family: var(--noto-sans);
-			font-size: 30px;
+			font-size: 35px;
 		}
 
 		.more_stuff_grid {
@@ -822,14 +827,143 @@
 			background-image: url(/images/img/why-us-icns/lock.png);
 		}
 
+		.download {
+			width: 100%;
+			background: linear-gradient(to right bottom, #8360C3, #2EBF91);
+		}
+
+		.download_content {
+			width: 100%;
+			max-width: 1200px;
+			display: block;
+			margin: 0 auto;
+			padding: 90px 30px 30px 30px;
+		}
+
+		.download_title {
+			font-family: var(--noto-sans);
+			font-size: 40px;
+			width: 100%;
+			text-align: center;
+			font-weight: 700;
+			color: white;
+		}
+
+		.download_grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr;
+			gap: 20px;
+		}
+
+		.download_section {
+			background-color: #ffffff80;
+			border: none;
+			border-radius: 20px;
+			padding: 15px;
+
+			background-repeat: no-repeat;
+			background-size: 70%;
+			background-position: bottom right;
+			transition: .5s;
+		}
+
+		.download_section:hover {
+			transform: translate(0, -10px);
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.download_section_title {
+			margin: 0;
+			width: 100%;
+			text-align: center;
+			font-family: var(--noto-sans);
+			font-size: 35px;
+			font-weight: 700;
+		}
+
+		.download_button {
+			width: 100%;
+			height: 50px;
+			background-color: var(--theme-color);
+			color: white;
+			text-decoration: none;
+			text-align: center;
+			font-family: var(--noto-sans);
+			font-size: 18px;
+			line-height: 50px;
+			border-radius: 10px;
+			display: block;
+			margin: 250px 0 0 0;
+		}
+
+		.download_button i {
+			margin-right: 5px;
+		}
+
+		.download_web {
+			grid-column: 1 / 1;
+			grid-row: 1 / 4;
+			background-image: url(/images/img/download-mockups/web.png);
+		}
+
+		.download_ios {
+			grid-column: 2 / 3;
+			grid-row: 1 / 4;
+			background-image: url(/images/img/download-mockups/ios.png);
+		}
+
+		.download_android {
+			grid-column: 3 / 4;
+			grid-row: 1 / 4;
+			background-image: url(/images/img/download-mockups/android.png);
+		}
+
+		.download_wave {
+			background: var(--footer-bg-color);
+			clip-path: url(#download_wave_clip);
+			width: 100%;
+			height: 300px;
+		}
+
+		.footnote {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.footnotes {
+			width: 100%;
+			background-color: var(--footer-bg-color);
+			padding: 20px;
+		}
+
+		.footnotes_list {
+			width: 100%;
+			max-width: 1000px;
+			display: block;
+			margin: 0 auto;
+			border-top: 1px solid #d2d2d7;
+			border-bottom: 1px solid #d2d2d7;
+			padding: 0 0 0 30px;
+			color: var(--footer-text-color);
+			font-size: 12px;
+		}
+
 		footer {
 			width: 100%;
 			height: 200px;
 			background-color: var(--footer-bg-color);
-			padding-left: 30px;
 			margin-top: -200px;
 			border-bottom: 10px solid var(--theme-color);
 			position: relative;
+			padding: 0 0 0 30px;
+		}
+
+		footer div {
+			width: 100%;
+			max-width: 1000px;
+			display: block;
+			margin: 0 auto;
 		}
 
 		.footer_logo {
@@ -842,6 +976,42 @@
 
 		.footer_sosumi {
 			color: var(--footer-text-color);
+		}
+
+		@media screen and (max-width: 1000px) {
+			.app_title_h1 {
+				font-size: 7vw;
+			}
+
+			.animate {
+				font-size: 5vw;
+			}
+
+			.animate span {
+				display: block;
+			}
+		}
+
+		@media screen and (max-width: 800px) {
+			.app_title_h1 {
+				font-size: 8vw;
+			}
+			
+			.animate {
+				font-size: 6vw;
+			}
+
+			#ipad {
+				display: none;
+			}
+
+			.ipad_ok {
+				visibility: hidden;
+			}
+
+			.more_stuff_grid {
+				grid-template-columns: 1fr 1fr;
+			}
 		}
 
 		@media (prefers-color-scheme: dark) {
@@ -921,11 +1091,11 @@
 					</svg></div>
 			</div>
 			<div class="intro_msg">
-				<h2 class="animate animate_1">매일 한줄 노트로 배운 내용 복습하기</h2>
+				<h2 class="animate animate_1">매일 한줄 노트로 <span>배운 내용 복습하기</span></h2>
 				<div class="trigger trigger_1"></div>
-				<h2 class="animate animate_2">메모, 과제 및 준비물로 중요한 일 기억하기</h2>
+				<h2 class="animate animate_2">메모, 과제 및 준비물로 <span>중요한 일 기억하기</span></h2>
 				<div class="trigger trigger_2"></div>
-				<h2 class="animate animate_3">기기 간 실시간 연동으로 어디서든 액세스</h2>
+				<h2 class="animate animate_3">기기 간 실시간 연동으로 <span>어디서든 액세스</span></h2>
 				<div class="trigger trigger_3"></div>
 			</div>
 			<div class="app">
@@ -1020,11 +1190,12 @@
 			</div>
 			<div class="more_stuff">
 				<div class="more_stuff_maxw">
-					<h2>Even More Great Stuff.</h2>
+					<h2>여기에 더.</h2>
 					<div class="more_stuff_grid">
 						<div class="more_stuff_grid_item">
 							<div class="more_stuff_grid_item_image more_stuff_grid_pwa"></div>
-							<p class="more_stuff_explain_keyword">Progressive Web App</p>
+							<p class="more_stuff_explain_keyword">Progressive Web App<sup><a href="#footnote-1"
+										class="footnote">1</a></sup></p>
 							<p class="more_stuff_explain">PWA 앱은 브라우저 캐싱을 통해 기기에 웹 앱을 설치하고 로딩 속도 및 성능을 향상시킬 수 있습니다.</p>
 						</div>
 						<div class="more_stuff_grid_item">
@@ -1040,24 +1211,76 @@
 						<div class="more_stuff_grid_item">
 							<div class="more_stuff_grid_item_image more_stuff_grid_darkmode"></div>
 							<p class="more_stuff_explain_keyword">다크 모드</p>
-							<p class="more_stuff_explain">다크 모드를 사용하여 눈의 피로도를 줄이고 배터리와 디스플레이도 보존하세요. 기기의 설정값이 그대로 반영됩니다.</p>
+							<p class="more_stuff_explain">다크 모드를 사용하여 눈의 피로도를 줄이고 배터리와 디스플레이도 보존하세요. 기기의 설정값이 그대로 반영됩니다.
+							</p>
 						</div>
 						<div class="more_stuff_grid_item">
 							<div class="more_stuff_grid_item_image more_stuff_grid_offline"></div>
-							<p class="more_stuff_explain_keyword">오프라인 접근</p>
-							<p class="more_stuff_explain">인터넷 연결이 불안정하거나 잠시 끊어진 경우에도 노트 작성이 가능합니다. 나중에 다시 네트워크에 연결되면 작업이 저장됩니다.</p>
+							<p class="more_stuff_explain_keyword">오프라인 연결<sup><a href="#footnote-2"
+										class="footnote">2</a></sup></p>
+							<p class="more_stuff_explain">인터넷 연결이 불안정하거나 잠시 끊어진 경우에도 노트 작성이 가능합니다. 나중에 다시 네트워크에 연결되면 작업이
+								저장됩니다.<sup><a href="#footnote-3" class="footnote">3</a></sup></p>
 						</div>
 						<div class="more_stuff_grid_item">
 							<div class="more_stuff_grid_item_image more_stuff_grid_lock"></div>
-							<p class="more_stuff_explain_keyword">DB 암호화</p>
-							<p class="more_stuff_explain">Firebase Realtime Database의 보안 규칙을 설정하여 본인이 아닌 경우에는 노트 접근을 차단하도록 했습니다.</p>
+							<p class="more_stuff_explain_keyword">DB 보안<sup><a href="#footnote-4"
+										class="footnote">4</a></sup></p>
+							<p class="more_stuff_explain">Firebase Realtime Database의 보안 규칙을 설정하여 본인이 아닌 경우에는 노트 접근을
+								차단하도록 했습니다.</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="download" id="download">
+				<div class="download_content">
+					<h2 class="download_title">STUDIA 시작하기</h2>
+					<div class="download_grid">
+						<div class="download_section download_web">
+							<div class="download_section_title">Web</div>
+							<a target="_blank" class="download_button" href="https://studia.blue/app"><i class="fa-solid fa-arrow-up-right-from-square"></i> 열기</a>
+						</div>
+						<div class="download_section download_ios">
+							<div class="download_section_title">iOS</div>
+							<a class="download_button" href="#"><i class="fa-solid fa-circle-arrow-down"></i> 받기</a>
+						</div>
+						<div class="download_section download_android">
+							<div class="download_section_title">Android</div>
+							<a class="download_button" href="https://play.google.com/store/apps/details?id=app.web.studia_kr"><i class="fa-solid fa-circle-arrow-down"></i> 받기</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="download_wave"><svg style="position: absolute;">
+						<clipPath id="download_wave_clip">
+							<path
+								d="M0,96L60,112C120,128,240,160,360,149.3C480,139,600,85,720,90.7C840,96,960,160,1080,181.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+							</path>
+						</clipPath>
+					</svg>
+				</div>
+			</div>
+			<div class="footnotes">
+				<ol class="footnotes_list">
+					<li id="footnote-1">
+						<p>프로그레시브 웹 앱 기술은 STUDIA 웹 앱에서만 사용 가능합니다. 또한 이를 사용하려면 Google Chrome 버전 39 이상, Microsoft Edge 버전
+							79 이상, Safari on iOS 버전 11.3 이상, Opera Mobile 버전 13 이상, Chrome for Android, Firefox for
+							Android, 삼성 인터넷 또는 그 밖의 A2HS를 지원하는 브라우저를 사용해야 합니다. Microsoft Internet Explorer, Firefox
+							Desktop, Safari on macOS, Opera Desktop 등의 브라우저에서는 PWA 기능을 사용할 수 없습니다.</p>
+					</li>
+					<li id="footnote-2">
+						<p>오프라인 접근 기능은 iOS 앱에서만 사용 가능합니다. 사용하려면 애플리케이션 설정에서 오프라인 접근 항목을 활성화하십시오.</p>
+					</li>
+					<li id="footnote-3">
+						<p>데이터베이스 수정은 일시적 네트워크 끊김의 경우에만 사용 가능하며, 네트워크 연결이 완전히 끊어진 경우에는 읽기 모드만 지원됩니다. 노트, 메모 또는 과제 및 준비물을
+							오프라인 상태에서 생성하거나 수정, 삭제한 후 앱을 종료한 경우에는 해당 수정사항이 폐기됩니다.</p>
+					</li>
+					<li id="footnote-4">
+						<p>데이터베이스에 저장되는 개인 데이터는 HTTPS 보호를 통해 전송되며 구글의 Firebase 데이터 센터(동아시아 서버)에서 AES 256-Bit로 암호화된 후 보관됩니다.</p>
+					</li>
+				</ol>
+			</div>
 		</div>
 	</div>
-
 
 	<footer class="vertical">
 		<div>
@@ -1301,33 +1524,65 @@
 			.addTo(controller)
 
 		var tween_ipad = new TimelineMax();
-		tween_ipad
-			.add('start')
-			.to('.mockup_device', 0.5, {
-				width: "90vw",
-				margin: "0",
-				padding: "2vh 10vh",
-				borderRadius: "25px"
-			}, "start")
-			.to('.mockup_screen', 0.5, {
-				height: "81vh"
-			}, "start")
-			.to('.mockup_memo', 0.5, {
-				gridColumn: "1 / 2",
-				gridRow: "1 / 3",
-				height: "20vh"
-			}, "start")
-			.to('.mockup_reminder', 0.5, {
-				gridColumn: "2 / 3",
-				gridRow: "1 / 3",
-				height: "20vh"
-			}, "start")
-		var scene_ipad = new ScrollMagic.Scene({
-				triggerElement: '#ipad',
-				duration: "100%"
-			})
-			.setTween(tween_ipad)
-			.addTo(controller)
+		if (window.matchMedia("(min-width: 1200px)").matches) {
+			tween_ipad
+				.add('start')
+				.to('.mockup_device', 0.5, {
+					width: "90vw",
+					margin: "0",
+					padding: "2vh 10vh",
+					borderRadius: "25px"
+				}, "start")
+				.to('.mockup_screen', 0.5, {
+					height: "81vh"
+				}, "start")
+				.to('.mockup_memo', 0.5, {
+					gridColumn: "1 / 2",
+					gridRow: "1 / 3",
+					height: "20vh"
+				}, "start")
+				.to('.mockup_reminder', 0.5, {
+					gridColumn: "2 / 3",
+					gridRow: "1 / 3",
+					height: "20vh"
+				}, "start")
+
+			var scene_ipad = new ScrollMagic.Scene({
+					triggerElement: '#ipad',
+					duration: "100%"
+				})
+				.setTween(tween_ipad)
+				.addTo(controller)
+		} else if (window.matchMedia("(min-width: 800px)").matches) {
+			tween_ipad
+				.add('start')
+				.to('.mockup_device', 0.5, {
+					width: "90vw",
+					margin: "0 0 0 5vw",
+					padding: "2vh 10vh",
+					borderRadius: "25px"
+				}, "start")
+				.to('.mockup_screen', 0.5, {
+					height: "81vh"
+				}, "start")
+				.to('.mockup_memo', 0.5, {
+					gridColumn: "1 / 2",
+					gridRow: "1 / 3",
+					height: "20vh"
+				}, "start")
+				.to('.mockup_reminder', 0.5, {
+					gridColumn: "2 / 3",
+					gridRow: "1 / 3",
+					height: "20vh"
+				}, "start")
+
+			var scene_ipad = new ScrollMagic.Scene({
+					triggerElement: '#ipad',
+					duration: "100%"
+				})
+				.setTween(tween_ipad)
+				.addTo(controller)
+		}
 	</script>
 </body>
 
