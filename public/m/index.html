@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+
+	<meta name="google-site-verification" content="v_8lwAq0AtCwtrUypT8thuIlCKO0b9jBVBZH0KuMXf8" />
+
+	<!--Favicon Styles-->
+	<link rel="apple-touch-icon" sizes="180x180" href="https://studia.blue/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://studia.blue/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://studia.blue/images/favicon-16x16.png">
+	<link rel="manifest" href="https://studia.blue/images/site.webmanifest">
+	<link rel="mask-icon" href="https://studia.blue/images/safari-pinned-tab.svg" color="#2192ff">
+	<link rel="shortcut icon" href="https://studia.blue/images/favicon.ico">
+	<meta name="msapplication-TileColor" content="#2192ff">
+	<meta name="msapplication-config" content="https://studia.blue/images/browserconfig.xml">
+	<meta name="theme-color" content="#2192ff">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="description" content="원촌중 학생들이 직접 만든 노트 애플리케이션, 스튜디아! 노트를 작성하며 수업한 내용을 복습해 보세요.">
+	<meta name="keywords" content="원촌중학교,studia,스튜디아,App Developers,자율동아리">
+
+	<meta property="og:title" content="스튜디아 - 노트 정리도 스마트하게!">
+	<meta property="og:description" content="스튜디아 노트를 작성하며 매일 배운 내용을 복습해 보세요.">
+	<meta property="og:image" content="https://studia.blue/images/profile.jpg">
+
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "SoftwareApplication",
+			"name": "STUDIA",
+			"operatingSystem": "Web, iOS, Android",
+			"applicationCategory": "EducationalApplication",
+			"offers": {
+				"@type": "Offer",
+				"price": "0"
+			}
+		}
+	</script>
+
+	<title>스튜디아 STUDIA :: 노트 정리도 스마트하게!</title>
+
+	<style>
+		:root {
+			--theme-color: #2291FF;
+			--bg-color: #FFFFFF;
+			--text-color: #000000;
+			--slide-bg-color: #EEEEEE;
+			--navbar-text-color: #FFFFFF;
+			--sidenav-bg-color: #111111;
+			--gray-text-color: #6E6E73;
+			--screenshot-shadow-color: #808080;
+			--footer-bg-color: #F5F5F7;
+			--footer-text-color: #6e6e73;
+			--error-text-color: #FF3120;
+
+			--noto-sans: "Noto Sans KR", sans-serif;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: var(--theme-color);
+			font-family: 'Noto Sans KR', sans-serif;
+		}
+
+		/* Align Items With FLEX */
+		.vertical {
+			display: flex;
+			align-items: center;
+		}
+
+		.horizontal {
+			display: flex;
+			justify-content: center;
+		}
+
+		.center {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* Navigation Bar CSS */
+		#navbar {
+			width: 100%;
+			height: 50px;
+			background-color: var(--theme-color);
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			transform: translateZ(1000px);
+			z-index: 4;
+
+			position: fixed;
+			top: 0;
+			transition: top 0.3s;
+		}
+
+		.nav_hamburger {
+			width: 80px;
+			height: 40px;
+			min-width: 40px;
+			overflow: hidden;
+			cursor: pointer;
+			background-color: transparent;
+			border: none;
+			outline: none;
+		}
+
+		.bar1,
+		.bar2,
+		.bar3 {
+			width: 20px;
+			height: 3px;
+			border-radius: 1px;
+			background-color: var(--navbar-text-color);
+			margin: 4px 0;
+			transition: 0.4s;
+		}
+
+		.bar1 {
+			transform-origin: right center;
+		}
+
+		.bar3 {
+			transform-origin: right center;
+		}
+
+		.bar_open .bar1 {
+			transform: translate(-3px, 0) rotate(-45deg);
+		}
+
+		.bar_open .bar2 {
+			opacity: 0;
+		}
+
+		.bar_open .bar3 {
+			transform: translate(-3px, 0) rotate(45deg);
+		}
+
+		.nav_home {
+			font-family: 'Courgette', cursive;
+			color: var(--navbar-text-color);
+			text-decoration: none;
+			font-size: 25px;
+		}
+
+		.nav_app {
+			box-sizing: content-box;
+			width: 80px;
+			height: 35px;
+			border-radius: 10px;
+			border: 2px solid var(--navbar-text-color);
+			color: var(--navbar-text-color);
+			text-decoration: none;
+			text-align: center;
+			line-height: 35px;
+			font-size: 17px;
+			font-family: 'Noto Sans KR', sans-serif;
+			margin-right: 5px;
+		}
+
+		#sidenav {
+			position: fixed;
+			width: 0;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			background-color: #111;
+			padding-top: 70px;
+			z-index: 3;
+			transition: .5s ease;
+			overflow: hidden;
+		}
+
+		#sidenav.side_open {
+			width: 250px;
+		}
+
+		#sidenav a {
+			display: block;
+			width: 240px;
+			height: 50px;
+			font-size: 17px;
+			margin-right: 10px;
+			padding-left: 10px;
+			line-height: 50px;
+			text-decoration: none;
+			color: white;
+			border-radius: 0 25px 25px 0;
+			transition: .1s;
+		}
+
+		#sidenav a:hover {
+			background-color: #333;
+		}
+
+		.nav_devide {
+			border: none;
+			width: 250px;
+			height: 15px;
+			margin: 0;
+		}
+
+		#close_nav {
+			font-size: 35px;
+			position: absolute;
+			top: 10px;
+			left: 12px;
+			border: none;
+			background: none;
+			color: white;
+			cursor: pointer;
+		}
+
+		.body_wrap {
+			background-color: var(--bg-color);
+			width: 100%;
+			min-height: 100%;
+			margin-bottom: -200px;
+		}
+
+		.body {
+			padding-bottom: 200px;
+			background-color: var(--bg-color);
+		}
+
+		.temp {
+			height: 1000px;
+			background-color: #eee;
+		}
+
+		.intro {
+			height: 900px;
+			background: linear-gradient(200deg, #2193b0, #6dd5ed);
+			overflow: hidden;
+		}
+
+		.intro_msg {
+			height: 3600px;
+			padding: 300px 0;
+		}
+
+		.animate {
+			position: sticky;
+			top: 45vh;
+			opacity: 0;
+			font-family: var(--noto-sans);
+			font-weight: 700;
+			font-size: 9vw;
+			width: 100%;
+			height: 90px;
+			text-align: center;
+		}
+
+		.animate span {
+			display: block;
+		}
+
+		.trigger {
+			width: 100%;
+			height: 10px;
+			margin-bottom: 900px;
+		}
+
+		.intro_screenshot_container_absolute {
+			width: 100%;
+			height: 100px;
+			position: absolute;
+			top: 70px;
+			left: 0;
+			overflow: visible;
+			z-index: 2;
+		}
+
+		.intro_screenshot_container {
+			position: relative;
+		}
+
+		.intro_screenshot {
+			transform: rotateY(-15deg) rotateX(15deg);
+			position: absolute;
+			overflow: hidden;
+		}
+
+		.intro_screenshot_img {
+			display: block;
+		}
+
+		.intro_screenshot_faceid {
+			backdrop-filter: blur(10px);
+			border-radius: 7px;
+
+			top: 10vw;
+			left: 70vw;
+			z-index: 4;
+		}
+
+		.intro_screenshot_notes {
+			background: white;
+			backdrop-filter: blur(10px);
+			border-radius: 15px;
+			z-index: 1;
+
+			top: 4vw;
+			left: 10vw;
+			box-shadow: 5px 5px 25px var(--screenshot-shadow-color);
+		}
+
+		.intro_screenshot_share {
+			top: 35vw;
+			left: 30vw;
+			box-shadow: 5px 5px 25px var(--screenshot-shadow-color);
+			border-radius: 10px;
+			z-index: 2;
+		}
+
+		.intro_screenshot_picker {
+			background: rgba(255, 255, 255, 0.5);
+			backdrop-filter: blur(10px);
+			border-radius: 10px;
+			top: 120vw;
+			left: 10vw;
+			box-shadow: 5px 5px 20px var(--screenshot-shadow-color);
+			z-index: 3;
+		}
+
+		.intro_screenshot_img_faceid {
+			width: 20vw;
+		}
+
+		.intro_screenshot_img_notes {
+			width: 75vw;
+		}
+
+		.intro_screenshot_img_share {
+			width: 60vw;
+		}
+
+		.intro_screenshot_img_picker {
+			width: 60vw;
+		}
+
+		.wave_one {
+			background: linear-gradient(#93d2e2, #c8e1e9);
+			clip-path: url(#clip_one);
+			position: absolute;
+			width: 100%;
+			height: 500px;
+			top: 70vw;
+		}
+
+		.wave_two {
+			background: var(--bg-color);
+			clip-path: url(#clip_two);
+			position: absolute;
+			width: 100%;
+			height: 700px;
+			top: 120vw;
+		}
+
+		.app {
+			padding: 0 5vw;
+			max-width: 1200px;
+			margin: 0 auto;
+			display: block;
+		}
+
+		.app_title {
+			width: 100%
+		}
+
+		.app_title_h1 {
+			margin: 0;
+			font-family: var(--noto-sans);
+			font-weight: 700;
+			font-size: 14vw;
+		}
+
+		.app_title_sub {
+			margin: 0;
+			display: block;
+		}
+
+		.app_title_easy {
+			color: #2291FF;
+		}
+
+		.app_title_fast {
+			color: #2291FF;
+		}
+
+		.mockup_device {
+			width: 100%;
+			height: 170vw;
+			color: black;
+			background-color: black;
+			border: 7px solid #1f1f1f;
+			border-radius: 6vh;
+			padding: 20vw 3vw 0 3vw;
+			position: sticky;
+			top: 50vw;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			z-index: 3;
+		}
+
+		.mockup_screen {
+			background-color: black;
+			width: 100%;
+			height: 130vw;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.mockup_page {
+			width: 100%;
+			height: 100%;
+			background-color: white;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.mockup_page.back {
+			transform: scale(0.95) translate(0, 5px);
+			border-radius: 10px 10px 0 0;
+			filter: contrast(50%);
+		}
+
+		.mockup_navbar {
+			background-color: #2291FF;
+			width: 100%;
+			height: 10vh;
+			padding: 3vh 0 0 10px;
+		}
+
+		.mockup_navbar_title {
+			margin: 0;
+			font-family: var(--noto-sans);
+			color: white;
+			font-size: 4vh;
+		}
+
+		.mockup_note_container {
+			border: 2px dashed #2291FF;
+			border-radius: 15px;
+			padding: 5px 5px 0 5px;
+			margin: 10px;
+			height: calc(18vh + 25px);
+		}
+
+		.mockup_date {
+			font-family: "Nanum Gothic";
+			font-weight: 500;
+			color: black;
+			font-size: 2.5vh;
+			margin: 10px 0 0 10px;
+		}
+
+		.mockup_note {
+			background-color: #eee;
+			width: 100%;
+			height: 6vh;
+			margin-bottom: 5px;
+			border: none;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 5px;
+			padding: 5px;
+			opacity: 0;
+			transform: translate(30px, 0);
+		}
+
+		.mockup_note_hidden {
+			background-color: #eee;
+			width: 100%;
+			min-height: 6vh;
+			margin-bottom: 5px;
+			border: none;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 5px;
+			padding: 5px;
+			opacity: 0;
+		}
+
+		.mockup_note_subject {
+			width: 4.6vh;
+			height: 4.6vh;
+			border-radius: 10px;
+			font-family: "Nanum Gothic";
+			font-size: 1.7vh;
+		}
+
+		.mockup_note_subject_one {
+			background-color: greenyellow;
+			color: black;
+		}
+
+		.mockup_note_subject_two {
+			background-color: skyblue;
+			color: black;
+		}
+
+		.mockup_note_subject_three {
+			background-color: orange;
+			color: black;
+		}
+
+		.mockup_note_subject_four {
+			background-color: purple;
+			color: white;
+		}
+
+		.mockup_note_content {
+			margin: 0;
+			font-family: "Nanum Gothic";
+			font-size: 2vh;
+		}
+
+		.mockup_grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			grid-gap: 10px;
+			margin: 10px;
+			opacity: 0;
+		}
+
+		.mockup_memo {
+			background-color: #f7f7f7;
+			border-radius: 10px;
+			margin: 0;
+			padding: 10px;
+
+			grid-column: 1 / 3;
+			grid-row: 1 / 2;
+		}
+
+		.mockup_memo_title {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 0;
+			font-size: 17px;
+			font-weight: 700;
+		}
+
+		.mockup_memo_content {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 5px 0 0 0;
+			font-size: 15px;
+			font-weight: 400;
+		}
+
+		.mockup_reminder {
+			background-color: #f7f7f7;
+			border-radius: 10px;
+			margin: 0;
+			padding: 10px;
+
+			grid-column: 1 / 3;
+			grid-row: 2 / 3;
+		}
+
+		.mockup_reminder_title {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 0;
+			font-size: 17px;
+			font-weight: 700;
+		}
+
+		.mockup_reminder_content {
+			font-family: "Nanum Gothic", sans-serif;
+			margin: 5px 0 0 0;
+			font-size: 15px;
+			font-weight: 400;
+			padding: 0 0 0 20px;
+		}
+
+		.mockup_modal {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #f2f2f8;
+			left: 0;
+			top: calc(100% + 35px);
+			border-radius: 10px 10px 0 0;
+			overflow: hidden;
+		}
+
+		.mockup_modal_navbar {
+			width: 100%;
+			height: 5vh;
+			background-color: #2291FF;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0px 10px;
+		}
+
+		.mockup_modal_navbar_button {
+			margin: 0;
+			color: white;
+			font-family: var(--noto-sans);
+			font-weight: 400;
+		}
+
+		.mockup_modal_navbar_title {
+			margin: 0;
+			color: white;
+			font-family: var(--noto-sans);
+			font-weight: 500;
+		}
+
+		.mockup_modal_form {
+			padding: 20px 15px;
+		}
+
+		.mockup_modal_subject {
+			width: 100%;
+			height: 35px;
+			border-radius: 10px;
+			padding-left: 10px;
+			background-color: white;
+			font-family: var(--noto-sans);
+			font-size: 15px;
+			opacity: 0;
+		}
+
+		.mockup_modal_content {
+			width: 100%;
+			height: 60px;
+			margin-top: 10px;
+			border-radius: 10px;
+			padding-top: 10px;
+			padding-left: 10px;
+			background-color: white;
+			font-family: var(--noto-sans);
+			font-size: 15px;
+			opacity: 0;
+		}
+
+		.app_explain {
+			margin: -170vw 0 0 0;
+			padding-bottom: 200px;
+		}
+
+		#note {
+			height: 3000px;
+		}
+
+		.note_animate {
+			font-family: var(--noto-sans);
+			font-weight: 700;
+			font-size: 9vw;
+			width: 100%;
+			height: 90px;
+			text-align: center;
+			position: sticky;
+			top: 75px;
+			opacity: 0;
+		}
+
+		.note_trigger {
+			width: 100%;
+			height: 10px;
+			margin-bottom: 900px;
+		}
+
+		#note_how {
+			padding-bottom: 150vh;
+			font-family: var(--noto-sans);
+			font-size: 25px;
+		}
+
+		#note_how h2 {
+			margin: 100vh 0 150vh 0;
+		}
+
+		.note_sticky {
+			margin-top: 0;
+			margin-bottom: 100vh;
+			position: sticky;
+			font-family: var(--noto-sans);
+			font-size: 35px;
+			font-weight: 700;
+			background-color: var(--bg-color);
+			top: 100px;
+		}
+
+		#ipad {
+			height: 1000px;
+		}
+
+		.ipad_ok {
+			height: 300px;
+		}
+
+		.ipad_ok h2 {
+			width: 100%;
+			font-size: 50px;
+			margin: 0;
+			text-align: center;
+		}
+
+		.more_stuff {
+			width: 100%;
+			background-color: var(--footer-bg-color);
+		}
+
+		.more_stuff_maxw {
+			width: 100%;
+			max-width: 1200px;
+			display: block;
+			margin: 0 auto;
+			padding: 30px;
+		}
+
+		.more_stuff_maxw h2 {
+			margin: 0 0 30px 0;
+			font-family: var(--noto-sans);
+			font-size: 35px;
+		}
+
+		.more_stuff_grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 50px 100px;
+		}
+
+		.more_stuff_explain_keyword {
+			margin: 5px 0 0 0;
+			font-family: var(--noto-sans);
+			font-size: 17px;
+			font-weight: 500;
+		}
+
+		.more_stuff_explain {
+			margin: 0 0 15px 0;
+			font-family: var(--noto-sans);
+			font-size: 17px;
+			font-weight: 400;
+			color: var(--gray-text-color);
+		}
+
+		.more_stuff_grid_item_image {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: black;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.more_stuff_grid_pwa {
+			background-image: url(/images/img/why-us-icns/pwa.png);
+		}
+
+		.more_stuff_grid_google {
+			background-image: url(/images/img/why-us-icns/google.png);
+		}
+
+		.more_stuff_grid_wa {
+			background-image: url(/images/img/why-us-icns/wa.png);
+		}
+
+		.more_stuff_grid_darkmode {
+			background-image: url(/images/img/why-us-icns/darkmode.png);
+		}
+
+		.more_stuff_grid_offline {
+			background-image: url(/images/img/why-us-icns/offline.png);
+		}
+
+		.more_stuff_grid_lock {
+			background-image: url(/images/img/why-us-icns/lock.png);
+		}
+
+		.download {
+			width: 100%;
+			background: linear-gradient(to right bottom, #8360C3, #2EBF91);
+		}
+
+		.download_content {
+			width: 100%;
+			max-width: 1200px;
+			display: block;
+			margin: 0 auto;
+			padding: 90px 30px 30px 30px;
+		}
+
+		.download_title {
+			font-family: var(--noto-sans);
+			font-size: 40px;
+			width: 100%;
+			text-align: center;
+			font-weight: 700;
+			color: white;
+		}
+
+		.download_grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr;
+			gap: 20px;
+		}
+
+		.download_section {
+			background-color: #ffffff80;
+			border: none;
+			border-radius: 20px;
+			padding: 15px;
+
+			background-repeat: no-repeat;
+			background-size: 70%;
+			background-position: bottom right;
+			transition: .5s;
+		}
+
+		.download_section:hover {
+			transform: translate(0, -10px);
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.download_section_title {
+			margin: 0;
+			width: 100%;
+			text-align: center;
+			font-family: var(--noto-sans);
+			font-size: 35px;
+			font-weight: 700;
+			color: black;
+		}
+
+		.download_button {
+			width: 100%;
+			height: 50px;
+			background-color: var(--theme-color);
+			color: white;
+			text-decoration: none;
+			text-align: center;
+			font-family: var(--noto-sans);
+			font-size: 18px;
+			line-height: 50px;
+			border-radius: 10px;
+			display: block;
+			margin: 250px 0 0 0;
+		}
+
+		.download_button i {
+			margin-right: 5px;
+		}
+
+		.download_web {
+			grid-column: 1 / 4;
+			grid-row: 1 / 2;
+			background-image: url(/images/img/download-mockups/web.png);
+		}
+
+		.download_ios {
+			grid-column: 1 / 4;
+			grid-row: 2 / 3;
+			background-image: url(/images/img/download-mockups/ios.png);
+		}
+
+		.download_android {
+			grid-column: 1 / 4;
+			grid-row: 3 / 4;
+			background-image: url(/images/img/download-mockups/android.png);
+		}
+
+		.download_wave {
+			background: var(--footer-bg-color);
+			clip-path: url(#download_wave_clip);
+			width: 100%;
+			height: 300px;
+		}
+
+		.footnote {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.footnotes {
+			width: 100%;
+			background-color: var(--footer-bg-color);
+			padding: 20px;
+		}
+
+		.footnotes_list {
+			width: 100%;
+			max-width: 1000px;
+			display: block;
+			margin: 0 auto;
+			border-top: 1px solid #d2d2d7;
+			border-bottom: 1px solid #d2d2d7;
+			padding: 0 0 0 30px;
+			color: var(--footer-text-color);
+			font-size: 12px;
+		}
+
+		footer {
+			width: 100%;
+			height: 200px;
+			background-color: var(--footer-bg-color);
+			margin-top: -200px;
+			border-bottom: 10px solid var(--theme-color);
+			position: relative;
+			padding: 0 0 0 30px;
+		}
+
+		footer div {
+			width: 100%;
+			max-width: 1000px;
+			display: block;
+			margin: 0 auto;
+		}
+
+		.footer_logo {
+			font-family: 'Courgette', cursive;
+			font-size: 40px;
+			color: var(--footer-text-color);
+			margin: 0;
+			padding: 0;
+		}
+
+		.footer_sosumi {
+			color: var(--footer-text-color);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--theme-color: #1871CA;
+				--footer-bg-color: #333;
+				--footer-text-color: #999;
+				--bg-color: #111;
+				--text-color: #FFFFFF;
+				--slide-bg-color: #222;
+				--gray-text-color: #9e9ea5;
+				--screenshot-shadow-color: #333;
+			}
+
+			.body_wrap {
+				background-color: black;
+				color: white;
+			}
+
+			.intro {
+				background: linear-gradient(200deg, #0b4c5c, #3a6c77);
+			}
+
+			.wave_one {
+				background: linear-gradient(#2f788a, #548c9e);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="navbar">
+		<button class="nav_hamburger center" aria-label="사이드 패널 열기">
+			<div>
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+		<a class="nav_home" href="https://studia.blue/">studia</a>
+		<a class="nav_app" href="https://studia.blue/app/">앱 열기</a>
+	</div>
+
+	<div id="sidenav">
+		<button id="close_nav">&times;</button>
+		<script id="replace_sidebar" src="https://studia.blue/sidebar.js"></script>
+	</div>
+
+	<div class="body_wrap">
+		<div class="body">
+			<div class="intro">
+				<div class="intro_screenshot_container_absolute">
+					<div class="intro_screenshot_container">
+						<div class="intro_screenshot intro_screenshot_notes">
+							<img class="intro_screenshot_img intro_screenshot_img_notes" src="/images/img/notes_m.png"
+								alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_faceid">
+							<img class="intro_screenshot_img intro_screenshot_img_faceid"
+								src="/images/img/faceid.png" alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_share">
+							<img class="intro_screenshot_img intro_screenshot_img_share" src="/images/img/share.png"
+								alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_picker">
+							<img class="intro_screenshot_img intro_screenshot_img_picker" src="/images/img/picker.png"
+								alt="" />
+						</div>
+					</div>
+				</div>
+				<div class="wave_one"><svg style="position: absolute;">
+						<clipPath id="clip_one">
+							<path
+								d="M0,128L60,149.3C120,171,240,213,360,202.7C480,192,600,128,720,96C840,64,960,64,1080,74.7C1200,85,1320,107,1380,117.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+							</path>
+						</clipPath>
+					</svg></div>
+				<div class="wave_two"><svg style="position: absolute;">
+						<clipPath id="clip_two">
+							<path
+								d="M1175.65 35.7644C962.846 -46.1285 865.751 35.6288 643.768 54.6084C421.786 73.588 391.68 33.0436 226.292 14.4975C60.9034 -4.0486 11.1228 90.8729 -67.9998 110.654C-67.9998 198.586 -67.9998 516 -67.9998 516L1508.19 516L1508.19 8.45359C1508.19 8.45359 1388.84 117.807 1175.65 35.7644Z">
+							</path>
+						</clipPath>
+					</svg></div>
+			</div>
+			<div class="intro_msg">
+				<h2 class="animate animate_1">매일 한줄 노트로 <span>배운 내용 복습하기</span></h2>
+				<div class="trigger trigger_1"></div>
+				<h2 class="animate animate_2">메모, 과제 및 준비물로 <span>중요한 일 기억하기</span></h2>
+				<div class="trigger trigger_2"></div>
+				<h2 class="animate animate_3">기기 간 실시간 연동으로 <span>어디서든 액세스</span></h2>
+				<div class="trigger trigger_3"></div>
+			</div>
+			<div class="app">
+				<div class="app_title">
+					<h1 class="app_title_h1">복습?
+						<p class="app_title_sub">스튜디아로<br><span class="app_title_easy">쉽고</span> <span
+								class="app_title_fast">빠르게</span>.</p>
+					</h1>
+				</div>
+				<div class="mockup_device">
+					<div class="mockup_screen">
+						<div class="mockup_page">
+							<div class="mockup_navbar">
+								<p class="mockup_navbar_title">내 캘린더</p>
+							</div>
+							<div class="mockup_date_container">
+								<p class="mockup_date">&lt; 2022/01/01 &gt;</p>
+							</div>
+							<div class="mockup_note_container">
+								<div class="mockup_note mockup_note_one">
+									<div class="mockup_note_subject mockup_note_subject_one center">국어</div>
+									<p class="mockup_note_content mockup_note_content_one">형태소의 개념</p>
+								</div>
+								<div class="mockup_note mockup_note_two">
+									<div class="mockup_note_subject mockup_note_subject_two center">사회</div>
+									<p class="mockup_note_content mockup_note_content_one">자연재해 대응 방안</p>
+								</div>
+								<div class="mockup_note mockup_note_three">
+									<div class="mockup_note_subject mockup_note_subject_three center">영어</div>
+									<p class="mockup_note_content mockup_note_content_one">to부정사의 부사적 용법</p>
+								</div>
+								<div class="mockup_note_hidden">
+									<div class="mockup_note_subject mockup_note_subject_four center">수학</div>
+									<p class="mockup_note_content mockup_note_content_one">음함수의 미분법</p>
+								</div>
+							</div>
+							<div class="mockup_grid">
+								<div class="mockup_memo">
+									<p class="mockup_memo_title">메모</p>
+									<p class="mockup_memo_content">사물함에 마스크 여분 갖다놓기</p>
+								</div>
+								<div class="mockup_reminder">
+									<p class="mockup_reminder_title">과제 및 준비물</p>
+									<ul class="mockup_reminder_content">
+										<li>컴싸</li>
+										<li>4B연필, 지우개</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="mockup_modal">
+							<div class="mockup_modal_navbar">
+								<p class="mockup_modal_navbar_button">취소</p>
+								<p class="mockup_modal_navbar_title">노트 추가</p>
+								<p class="mockup_modal_navbar_button">완료</p>
+							</div>
+							<div class="mockup_modal_form">
+								<div class="mockup_modal_subject vertical">수학</div>
+								<div class="mockup_modal_content">음함수의 미분법</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="app_explain">
+					<div id="note">
+						<h2 class="note_animate animate_4">한 줄 노트로<br>수업 내용을 정리하세요</h2>
+						<div class="note_trigger trigger_4"></div>
+						<h2 class="note_animate animate_5">날짜별로 노트를<br>찾아보고, 관리하세요</h2>
+						<div class="note_trigger trigger_5"></div>
+						<h2 class="note_animate animate_6">알림장 기능도 있어요</h2>
+						<div class="note_trigger trigger_6"></div>
+					</div>
+					<div id="note_how">
+						<h2>어떻게 하냐고요?</h2>
+						<div id="trigger_one"></div>
+						<p class="note_sticky note_sticky_one">노트 추가</p>
+						<div id="trigger_two"></div>
+						<p class="note_sticky note_sticky_two">과목 선택</p>
+						<div id="trigger_three"></div>
+						<p class="note_sticky note_sticky_three">내용 작성</p>
+						<div id="trigger_four"></div>
+						<p class="note_sticky note_sticky_four">끝.</p>
+					</div>
+				</div>
+			</div>
+			<div class="ipad_ok">
+				<h2>이렇게<br>쉽습니다.</h2>
+			</div>
+			<div class="more_stuff">
+				<div class="more_stuff_maxw">
+					<h2>여기에 더.</h2>
+					<div class="more_stuff_grid">
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_pwa"></div>
+							<p class="more_stuff_explain_keyword">Progressive Web App<sup><a href="#footnote-1"
+										class="footnote">1</a></sup></p>
+							<p class="more_stuff_explain">PWA 앱은 브라우저 캐싱을 통해 기기에 웹 앱을 설치하고 로딩 속도 및 성능을 향상시킬 수 있습니다.</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_google"></div>
+							<p class="more_stuff_explain_keyword">소셜 로그인</p>
+							<p class="more_stuff_explain">번거로운 가입 절차 없이 구글 계정으로 간편하게 가입 및 로그인하세요</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_wa"></div>
+							<p class="more_stuff_explain_keyword">접근성</p>
+							<p class="more_stuff_explain">시각장애인, 스크린 리더 등도 페이지의 내용을 문제 없이 읽을 수 있도록 접근성 기술을 사용하였습니다.</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_darkmode"></div>
+							<p class="more_stuff_explain_keyword">다크 모드</p>
+							<p class="more_stuff_explain">다크 모드를 사용하여 눈의 피로도를 줄이고 배터리와 디스플레이도 보존하세요. 기기의 설정값이 그대로 반영됩니다.
+							</p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_offline"></div>
+							<p class="more_stuff_explain_keyword">오프라인 연결<sup><a href="#footnote-2"
+										class="footnote">2</a></sup></p>
+							<p class="more_stuff_explain">인터넷 연결이 불안정하거나 잠시 끊어진 경우에도 노트 작성이 가능합니다. 나중에 다시 네트워크에 연결되면 작업이
+								저장됩니다.<sup><a href="#footnote-3" class="footnote">3</a></sup></p>
+						</div>
+						<div class="more_stuff_grid_item">
+							<div class="more_stuff_grid_item_image more_stuff_grid_lock"></div>
+							<p class="more_stuff_explain_keyword">DB 보안<sup><a href="#footnote-4"
+										class="footnote">4</a></sup></p>
+							<p class="more_stuff_explain">Firebase Realtime Database의 보안 규칙을 설정하여 본인이 아닌 경우에는 노트 접근을
+								차단하도록 했습니다.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="download" id="download">
+				<div class="download_content">
+					<h2 class="download_title">STUDIA 시작하기</h2>
+					<div class="download_grid">
+						<div class="download_section download_web">
+							<div class="download_section_title">Web</div>
+							<a target="_blank" class="download_button" href="https://studia.blue/app"><i
+									class="fa-solid fa-arrow-up-right-from-square"></i> 열기</a>
+						</div>
+						<div class="download_section download_ios">
+							<div class="download_section_title">iOS</div>
+							<a class="download_button" href="#"><i class="fa-solid fa-circle-arrow-down"></i> 받기</a>
+						</div>
+						<div class="download_section download_android">
+							<div class="download_section_title">Android</div>
+							<a class="download_button"
+								href="https://play.google.com/store/apps/details?id=app.web.studia_kr"><i
+									class="fa-solid fa-circle-arrow-down"></i> 받기</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="download_wave"><svg style="position: absolute;">
+						<clipPath id="download_wave_clip">
+							<path
+								d="M0,96L60,112C120,128,240,160,360,149.3C480,139,600,85,720,90.7C840,96,960,160,1080,181.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+							</path>
+						</clipPath>
+					</svg>
+				</div>
+			</div>
+			<div class="footnotes">
+				<ol class="footnotes_list">
+					<li id="footnote-1">
+						<p>프로그레시브 웹 앱 기술은 STUDIA 웹 앱에서만 사용 가능합니다. 또한 이를 사용하려면 Google Chrome 버전 39 이상, Microsoft Edge 버전
+							79 이상, Safari on iOS 버전 11.3 이상, Opera Mobile 버전 13 이상, Chrome for Android, Firefox for
+							Android, 삼성 인터넷 또는 그 밖의 A2HS를 지원하는 브라우저를 사용해야 합니다. Microsoft Internet Explorer, Firefox
+							Desktop, Safari on macOS, Opera Desktop 등의 브라우저에서는 PWA 기능을 사용할 수 없습니다.</p>
+					</li>
+					<li id="footnote-2">
+						<p>오프라인 접근 기능은 iOS 앱에서만 사용 가능합니다. 사용하려면 애플리케이션 설정에서 오프라인 접근 항목을 활성화하십시오.</p>
+					</li>
+					<li id="footnote-3">
+						<p>데이터베이스 수정은 일시적 네트워크 끊김의 경우에만 사용 가능하며, 네트워크 연결이 완전히 끊어진 경우에는 읽기 모드만 지원됩니다. 노트, 메모 또는 과제 및 준비물을
+							오프라인 상태에서 생성하거나 수정, 삭제한 후 앱을 종료한 경우에는 해당 수정사항이 폐기됩니다.</p>
+					</li>
+					<li id="footnote-4">
+						<p>데이터베이스에 저장되는 개인 데이터는 HTTPS 보호를 통해 전송되며 구글의 Firebase 데이터 센터(동아시아 서버)에서 AES 256-Bit로 암호화된 후
+							보관됩니다.</p>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+
+	<footer class="vertical">
+		<div>
+			<p class="footer_logo">studia</p>
+			<p class="footer_sosumi">Copyright &copy; 2022 App Developers.<br>All Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBeJDdOCiCPl8dY45RDTZ_Dm6BXGOdsxAc",
+			authDomain: "studia-kr.firebaseapp.com",
+			databaseURL: "https://studia-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "studia-kr",
+			storageBucket: "studia-kr.appspot.com",
+			messagingSenderId: "654717768488",
+			appId: "1:654717768488:web:9145bccc0e7b33fe33361d",
+			measurementId: "G-VNTECBX1XJ"
+		};
+
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+		const hamburger = document.getElementsByClassName("nav_hamburger")[0];
+		const navbar = document.getElementById("navbar");
+		const sidenav = document.getElementById("sidenav");
+		const close_nav_button = document.getElementById("close_nav");
+
+		// Hamburger Menu
+		hamburger.addEventListener("click", function () {
+			hamburger.classList.toggle("bar_open");
+			sidenav.classList.toggle("side_open");
+		})
+		close_nav_button.addEventListener("click", function () {
+			hamburger.className = "nav_hamburger center";
+			sidenav.className = "";
+		})
+
+		var url = new URL(location.href);
+		// If '?noie=true' parameter is not present
+		if (url.searchParams.get('noie') !== 'true') {
+			// Detect Internet Explorer
+			if (/MSIE|Trident/.test(window.navigator.userAgent)) {
+				// The browser is IE
+				// Redirect
+				location.replace("https://studia.blue/noie");
+			}
+		}
+
+		// ScrollMagic
+		var controller = new ScrollMagic.Controller();
+
+		var animateElem = [".animate_1", ".animate_2", ".animate_3"];
+		var triggerElem = [".trigger_1", ".trigger_2", ".trigger_3"];
+		var noteAnimateElem = [".animate_4", ".animate_5", ".animate_6"];
+		var noteTriggerElem = [".trigger_4", ".trigger_5", ".trigger_6"];
+
+		for (var i = 0; i < animateElem.length; i++) {
+			var currentAnimateElem = animateElem[i];
+			var currentTriggerElem = triggerElem[i];
+
+			var timeline = new TimelineMax();
+
+			var tween_move = TweenMax.fromTo(
+				currentAnimateElem,
+				1, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: 50
+				}, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: -50
+				}
+			);
+
+			var tween_opacity = new TimelineMax();
+			tween_opacity
+				.to(currentAnimateElem, 0.3, {
+					ease: Linear.easeNone,
+					opacity: 1
+				})
+				.to(
+					currentAnimateElem,
+					0.3, {
+						ease: Linear.easeNone,
+						opacity: 0
+					},
+					"+=0.4"
+				);
+
+			timeline.add(tween_move, 0).add(tween_opacity, 0);
+
+			var scene_main = new ScrollMagic.Scene({
+					triggerElement: currentTriggerElem,
+					duration: "900px"
+				})
+				.setTween(timeline)
+				.addTo(controller);
+		}
+
+		for (var i = 0; i < noteAnimateElem.length; i++) {
+			var currentAnimateElem = noteAnimateElem[i];
+			var currentTriggerElem = noteTriggerElem[i];
+
+			var timeline = new TimelineMax();
+
+			var tween_move = TweenMax.fromTo(
+				currentAnimateElem,
+				1, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: 50
+				}, {
+					ease: SlowMo.ease.config(0.7, 0.7, false),
+					y: -50
+				}
+			);
+
+			var tween_opacity = new TimelineMax();
+			tween_opacity
+				.to(currentAnimateElem, 0.3, {
+					ease: Linear.easeNone,
+					opacity: 1
+				})
+				.to(
+					currentAnimateElem,
+					0.3, {
+						ease: Linear.easeNone,
+						opacity: 0
+					},
+					"+=0.4"
+				);
+
+			timeline.add(tween_move, 0).add(tween_opacity, 0);
+
+			var scene_main = new ScrollMagic.Scene({
+					triggerElement: currentTriggerElem,
+					duration: "900px",
+					triggerHook: 0
+				})
+				.setTween(timeline)
+				.addTo(controller);
+		}
+
+		var timeline_note_appear = new TimelineMax();
+		timeline_note_appear
+			.to('.mockup_note_one', 0.3, {
+				opacity: 1,
+				x: 0
+			})
+			.to('.mockup_note_two', 0.3, {
+				opacity: 1,
+				x: 0
+			})
+			.to('.mockup_note_three', 0.3, {
+				opacity: 1,
+				x: 0
+			})
+		var scene_note_appear = new ScrollMagic.Scene({
+				triggerElement: '.trigger_4',
+				triggerHook: 0
+			})
+			.setTween(timeline_note_appear)
+			.addTo(controller);
+
+		var tween_note_reminder = TweenMax.to('.mockup_grid', 0.5, {
+			opacity: 1
+		})
+		var scene_note_reminder = new ScrollMagic.Scene({
+				triggerElement: '.trigger_6',
+				triggerHook: 0
+			})
+			.setTween(tween_note_reminder)
+			.addTo(controller)
+
+		var tween_note_modal = new TimelineMax();
+		tween_note_modal
+			.add('start')
+			.to('.mockup_page', 0.5, {
+				scale: 0.95,
+				y: 10,
+				borderRadius: "10px 10px 0 0",
+				opacity: 0.9
+			}, "start")
+			.to('.mockup_modal', 0.5, {
+				y: "-100%"
+			}, "start")
+		var scene_note_modal = new ScrollMagic.Scene({
+				triggerElement: '#trigger_one',
+				offset: -300,
+				duration: "50%",
+				triggerHook: 0
+			})
+			.setTween(tween_note_modal)
+			.addTo(controller)
+
+		var tween_add_subject = TweenMax.to('.mockup_modal_subject', 0.5, {
+			opacity: 1
+		})
+		var scene_add_subject = new ScrollMagic.Scene({
+				triggerElement: '#trigger_two',
+				triggerHook: 0
+			})
+			.setTween(tween_add_subject)
+			.addTo(controller)
+
+		var tween_add_content = TweenMax.to('.mockup_modal_content', 0.5, {
+			opacity: 1
+		})
+		var scene_add_subject = new ScrollMagic.Scene({
+				triggerElement: '#trigger_three',
+				triggerHook: 0
+			})
+			.setTween(tween_add_content)
+			.addTo(controller)
+
+		var tween_note_modal_close = new TimelineMax();
+		tween_note_modal_close
+			.add('start')
+			.to('.mockup_page', 0.5, {
+				scale: 1,
+				y: 0,
+				borderRadius: 0,
+				opacity: 1
+			}, "start")
+			.to('.mockup_modal', 0.5, {
+				y: "100%"
+			}, "start")
+			.to('.mockup_note_container', 0.5, {
+				height: "calc(24vh + 30px)"
+			}, "start")
+			.to('.mockup_note_hidden', 0.5, {
+				opacity: 1
+			}, "start")
+		var scene_note_modal_close = new ScrollMagic.Scene({
+				triggerElement: '#trigger_four',
+				offset: -300,
+				duration: "100%",
+				triggerHook: 0
+			})
+			.setTween(tween_note_modal_close)
+			.addTo(controller)
+	</script>
+</body>
+
+</html>
