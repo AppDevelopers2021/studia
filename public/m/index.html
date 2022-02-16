@@ -25,7 +25,6 @@
 		rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-
 	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
@@ -262,7 +261,7 @@
 		}
 
 		.intro {
-			height: 800px;
+			height: 900px;
 			background: linear-gradient(200deg, #2193b0, #6dd5ed);
 			overflow: hidden;
 		}
@@ -278,14 +277,14 @@
 			opacity: 0;
 			font-family: var(--noto-sans);
 			font-weight: 700;
-			font-size: 4vw;
+			font-size: 9vw;
 			width: 100%;
 			height: 90px;
 			text-align: center;
 		}
 
 		.animate span {
-			display: inline-block;
+			display: block;
 		}
 
 		.trigger {
@@ -309,7 +308,7 @@
 		}
 
 		.intro_screenshot {
-			transform: rotateY(-20deg) rotateX(20deg);
+			transform: rotateY(-15deg) rotateX(15deg);
 			position: absolute;
 			overflow: hidden;
 		}
@@ -318,55 +317,58 @@
 			display: block;
 		}
 
-		.intro_screenshot_notification {
-			background: rgba(255, 255, 255, 0.6);
+		.intro_screenshot_faceid {
 			backdrop-filter: blur(10px);
-			border-radius: 15px;
+			border-radius: 7px;
 
-			top: 0;
-			left: 15vw;
+			top: 10vw;
+			left: 70vw;
+			z-index: 4;
 		}
 
 		.intro_screenshot_notes {
-			background: rgba(255, 255, 255, 0.6);
+			background: white;
 			backdrop-filter: blur(10px);
 			border-radius: 15px;
+			z-index: 1;
 
 			top: 4vw;
 			left: 10vw;
 			box-shadow: 5px 5px 25px var(--screenshot-shadow-color);
 		}
 
-		.intro_screenshot_save {
-			top: 25vw;
-			left: 15vw;
+		.intro_screenshot_share {
+			top: 35vw;
+			left: 30vw;
 			box-shadow: 5px 5px 25px var(--screenshot-shadow-color);
 			border-radius: 10px;
+			z-index: 2;
 		}
 
-		.intro_screenshot_memo {
+		.intro_screenshot_picker {
 			background: rgba(255, 255, 255, 0.5);
 			backdrop-filter: blur(10px);
 			border-radius: 10px;
-			top: 30vw;
-			left: 50vw;
+			top: 120vw;
+			left: 10vw;
 			box-shadow: 5px 5px 20px var(--screenshot-shadow-color);
+			z-index: 3;
 		}
 
-		.intro_screenshot_img_notification {
+		.intro_screenshot_img_faceid {
 			width: 20vw;
 		}
 
 		.intro_screenshot_img_notes {
-			width: 80vw;
+			width: 75vw;
 		}
 
-		.intro_screenshot_img_save {
-			width: 30vw;
+		.intro_screenshot_img_share {
+			width: 60vw;
 		}
 
-		.intro_screenshot_img_memo {
-			width: 40vw;
+		.intro_screenshot_img_picker {
+			width: 60vw;
 		}
 
 		.wave_one {
@@ -375,7 +377,7 @@
 			position: absolute;
 			width: 100%;
 			height: 500px;
-			top: 30vw;
+			top: 70vw;
 		}
 
 		.wave_two {
@@ -384,26 +386,25 @@
 			position: absolute;
 			width: 100%;
 			height: 700px;
-			top: 45vw;
+			top: 120vw;
 		}
 
 		.app {
-			padding-top: 10vh;
+			padding: 0 5vw;
 			max-width: 1200px;
 			margin: 0 auto;
 			display: block;
 		}
 
 		.app_title {
-			width: 100%;
-			padding: 0 0 20px 5vh;
+			width: 100%
 		}
 
 		.app_title_h1 {
 			margin: 0;
 			font-family: var(--noto-sans);
 			font-weight: 700;
-			font-size: 5vw;
+			font-size: 14vw;
 		}
 
 		.app_title_sub {
@@ -420,26 +421,25 @@
 		}
 
 		.mockup_device {
-			width: 43vh;
-			max-width: 1200px;
-			height: 85vh;
+			width: 100%;
+			height: 170vw;
 			color: black;
 			background-color: black;
 			border: 7px solid #1f1f1f;
 			border-radius: 6vh;
-			padding: 10vh 1.3vh 0 1.3vh;
+			padding: 20vw 3vw 0 3vw;
 			position: sticky;
-			top: 10vh;
-			margin-left: 5vh;
+			top: 50vw;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			z-index: 3;
 		}
 
 		.mockup_screen {
 			background-color: black;
 			width: 100%;
-			height: 65vh;
+			height: 130vw;
 			position: relative;
 			overflow: hidden;
 		}
@@ -678,7 +678,7 @@
 		}
 
 		.app_explain {
-			margin-left: 52vh;
+			margin: -170vw 0 0 0;
 			padding-bottom: 200px;
 		}
 
@@ -689,10 +689,12 @@
 		.note_animate {
 			font-family: var(--noto-sans);
 			font-weight: 700;
-			font-size: 40px;
+			font-size: 9vw;
+			width: 100%;
 			height: 90px;
+			text-align: center;
 			position: sticky;
-			top: 45vh;
+			top: 75px;
 			opacity: 0;
 		}
 
@@ -714,28 +716,13 @@
 
 		.note_sticky {
 			margin-top: 0;
-			margin-bottom: 150vh;
+			margin-bottom: 100vh;
 			position: sticky;
 			font-family: var(--noto-sans);
 			font-size: 35px;
 			font-weight: 700;
 			background-color: var(--bg-color);
-		}
-
-		.note_sticky_one {
 			top: 100px;
-		}
-
-		.note_sticky_two {
-			top: 150px;
-		}
-
-		.note_sticky_three {
-			top: 200px;
-		}
-
-		.note_sticky_four {
-			top: 250px;
 		}
 
 		#ipad {
@@ -774,7 +761,7 @@
 
 		.more_stuff_grid {
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: 1fr;
 			gap: 50px 100px;
 		}
 
@@ -903,20 +890,20 @@
 		}
 
 		.download_web {
-			grid-column: 1 / 1;
-			grid-row: 1 / 4;
+			grid-column: 1 / 4;
+			grid-row: 1 / 2;
 			background-image: url(/images/img/download-mockups/web.png);
 		}
 
 		.download_ios {
-			grid-column: 2 / 3;
-			grid-row: 1 / 4;
+			grid-column: 1 / 4;
+			grid-row: 2 / 3;
 			background-image: url(/images/img/download-mockups/ios.png);
 		}
 
 		.download_android {
-			grid-column: 3 / 4;
-			grid-row: 1 / 4;
+			grid-column: 1 / 4;
+			grid-row: 3 / 4;
 			background-image: url(/images/img/download-mockups/android.png);
 		}
 
@@ -979,48 +966,6 @@
 			color: var(--footer-text-color);
 		}
 
-		@media screen and (max-width: 1000px) {
-			.app_title_h1 {
-				font-size: 7vw;
-			}
-
-			.animate {
-				font-size: 5vw;
-			}
-
-			.animate span {
-				display: block;
-			}
-		}
-
-		@media screen and (max-width: 800px) {
-			.app_title_h1 {
-				font-size: 8vw;
-			}
-
-			.animate {
-				font-size: 6vw;
-			}
-
-			#ipad {
-				display: none;
-			}
-
-			.ipad_ok {
-				visibility: hidden;
-			}
-
-			.more_stuff_grid {
-				grid-template-columns: 1fr 1fr;
-			}
-		}
-
-		@media screen and (max-width: 768px) {
-			.body {
-				display: none;
-			}
-		}
-
 		@media (prefers-color-scheme: dark) {
 			:root {
 				--theme-color: #1871CA;
@@ -1072,20 +1017,20 @@
 			<div class="intro">
 				<div class="intro_screenshot_container_absolute">
 					<div class="intro_screenshot_container">
-						<div class="intro_screenshot intro_screenshot_notification">
-							<img class="intro_screenshot_img intro_screenshot_img_notification"
-								src="/images/img/notification.png" alt="" />
-						</div>
 						<div class="intro_screenshot intro_screenshot_notes">
-							<img class="intro_screenshot_img intro_screenshot_img_notes" src="/images/img/notes.png"
+							<img class="intro_screenshot_img intro_screenshot_img_notes" src="/images/img/notes_m.png"
 								alt="" />
 						</div>
-						<div class="intro_screenshot intro_screenshot_save">
-							<img class="intro_screenshot_img intro_screenshot_img_save" src="/images/img/save.png"
+						<div class="intro_screenshot intro_screenshot_faceid">
+							<img class="intro_screenshot_img intro_screenshot_img_faceid"
+								src="/images/img/faceid.png" alt="" />
+						</div>
+						<div class="intro_screenshot intro_screenshot_share">
+							<img class="intro_screenshot_img intro_screenshot_img_share" src="/images/img/share.png"
 								alt="" />
 						</div>
-						<div class="intro_screenshot intro_screenshot_memo">
-							<img class="intro_screenshot_img intro_screenshot_img_memo" src="/images/img/memo.png"
+						<div class="intro_screenshot intro_screenshot_picker">
+							<img class="intro_screenshot_img intro_screenshot_img_picker" src="/images/img/picker.png"
 								alt="" />
 						</div>
 					</div>
@@ -1116,7 +1061,7 @@
 			<div class="app">
 				<div class="app_title">
 					<h1 class="app_title_h1">복습?
-						<p class="app_title_sub">스튜디아로 <span class="app_title_easy">쉽고</span> <span
+						<p class="app_title_sub">스튜디아로<br><span class="app_title_easy">쉽고</span> <span
 								class="app_title_fast">빠르게</span>.</p>
 					</h1>
 				</div>
@@ -1194,14 +1139,10 @@
 						<div id="trigger_four"></div>
 						<p class="note_sticky note_sticky_four">끝.</p>
 					</div>
-					<div id="ipad">
-					</div>
 				</div>
 			</div>
 			<div class="ipad_ok">
-				<h2>태블릿? 문제없어요.</h2>
-			</div>
-			<div class="grid">
+				<h2>이렇게<br>쉽습니다.</h2>
 			</div>
 			<div class="more_stuff">
 				<div class="more_stuff_maxw">
@@ -1314,13 +1255,6 @@
 
 	<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-
-	<script>
-		// Detect Mobile Environment
-		if (window.matchMedia("(max-width: 768px)").matches) {
-			location.href = "/m";
-		}
-	</script>
 
 	<script>
 		// Your web app's Firebase configuration
@@ -1450,7 +1384,8 @@
 
 			var scene_main = new ScrollMagic.Scene({
 					triggerElement: currentTriggerElem,
-					duration: "900px"
+					duration: "900px",
+					triggerHook: 0
 				})
 				.setTween(timeline)
 				.addTo(controller);
@@ -1471,7 +1406,8 @@
 				x: 0
 			})
 		var scene_note_appear = new ScrollMagic.Scene({
-				triggerElement: '.trigger_4'
+				triggerElement: '.trigger_4',
+				triggerHook: 0
 			})
 			.setTween(timeline_note_appear)
 			.addTo(controller);
@@ -1480,7 +1416,8 @@
 			opacity: 1
 		})
 		var scene_note_reminder = new ScrollMagic.Scene({
-				triggerElement: '.trigger_6'
+				triggerElement: '.trigger_6',
+				triggerHook: 0
 			})
 			.setTween(tween_note_reminder)
 			.addTo(controller)
@@ -1500,7 +1437,8 @@
 		var scene_note_modal = new ScrollMagic.Scene({
 				triggerElement: '#trigger_one',
 				offset: -300,
-				duration: "50%"
+				duration: "50%",
+				triggerHook: 0
 			})
 			.setTween(tween_note_modal)
 			.addTo(controller)
@@ -1509,7 +1447,8 @@
 			opacity: 1
 		})
 		var scene_add_subject = new ScrollMagic.Scene({
-				triggerElement: '#trigger_two'
+				triggerElement: '#trigger_two',
+				triggerHook: 0
 			})
 			.setTween(tween_add_subject)
 			.addTo(controller)
@@ -1518,7 +1457,8 @@
 			opacity: 1
 		})
 		var scene_add_subject = new ScrollMagic.Scene({
-				triggerElement: '#trigger_three'
+				triggerElement: '#trigger_three',
+				triggerHook: 0
 			})
 			.setTween(tween_add_content)
 			.addTo(controller)
@@ -1544,71 +1484,11 @@
 		var scene_note_modal_close = new ScrollMagic.Scene({
 				triggerElement: '#trigger_four',
 				offset: -300,
-				duration: "100%"
+				duration: "100%",
+				triggerHook: 0
 			})
 			.setTween(tween_note_modal_close)
 			.addTo(controller)
-
-		var tween_ipad = new TimelineMax();
-		if (window.matchMedia("(min-width: 1200px)").matches) {
-			tween_ipad
-				.add('start')
-				.to('.mockup_device', 0.5, {
-					width: "90vw",
-					margin: "0",
-					padding: "2vh 10vh",
-					borderRadius: "25px"
-				}, "start")
-				.to('.mockup_screen', 0.5, {
-					height: "81vh"
-				}, "start")
-				.to('.mockup_memo', 0.5, {
-					gridColumn: "1 / 2",
-					gridRow: "1 / 3",
-					height: "20vh"
-				}, "start")
-				.to('.mockup_reminder', 0.5, {
-					gridColumn: "2 / 3",
-					gridRow: "1 / 3",
-					height: "20vh"
-				}, "start")
-
-			var scene_ipad = new ScrollMagic.Scene({
-					triggerElement: '#ipad',
-					duration: "100%"
-				})
-				.setTween(tween_ipad)
-				.addTo(controller)
-		} else if (window.matchMedia("(min-width: 800px)").matches) {
-			tween_ipad
-				.add('start')
-				.to('.mockup_device', 0.5, {
-					width: "90vw",
-					margin: "0 0 0 5vw",
-					padding: "2vh 10vh",
-					borderRadius: "25px"
-				}, "start")
-				.to('.mockup_screen', 0.5, {
-					height: "81vh"
-				}, "start")
-				.to('.mockup_memo', 0.5, {
-					gridColumn: "1 / 2",
-					gridRow: "1 / 3",
-					height: "20vh"
-				}, "start")
-				.to('.mockup_reminder', 0.5, {
-					gridColumn: "2 / 3",
-					gridRow: "1 / 3",
-					height: "20vh"
-				}, "start")
-
-			var scene_ipad = new ScrollMagic.Scene({
-					triggerElement: '#ipad',
-					duration: "100%"
-				})
-				.setTween(tween_ipad)
-				.addTo(controller)
-		}
 	</script>
 </body>
 
