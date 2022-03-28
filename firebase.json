@@ -15,6 +15,11 @@
         "key": "Access-Control-Allow-Origin",
         "value": "*"
       }]
+    }],
+    "appAssociation": "AUTO",
+    "rewrites": [{
+      "source": "/go/**",
+      "dynamicLinks": true
     }]
   }
 }
