@@ -1,4 +1,4 @@
-fetch('https://studia.blue/sidebar.html')
+fetch('https://studia-kr.web.app/sidebar.html')
 .then(res => res.text())
 .then(text => {
     let oldElem = document.getElementById('replace_sidebar');

@@ -224,7 +224,7 @@ logout_button.addEventListener("click", function () {
 
 // Change password
 change_pw_button.addEventListener("click", function () {
-    location.href = "https://studia.blue/iforgot";
+    location.href = "https://studia-kr.web.app/iforgot";
 });
 
 // Change date when swipe
